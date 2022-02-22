@@ -1,0 +1,33 @@
+@extends('layout')
+@section('title', "Usta qo'shish")
+@section('header-text', "Usta qo'shish")
+@section('content')
+
+<div class="container container-bg">
+    <form method="post" action="{{ route('masters-base.store') }}">
+        @csrf
+        @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+        @endif
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <div class="mb-3" id="companyName">
+            <label for="master" class="form-label">Usta nomi*</label>
+            <input type="text" class="form-control" id="master" name="master" value="{{ old('master')}}">
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-success px-3 py-2 mt-3">Qo'shish</button>
+        </div> 
+    </form>
+</div>
+
+@endsection
