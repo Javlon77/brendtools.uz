@@ -8,17 +8,23 @@
     <h5>Xodimlar</h5>   
     <div class="wrapper ">    
     <a href="/tasks/{{ $myprofile->id }}" class="container-bg  box ">
-        Mening profilim ({{ App\Models\Task::where('user_id',$myprofile->id) -> where('status', 0)->count() }})
+        Mening profilim 
+        <br> 
+        ({{ App\Models\Task::where('user_id',$myprofile->id) -> where('status', 0)->count() }})
     </a>
 
     <a href="/tasks/0" class="container-bg  box ">
-        Umumiy ({{ App\Models\Task::where('user_id', 0) -> where('status', 0)->count() }})
+        Umumiy 
+        <br> 
+        ({{ App\Models\Task::where('user_id', 0) -> where('status', 0)->count() }})
     </a>
 
     @foreach($users as $user)
     @if($myprofile->id !== $user->id)
     <a href="/tasks/{{ $user->id }}" class="container-bg  box">
-     {{ $user->name }}  <br> ({{ App\Models\Task::where('user_id',$user->id) -> where('status', 0)->count() }})
+     {{ $user->name }}  
+     <br> 
+     ({{ App\Models\Task::where('user_id',$user->id) -> where('status', 0)->count() }})
     </a>
     @endif
     @endforeach    
@@ -32,53 +38,43 @@
     @endif
 
     <div class="w-100 container-bg mt-0">
-        
-    <form method="post" action="{{ route('tasks.store') }}">
-        @csrf
-        <div class="j-row">
+        <form method="post" action="{{ route('tasks.store') }}">
+            @csrf
+            <div class="j-row">
+                <div class="input-width">
+                <label for="" class="form-label j-label">Kimga </label>
+                    <select name="user_id" id="" class="form-select" >
+                        <option value="0" selected>Umumiy</option>
+                        @foreach($users as $user)
+                            @if($user->id==$myprofile->id)
+                                <option value="{{ $myprofile->id }}">Men</option>
+                            @else
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+                
+                <div class="input-width">
+                    <label for="" class="form-label j-label">Vazifa bajarish muddati</label>
+                    <input type="date" class="form-control" name="deadline_at">
+                </div>
 
-            <div class="input-width">
-            <label for="" class="form-label j-label">Kimga </label>
-                <select name="user_id" id="" class="form-select" >
-                    <option value="0" selected>Umumiy</option>
-                    @foreach($users as $user)
-                        @if($user->id==$myprofile->id)
-                            <option value="{{ $myprofile->id }}">Men</option>
-                        @else
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
+                <div class="input-width">
+                    <label for="" class="form-label j-label">Mavzu <strong class="text-danger">*</strong></label>
+                    <input type="text" class="form-control" required maxlength="50" name="task_header">
+                </div>
+
+                <div class="input-width w-100">
+                        <label for="" class="form-label j-label mt-3">Vazifa <strong class="text-danger">*</strong></label>
+                        <textarea name="task" id="" cols="30" rows="5" class="form-control" maxlength="1000" required></textarea>
+                </div>
             </div>
-            
-            <div class="input-width">
-                <label for="" class="form-label j-label">Vazifa bajarish muddati</label>
-                <input type="date" class="form-control" name="deadline_at">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-success px-3 py-2 mt-3">Qo'shish</button>
             </div>
-
-            <div class="input-width">
-                <label for="" class="form-label j-label">Mavzu <strong class="text-danger">*</strong></label>
-                <input type="text" class="form-control" required maxlength="50" name="task_header">
-            </div>
-
-            <div class="input-width w-100">
-                    <label for="" class="form-label j-label mt-3">Vazifa <strong class="text-danger">*</strong></label>
-                    <textarea name="task" id="" cols="30" rows="5" class="form-control" maxlength="1000" required></textarea>
-            </div>
-
-        </div>
-
-        
-            
-     
-
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="submit" class="btn btn-success px-3 py-2 mt-3">Qo'shish</button>
-        </div>
-    </form>
-
+        </form>
     </div>
-
 
 </div>
 
@@ -91,30 +87,28 @@
 <style>
     .wrapper{
         display: flex;
-        justify-content: space-between;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         width: 100%;
 
     }
    .box{
-       background-color: #ffffff30;
        padding: 10px!important;
        margin: 0!important;
-       width: 32%!important;
-       height: 150px!important;
+       width: 210px!important;
+       height: 100px!important;
        border-radius: 10px!important;
        display: flex;
        align-items: center;
        justify-content: center;
-       user-select: none;
        text-align: center;
        color:white;
        text-decoration:none;
        transition:all 0.1s linear;
+       margin: 15px 15px 0 0!important;
    }
    .box:hover{
        cursor:pointer;
-       filter: drop-shadow(16px 16px 20px blue);
+       background-color: #92938c3b;
        color:white;
    }
 

@@ -18,7 +18,7 @@
   <div class="container">
    <div class="page-lists">
    <a class="navbar-brand" href="/">
-    <img src="/images/logo white.png" alt="">
+    <img src="/images/logo_round.webp" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

@@ -418,11 +418,11 @@
     }
     h6{
         font-size: 16px;
-        background-color: #5f834f;
-        padding: 9px 11px;
-        border-radius: 7px;
         text-align: center;
-        margin: 40px 0 20px 0;
+        margin: 0 auto 31px auto;
+        border-bottom: 1px solid;
+        padding-bottom: 10px;
+        width: 200px;
     }
     .dataTables_wrapper{
         margin-bottom:100px
