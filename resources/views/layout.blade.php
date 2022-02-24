@@ -35,12 +35,12 @@
             <li><a class="dropdown-item" href="/funnel/create">Sotuv voronkasi</a></li>
             <li><a class="dropdown-item" href="/sales/create">Sotuv</a></li>
             <li><a class="dropdown-item" href="/products/create">Mahsulot</a></li>
-            <li><a class="dropdown-item" href="/categories/create">Kategorya</a></li>
+            <li><a class="dropdown-item" href="/categories/create">Mahsulot kategoryasi</a></li>
             <li><a class="dropdown-item" href="/brands/create">Brend</a></li>
             <li><a class="dropdown-item" href="/masters-base/create">Usta</a></li>
             <li><a class="dropdown-item" href="/companies-base/create">Kompaniya</a></li>
-            <li><a class="dropdown-item" href="/costs/create">Xarajatlar</a></li>
-            <li><a class="dropdown-item" href="/cost-categories/create">Xarajatlar kategoryasi</a></li>
+            <li><a class="dropdown-item" href="/costs/create">Xarajat</a></li>
+            <li><a class="dropdown-item" href="/cost-categories/create">Xarajat kategoryasi</a></li>
           </ul>
         </li>
       </ul>
@@ -57,12 +57,12 @@
             <li><a class="dropdown-item" href="/funnel">Sotuv voronkasi</a></li>
             <li><a class="dropdown-item" href="/sales">Sotuv</a></li>
             <li><a class="dropdown-item" href="/products">Mahsulot</a></li>
-            <li><a class="dropdown-item" href="/categories">Kategorya</a></li>
+            <li><a class="dropdown-item" href="/categories">Mahsulot Kategoryasi</a></li>
             <li><a class="dropdown-item" href="/brands">Brend</a></li>
             <li><a class="dropdown-item" href="/masters-base">Usta</a></li>
             <li><a class="dropdown-item" href="/companies-base">Kompaniya</a></li>
-            <li><a class="dropdown-item" href="/costs">Xarajatlar</a></li>
-            <li><a class="dropdown-item" href="/cost-categories">Xarajatlar kategoryasi</a></li>
+            <li><a class="dropdown-item" href="/costs">Xarajat</a></li>
+            <li><a class="dropdown-item" href="/cost-categories">Xarajat kategoryasi</a></li>
           </ul>
         </li>
       </ul>

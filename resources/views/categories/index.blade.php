@@ -1,6 +1,6 @@
 @extends('layout')
-@section('title', 'Kategoryalar')
-@section('header-text', "Kategoryalar")
+@section('title', 'Mahsulot kategoryalari')
+@section('header-text', "Mahsulot kategoryalari")
 @section('content')
 <div class="container tbl" >
      <!-- klientlani bazasini ko'rish uchun -->

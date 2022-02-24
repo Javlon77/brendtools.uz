@@ -32,8 +32,11 @@ use Illuminate\Http\Request;
 
 
 Route::group(['middleware' => 'auth'], function () {
+    
     Route::get('/', function () {
-        return view('mainpage');
+        $sales = App\Models\Sales::whereDate('created_at', today() ) -> count();
+        $funnels = App\Models\Funnel::whereDate('created_at', today() ) -> count();
+        return view('mainpage', compact('sales', 'funnels'));
     });
     
     Route::resource('client-base', ClientsController::class );
