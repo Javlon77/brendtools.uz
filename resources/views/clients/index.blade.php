@@ -5,6 +5,7 @@
 <div class="container tbl" >
     <!-- klientlani bazasini ko'rish uchun -->
     <a href="" id="edit-client-link"></a>
+    <p style="color: #29c127">* Mijoz haqida to'liq ma'lumotlarni ko'rish uchun ikki marta bosing!</p>
     <table class="table bg-white" style="width:100%;" id="c-table" data-page-length='10'>
         <thead>
             <tr>
@@ -138,6 +139,15 @@
 <style>
     tr{
         cursor: pointer;
+        -webkit-touch-callout: none; 
+        -webkit-user-select: none; 
+        -khtml-user-select: none; 
+        -moz-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none; 
+    }
+    tr:hover{
+        background-color: #dae5f7!important;
     }
     
 </style>

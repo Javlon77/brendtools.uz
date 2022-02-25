@@ -10,7 +10,7 @@
     <div class="row h-wrapper">
 
         <div class="col-12 h-header">
-            <a href="" class="back-link"><i class="bi bi-arrow-left"></i></a>
+            <a href="/client-base" class="back-link"><i class="bi bi-arrow-left"></i></a>
         </div>
 
         <hr class="hr-sperator">
@@ -85,12 +85,10 @@
                     </div>
 
 
-                    <div style="float:right">
+                    <div style="float:right; display:flex">
                         <i class="bi bi-clock" style="font-size:13px; color:darkgray"></i>
-                        <text
-                            style="font-size:13px">{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</text>
-                        <text
-                            style="font-size:13px;color:lightgray">{{ Carbon\Carbon::parse($client->created_at)->format('H:i') }}</text>
+                        <p style="font-size:13px; margin-left:5px">{{ Carbon\Carbon::parse($client->created_at)->format('d-m-Y') }}</p>
+                        <p style="font-size:13px;color:lightgray; margin-left:5px">{{ Carbon\Carbon::parse($client->created_at)->format('H:i') }}</p>
                     </div>
                 </div>
 
@@ -100,13 +98,26 @@
 
             <!-- sales box -->
 
-
             <div class="sales-box ">
                 <div class="s-header">
                     <i class="bi bi-list-ol icons" style="font-size:20px;"></i>
                     <p class="s-header-text">Xaridlar tarixi</p>
                 </div>
+
+                <hr style="color:lightgray">
+                {{-- show sales if exist or message - No sales --}}
                 @if($sales->count()>0)
+                
+                <div class="total-info-wrapper">
+                    <p class="small-font"><i class="bi bi-cart4 icons" style="font-size:13px"></i> Xaridlar soni: <text class="seperator-quantity product-quantity-selling-price"> {{ $sales->count() }} </text></p>
+                    <div class="wall"></div>
+                    <p class="small-font"><i class="bi bi-cash icons" style="font-size:13px"></i> Summa: <text class="seperator-uzs product-total-price"> {{ $sales->sum('total_amount') }} </text> </p>
+                    <div class="wall"></div>
+                    <p class="small-font"><i class="bi bi-currency-dollar icons" style="font-size:13px"></i> Summa: <text class="seperator-usd product-total-price"> {{ $sales->sum('total_amount_usd') }} </text> </p>
+                </div>
+
+                <hr style="color:lightgray">
+
                 @foreach($sales as $sale)
                 <div class="sale">
                     <p class="order-number">№ {{ $loop->index+1 }}</p>
@@ -133,7 +144,7 @@
                         <div class="product-wrapper-box">
                             <div class="product-info">
                                 <p class="category-name">
-                                    {{ $brands->keyBy('id')[$products->keyBy('id')[$saleProduct->product_id]->category_id ?? '' ]->brand ?? "Brand topilmadi!"    }}
+                                    {{ $brands -> keyBy('id')[$products->keyBy('id')[$saleProduct->product_id]->brand_id ?? '' ]->brand ?? "Brand topilmadi!"    }}
                                 </p>
                                 <p class="product-name">{{ $products->keyBy('id')[$saleProduct->product_id]->product ?? "mahsulot topilmadi"}}
                                 </p>
@@ -144,12 +155,12 @@
                             <div class="product-quantity">
                                 <p class="product-quantity-text">{{ $saleProduct->quantity }}</p>
                                 <p style="color:gray; font-size:12px;margin:0 2px;">x</p>
-                                <p class="product-quantity-selling-price seperator">{{ $saleProduct->selling_price }}
+                                <p class="product-quantity-selling-price seperator-uzs">{{ $saleProduct->selling_price }}
                                 </p>
-                                <p class="product-quantity-cost-price seperator">{{ $saleProduct->cost_price }}</p>
+                                <p class="product-quantity-cost-price seperator-uzs">{{ $saleProduct->cost_price }}</p>
                             </div>
                             <div class="product-total">
-                                <p class="product-total-price seperator">
+                                <p class="product-total-price seperator-uzs">
                                     {{ $saleProduct->selling_price*$saleProduct->quantity }}</p>
                             </div>
                         </div>
@@ -168,9 +179,11 @@
                             <p class="product-quantity-selling-price seperator-quantity">{{ $sale->total_quantity }}</p>
 
                         </div>
-                        <div class="product-total">
-                            <p style="font-size:11px;margin:0;line-height: 0.4;">Umumiy summa:</p>
-                            <p class="product-total-price seperator">{{ $sale->total_amount }}</p>
+                        <div class="product-total product-total-last">
+                            <p style="font-size:11px;margin:0;line-height: 1.5;">Umumiy summa:</p>
+                            <p class="product-total-price seperator-uzs">{{ $sale->total_amount }}</p>
+                            <p class="product-total-price seperator-usd">{{ $sale->total_amount_usd }}</p>
+                            
                         </div>
                     </div>
 
@@ -183,7 +196,23 @@
             </div>
             <!-- end of sales box -->
 
-            <div class="funnel-box ">asd</div>
+            <div class="funnel-box ">
+                <div class="s-header">
+                    <i class="bi bi-bookmark icons" style="font-size:20px;"></i>
+                    <p class="s-header-text">Status</p>
+                </div>
+                <div class="sale">
+                    <p class="order-number"> Birinchi suhbat </p>
+                    <div class="icons-wrapper">
+                        <i class="bi bi-clock" style="font-size:12px; color:darkgray; margin-right:5px"></i>
+                        <text
+                            style="font-size:13px"></text>
+                        <text
+                            style="font-size:13px;color:gray;margin-left:2px">{{ Carbon\Carbon::parse($sale->created_at)->format('H:i') }}</text>
+                        <a href="/sales/{{ 'id' }}/edit" style="font-size:13px; margin-left:10px">O'zgartirish</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -195,10 +224,14 @@ $(document).ready(function() {
     function numberWithSpaces(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
-
-    for (let i = 0; i < $('.seperator').length; i++) {
-        $(".seperator")[i].innerText = numberWithSpaces($(".seperator")[i].innerText) + " so'm";
+    // uzs seperator
+    for (let i = 0; i < $('.seperator-uzs').length; i++) {
+        $(".seperator-uzs")[i].innerText = numberWithSpaces($(".seperator-uzs")[i].innerText) + " so'm";
     }
+    // usd seperator
+    for (let i=0; i < $('.seperator-usd').length; i++ ) {     
+                $(".seperator-usd")[i].innerText = parseFloat($(".seperator-usd")[i].textContent).toLocaleString('en-US', {style:"currency", currency:"USD"}) ;
+            }
     for (let i = 0; i < $('.seperator-quantity').length; i++) {
         $(".seperator-quantity")[i].innerText = numberWithSpaces($(".seperator-quantity")[i].innerText) + " ta";
     }

@@ -15,6 +15,7 @@ class ChangeUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('api_token')->nullable()->after('remember_token');
+            $table->enum('role', ['manager','admin'])->default('manager');
         });
     }
 
