@@ -79,6 +79,9 @@ jQuery(document).ready(function() {
                                 if (value.feedback == null) {
                                     value.feedback = '-'
                                 }
+                                if (value.surname == null) {
+                                    value.surname = '-'
+                                }
                                 raw = ' <tr class="choose-client" idx="' + value
                                     .id + '"><td>' + index + '</td><td>' + value
                                     .name + '</td><td>' + value.surname +
@@ -161,14 +164,14 @@ jQuery(document).ready(function() {
                             });
                         } else {
                             jQuery('.add-product').html(
-                                '<tr class="text-uppercase" style="font-weight: bold;"><td>-</td><td>TOPILMADI</td></tr>'
+                                '<tr class="fs-5"><td>Mahsulot topilmadi!</td></tr>'
                             );
                         }
                     }
 
                 })
             } else {
-                jQuery('.add-product').html('<tr><td>-</td><td>-</td></tr>');
+                jQuery('.add-product').html('<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>');
             }
 
         } else {
@@ -364,11 +367,9 @@ jQuery(document).ready(function() {
     border: none;
 }
 
-#search-product {
-    border: 1px solid;
-    border-bottom: 1px solid;
+#search-product, #search-client {
     border-radius: 5px;
-    box-shadow: 3px 2px #2a2a2a26;
+    box-shadow: 1px 1px #2a2a2a26;
 }
 
 input::-webkit-outer-spin-button,

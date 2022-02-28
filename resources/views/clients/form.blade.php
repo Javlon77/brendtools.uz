@@ -4,11 +4,10 @@
     <div class="mb-3 input-width">
         <label for="type" class="form-label j-label">Kim <strong class="text-danger">*</strong></label>
         <select id="type" name="type" class="form-select" aria-label="Default select example">
-            <option selected value="{{ old('type') ?? $client->type ?? '' }}">{{ old('type') ?? $client->type ?? '' }}
-            </option>
             <option>Uy egasi</option>
             <option value="Kompaniya xodimi">Kompaniya xodimi</option>
             <option value="Usta">Usta</option>
+            @if( old('type') !== NULL ) <option selected value="{{ old('type') ?? $client->type ?? '' }}">{{ old('type') ?? $client->type ?? '' }}</option> @endif
         </select>
         <div class="invalid-feedback"></div>
     </div>
@@ -111,7 +110,6 @@
     <div class="mb-3 input-width">
         <label for="region" class="form-label j-label">Viloyati <strong class="text-danger">*</strong></label>
         <select id="region" name="region" class="form-select" aria-label="Default select example">
-            <option selected>{{ old('region') ?? $client->region ?? '' }}</option>
             <option value="Toshkent shahri">Toshkent shahri</option>
             <option value="Toshkent viloyati">Toshkent viloyati</option>
             <option value="Namangan">Namangan</option>
@@ -126,6 +124,7 @@
             <option value="Buxoro">Buxoro</option>
             <option value="Xorazm">Xorazm</option>
             <option value="Qoraqalpog'iston">Qoraqalpog'iston</option>
+            @if( old('region') !== NULL ) <option selected>{{ old('region') ?? $client->region ?? '' }}</option> @endif
         </select>
         <div class="invalid-feedback"></div>
     </div>

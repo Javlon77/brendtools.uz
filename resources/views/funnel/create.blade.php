@@ -199,6 +199,8 @@
                                         if(value.phone2==null){value.phone2='-'}
                                         if(value.address==null){value.address='-'}
                                         if(value.feedback==null){value.feedback='-'}
+                                        if(value.surname == null) {value.surname = '-'}
+                            
                                         raw = ' <tr class="choose-client" idx="'+value.id +'"><td>'+ index +'</td><td>'+ value.name+'</td><td>'+ value.surname+'</td><td>'+ value.type+'</td><td>'+ value.company_code+'</td><td>'+ value.master_code+'</td><td>'+ value.phone1+'</td><td>'+ value.phone2+'</td><td>'+ value.region+'</td><td>'+ value.address+'</td><td>'+ value.feedback+'</td> </tr>  '
                                         jQuery('.add-client').append(raw);
                                     });      

@@ -160,7 +160,7 @@
                     <table class="table" id="client-table">
                         <thead>
                             <tr>
-                                <th>T/R</th>
+                                <th>№</th>
                                 <th>Ism</th>
                                 <th>Familiya</th>
                                 <th>Kim</th>
@@ -212,7 +212,7 @@
                     <table class="table" style="width:100%" id="product-table">
                         <thead>
                             <tr>
-                                <th>T/R</th>
+                                <th>№</th>
                                 <th>Mahsulot</th>
                                 <th>Brend</th>
                                 <th>Kategorya</th>

@@ -205,10 +205,8 @@
                     <p class="order-number"> Birinchi suhbat </p>
                     <div class="icons-wrapper">
                         <i class="bi bi-clock" style="font-size:12px; color:darkgray; margin-right:5px"></i>
-                        <text
-                            style="font-size:13px"></text>
-                        <text
-                            style="font-size:13px;color:gray;margin-left:2px">{{ Carbon\Carbon::parse($sale->created_at)->format('H:i') }}</text>
+                        <text style="font-size:13px"></text>
+                        {{-- <text style="font-size:13px;color:gray;margin-left:2px">{{ '12.12.2000' }}</text> --}}
                         <a href="/sales/{{ 'id' }}/edit" style="font-size:13px; margin-left:10px">O'zgartirish</a>
                     </div>
                 </div>

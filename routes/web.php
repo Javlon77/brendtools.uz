@@ -33,6 +33,7 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'auth'], function () {
     
+    // mainpage
     Route::get('/', function () {
         $sales = App\Models\Sales::whereDate('created_at', today() ) -> count();
         $funnels = App\Models\Funnel::whereDate('created_at', today() ) -> count();
@@ -66,22 +67,30 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/analytics',  [AnalyticsController::class, 'index' ]);
     Route::get('/analytics/funnel',  [AnalyticsController::class, 'funnel' ]);
 
-    Route::get('/finance',  [FinanceController::class, 'index' ]);
-    Route::get('/finance/plan',  [FinanceController::class, 'plan' ]);
-    Route::post('/finance/plan',  [FinanceController::class, 'storePlan' ]);
-    Route::delete('/finance/plan/{id}',  [FinanceController::class, 'destroyPlan' ]);
-    Route::get('/finance/annual',  [FinanceController::class, 'annual' ]);
+    // finance page
+    Route::group(['middleware' => 'admin'], function () {
+        Route::get('/finance',  [FinanceController::class, 'index' ]);
+        Route::get('/finance/plan',  [FinanceController::class, 'plan' ]);
+        Route::post('/finance/plan',  [FinanceController::class, 'storePlan' ]);
+        Route::delete('/finance/plan/{id}',  [FinanceController::class, 'destroyPlan' ]);
+        Route::get('/finance/annual',  [FinanceController::class, 'annual' ]);
+    });
+    // not admin page
+    route::get('/notAdmin', function(){
+        return view('notAdmin');
+    });
     
+    // ta have api token for users
     Route::get('/get-api-token', function(Request $request) {
         $token = $request->user()->createToken('app');
         return ['token' => $token->plainTextToken];
     });
 
     // token uchun  ---- O"CHIRMA
-    Route::get('/top', function(Request $request) {
-        $token = $request->user()->api_token;
-        return $token;
-    });
+    // Route::get('/top', function(Request $request) {
+    //     $token = $request->user()->api_token;
+    //     return $token;
+    // });
 
 });
 
