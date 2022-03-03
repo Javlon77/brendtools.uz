@@ -53,9 +53,8 @@ class TasksController extends Controller
         }
 
         
-
-        task::create($data);
-
+        $task = task::create($data);
+     
         return redirect()->back()->with('success', 'Vazifa muvafaqqiyatli saqlandi');
     }
 

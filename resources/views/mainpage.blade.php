@@ -3,7 +3,6 @@
 @section('header-text', "CRM")
 
 @section('content')
-
 <div class="container">
     <p>Bugun:</p>
     <div class="box-wrapper">
@@ -190,13 +189,13 @@
             min-width: 140px;
             margin-right: 15px;
             margin-bottom: 15px;
-            background-color: #0000004d;
+            background-color: #34393ee0;
             transition:0.2s all linear;
             text-decoration:none;
         }
         .box:hover{
             cursor:pointer;
-            background-color: #92938c3b;
+            background-color: #34393e75;
             color:white;
         }
         .box p {

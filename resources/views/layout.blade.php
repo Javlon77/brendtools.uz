@@ -103,7 +103,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-tr">
             <li><a class="dropdown-item" href="/analytics">Tahlillar</a></li>
-            <li><a class="dropdown-item" href="/analytics/funnel">Savdo voronkasi</a></li>
+            <li><a class="dropdown-item" href="/analytics/funnel">Sotuv voronkasi</a></li>
           </ul>
         </li>
       </ul>

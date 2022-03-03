@@ -2,7 +2,8 @@
 @section('title', "Vazifalar")
 @section('header-text', "Vazifalar")
 @section('content')
-
+<div class="container">
+</div>
 <div class="container" >
     <!-- xodimlar -->
     <h5>Xodimlar</h5>   

@@ -22,7 +22,7 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $clients= Client::orderBy('updated_at','desc')->get();
+        $clients= Client::orderBy('created_at','desc')->get();
         $companies= Company::orderBy('id')->get();
         $masters= Master::orderBy('id')->get();
         return view('clients.index', compact('clients','companies', 'masters'));

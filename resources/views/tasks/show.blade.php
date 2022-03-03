@@ -158,7 +158,7 @@
         text-transform: uppercase;
         margin-bottom: 0;
         cursor: pointer;
-        color:#E5ECF8;
+        color:#ffffff;
         opacity: 0.5;
     }
     .task-nav-active{

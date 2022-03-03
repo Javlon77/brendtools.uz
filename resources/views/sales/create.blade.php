@@ -16,7 +16,6 @@
         </div>
     </form>
 </div>
-
 @endsection
 @section('script')
 <script>
@@ -273,7 +272,7 @@ jQuery(document).ready(function() {
 .payment {
     padding-bottom: 20px;
     margin-bottom: 14px;
-    justify-content: start !important;
+    justify-content: space-between !important;
     border-bottom: 1px solid #ffffff6b;
 }
 

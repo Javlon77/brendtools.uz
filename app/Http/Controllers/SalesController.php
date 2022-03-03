@@ -21,9 +21,9 @@ class SalesController extends Controller
      */
     public function index()
     {
-        $sales= sales::orderBy('updated_at','desc')->get(); 
-        $clients= client::orderBy('updated_at','desc')->get(); 
-        $saleProducts= SaleProduct::orderBy('updated_at','desc')->get(); 
+        $sales= sales::orderBy('created_at','desc')->get(); 
+        $clients= client::orderBy('created_at','desc')->get(); 
+        $saleProducts= SaleProduct::orderBy('created_at','desc')->get(); 
         return view('sales.index', compact('sales','clients','saleProducts'));
     }
 
@@ -49,7 +49,6 @@ class SalesController extends Controller
     {   
         //currency 
         $currency = currency::latest()->first()->currency;
-        
          
         // variables for
         $total_amount=0;
@@ -113,16 +112,32 @@ class SalesController extends Controller
         
         
         // create sale in DB
-        $sale_id = sales::create($data);    
-        $sale_id = $sale_id['id'];
+        $sale = sales::create($data);    
+        $sale_id = $sale['id'];
+
+        // change created_at if the sale is ago some days
+        if($request -> created_at){
+            $created_at = $request -> created_at;
+            $sale -> created_at = $created_at;
+            $sale -> updated_at = $created_at;
+            $sale ->save();
+        }
 
         // save products to sales_product database  
         foreach ($products as $p) {
             $p['sale_id']=$sale_id;
-            SaleProduct::create($p);
+            $saleProduct = SaleProduct::create($p);
+            // change created_at if the sale is ago some days
+            if($request -> created_at){
+                $created_at = $request -> created_at;
+                $saleProduct -> created_at = $created_at;
+                $saleProduct -> updated_at = $created_at;
+                $saleProduct ->save();
+            }   
         }
 
-        // return redirect() -> back() -> with('message', 'Sotuv muvafaqqiyatli kiritildi!');
+        
+        return redirect() -> back() -> with('message', 'Sotuv muvafaqqiyatli kiritildi!');
 
     }
 

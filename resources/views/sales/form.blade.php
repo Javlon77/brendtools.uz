@@ -1,21 +1,29 @@
 <!-- payment -->
 <div class="j-row payment" >
-    <!-- payment_method -->
-    <div class="mx-2" style="width:200px">
-        <label for="" class="form-label j-label">To'lash usuli</label>
-        <select name="payment_method" class="form-select" id="">
-            <option value="completely">Birdaniga</option>
-            <option value="monthly">Oyma-oy</option>
-        </select>
+    <div class="d-flex">
+        <!-- payment_method -->
+        <div class="mx-2" style="width:200px">
+            <label for="" class="form-label j-label">To'lash usuli</label>
+            <select name="payment_method" class="form-select" id="">
+                <option value="completely">Birdaniga</option>
+                <option value="monthly">Oyma-oy</option>
+            </select>
+        </div>
+        <!-- payment --> 
+        <div class="mx-2" style="width:200px">
+            <label for="" class="form-label j-label">To'lov</label>
+            <select name="payment" class="form-select" id="">
+                <option value="cash">Naqd pul</option>
+                <option value="transfer">Pul o'tkazmasi</option>
+            </select>
+        </div>
     </div>
-    <!-- payment -->
-    <div class="mx-2" style="width:200px">
-        <label for="" class="form-label j-label">To'lov</label>
-        <select name="payment" class="form-select" id="">
-            <option value="cash">Naqd pul</option>
-            <option value="transfer">Pul o'tkazmasi</option>
-        </select>
+    
+    <div class="mx-2" style="width:170px">
+        <label for="" class="form-label j-label" data-toggle="tooltip" title="Ushu vaqt savdo qilingan vaqtni ko'rsatish uchun, lekin agar savdo bugun bo'lgan bo'lsa siz vaqtni kiritishingiz kerak emas">Vaqt  <i class="bi bi-patch-question"></i></label>
+        <input type="date" class="form-control" name="created_at">
     </div>
+
 </div>
 <!-- customer details -->
 <div class="j-row" style="justify-content: space-around">
@@ -52,7 +60,7 @@
     </div> 
      <!-- client_delivery_payment -->
      <div class="mb-3 input-width delivery-price">
-        <label for="client_delivery_payment" class="form-label">Mijoz yetkazib berishga bergan pul <strong class="text-warning">*</strong></label>
+        <label for="client_delivery_payment" class="form-label">Mijoz yetkazib berishga bergan pul</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control seperator" id="client_delivery_payment" name="client_delivery_payment" style="text-align:right" value="" autocomplete="off" >
             <span class="input-group-text" id="basic-addon2">So'm</span>
@@ -61,7 +69,7 @@
     </div>
     <!-- additional_cost -->
     <div class="mb-3 input-width">
-        <label for="additional_cost" class="form-label">Qo'shimcha xarajatlar <strong class="text-warning">*</strong></label>
+        <label for="additional_cost" class="form-label">Qo'shimcha xarajatlar</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control seperator" id="additional_cost" name="additional_cost" style="text-align:right" value="" autocomplete="off">
             <span class="input-group-text" id="basic-addon2">So'm</span>
