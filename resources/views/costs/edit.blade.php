@@ -7,12 +7,16 @@
         @csrf
         @method('PUT')
         @if(session()->has('message'))
-        <div class="alert alert-success">
+        <div class="alert alert-success"> 
             {{ session()->get('message') }}
         </div>
         @endif
         <div class="j-row">
-
+            {{-- created_at --}}
+            <div class="input-width mb-3">
+                <label for="" class="form-label j-label" title="Ushu vaqt xarajat qilingan vaqtni ko'rsatish uchun, lekin agar xarajat bugun bo'lgan bo'lsa siz vaqtni kiritishingiz kerak emas">Vaqt  <i class="bi bi-patch-question"></i></label>
+                <input type="date" class="form-control" name="created_at" value="{{ $cost -> created_at -> format('Y-m-d') }}">
+            </div>
             <!-- bo'lim -->         
             <div class="input-width">
                 <label class="form-label">Maqsad</label>
@@ -36,7 +40,6 @@
                         @endforeach
                         <option value="{{ $cost -> category_id }}" selected>{{ $categories ->find($cost -> category_id) -> category }}</option>
                     </select>
-                    <button class="btn btn-primary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#add-category-modal">+ qo'shish</button>
                 </div>  
             </div>
             <!--end of category-->  
@@ -52,10 +55,10 @@
             <!-- end of cost -->
 
             <!-- additional -->
-            <div class="mb-3 input-width">
+            <div class="mb-3 input-width" style="width:66%">
                 <label class="form-label">Qo'shimcha</label>
                 <div class="input-group">
-                    <textarea name="additional" id="additional" cols="30" rows="3" class="form-control">{{ $cost -> additional }}</textarea>
+                    <textarea name="additional" id="additional" cols="30" rows="1" class="form-control">{{ $cost -> additional }}</textarea>
                 </div>
             </div> 
             <!-- additional -->

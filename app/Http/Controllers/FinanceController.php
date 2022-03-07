@@ -67,7 +67,7 @@ class FinanceController extends Controller
             $year = $request -> year;
         } else $year = now() -> format('Y');
 
-        $plan = plan::where('year', $year) -> first();
+        $plan = plan::where('year', $year) -> first() ?? dd('Iltimos oldin yillik planni kiriting ushbu yil uchun: '. $year);
         $annual_cost = Cost::whereYear('created_at', $year) -> get();
         $costs = $annual_cost ->groupBy('month');
         $sales = sales::whereYear('created_at', $year) -> get();

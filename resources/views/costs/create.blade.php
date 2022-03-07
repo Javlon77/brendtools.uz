@@ -10,10 +10,15 @@
             {{ session()->get('message') }}
         </div>
         @endif
+            
         <div class="j-row">
-
+            {{-- created_at --}}
+            <div class="input-width mb-3">
+                <label for="" class="form-label j-label" title="Ushu vaqt xarajat qilingan vaqtni ko'rsatish uchun, lekin agar xarajat bugun bo'lgan bo'lsa siz vaqtni kiritishingiz kerak emas">Vaqt  <i class="bi bi-patch-question"></i></label>
+                <input type="date" class="form-control" name="created_at">
+            </div>
             <!-- bo'lim -->         
-            <div class="input-width">
+            <div class="input-width mb-3">
                 <label class="form-label">Maqsad</label>
                 <div class="input-group">
                     <select name="reason" class="form-select @error('category_id') is-invalid @enderror" aria-label="Default select example" aria-describedby="button-addon2">
@@ -24,12 +29,14 @@
                 </div> 
             </div>
             <!-- bo'lim --> 
+            
+            
 
             <!-- category-->         
             <div class="input-width">
                 <label for="category_id" class="form-label">Kategorya</label>
                 <div class="input-group">
-                    <select id="category_id"  name="category_id" class="form-select @error('category_id') is-invalid @enderror" aria-label="Default select example" aria-describedby="button-addon2">
+                    <select id="category_id"  name="category_id" class="form-select @error('category_id') is-invalid @enderror" aria-label="Default select example" aria-describedby="button-addon2" required>
                         @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->category }}</option>
                         @endforeach
@@ -49,13 +56,13 @@
             <!-- end of cost -->
 
             <!-- additional -->
-            <div class="mb-3 input-width">
+            <div class="mb-3 input-width" style="width:66%">
                 <label class="form-label">Qo'shimcha</label>
                 <div class="input-group">
-                    <textarea name="additional" id="additional" cols="30" rows="3" class="form-control"></textarea>
+                    <textarea name="additional" id="additional" rows="1" class="form-control"></textarea>
                 </div>
             </div> 
-            <!-- additional -->
+            <!-- end of additional -->
 
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">

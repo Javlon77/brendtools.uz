@@ -221,7 +221,7 @@ class FunnelController extends Controller
      */
     public function edit(Funnel $funnel)
     {
-        // dd($funnel);
+        // dd( url() -> previous() );
         $clients = Client::orderBy('id')->get();
         return view('funnel.edit',compact('funnel','clients'));
     }
@@ -250,11 +250,10 @@ class FunnelController extends Controller
         if($data['price']!==NULL){
             $data['price']=str_replace(' ', '', $data['price']);
         }
-        // dd($data);
-        // $funnel = funnel::find($funnel->id);
-
+        
+        $funnel = funnel::find($funnel->id);
         $funnel->update($data);
-        return redirect()->route('funnel.index');
+        return redirect($request->session() -> get('previous')) ;
         
     }
 

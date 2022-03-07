@@ -6,7 +6,7 @@
         @endif  
         <!-- hasInSite -->
         <div class="mb-3" style="width:100%">
-            <label for="hasInSite" class="form-label">Mahsulot Brandtools.uz saytida mavjudmi? <strong class="text-danger">*</strong></label>
+            <label for="hasInSite" class="form-label">Mahsulot Brandtools.uz saytida mavjudmi?</label>
             <div class="" style="width:150px">
                 <select name="hasInSite" id="hasInSite" class="form-select">
                     <option value="1">Mavjud</option>   
@@ -60,6 +60,16 @@
                     <div class="invalid-feedback" style="display:block">{{ $message }}</div>  
                 @enderror         
             </div>
+            <!-- link -->
+            <div class="mb-3 input-width">
+                <label class="form-label j-label">Link</label>
+                <div class="input-group">
+                    <textarea name="link" id="" rows="1" class="form-control @error('link') is-invalid @enderror" id="link">{{ old('link') ?? $product->link ?? ''}}</textarea>
+                </div>
+                @error('link')
+                    <div class="invalid-feedback" style="display:block">{{ $message }}</div>  
+                @enderror  
+            </div> 
             <!-- Product -->
             <div class="mb-3 input-width">
                 <label for="product" class="form-label j-label">Mahsulot nomi <strong class="text-danger">*</strong></label>
@@ -70,6 +80,8 @@
                     <div class="invalid-feedback" style="display:block">{{ $message }}</div>  
                 @enderror  
             </div> 
+
+
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success px-3 py-2 mt-3">Qo'shish</button>

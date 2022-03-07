@@ -40,9 +40,9 @@ class CostController extends Controller
      */
     public function store(Request $request)
     { 
-        // dd(now());
+
         $data = $request -> validate([
-            'reason' => '',
+            'reason' => '', 
             'category_id' => '',
             'additional' => '',
             'cost' => ''
@@ -50,9 +50,15 @@ class CostController extends Controller
         $data['cost'] = str_replace(' ', '', $data['cost']);
         $data['currency'] = currency::latest()->first()->currency;
         $data['cost_usd'] = $data['cost'] / $data['currency'];
-        // $data['created_at'] = '2022-02-25';
         
-        cost::create($data);
+        $cost = cost::create($data);
+        // change created_at if the sale is ago some days
+        if($request -> created_at){
+            $created_at = $request -> created_at;
+            $cost -> created_at = $created_at;
+            $cost -> updated_at = $created_at;
+            $cost ->save();
+        }
         
         return redirect() -> back() -> with('message', 'Xarajat bazaga muvafaqqiyatli kiritildi!');
         
@@ -103,6 +109,13 @@ class CostController extends Controller
         $data['cost_usd'] = $data['cost'] / $data['currency'];
         
         $cost -> update($data);
+        // change created_at if the sale is ago some days
+        if($request -> created_at){
+            $created_at = $request -> created_at;
+            $cost -> created_at = $created_at;
+            $cost -> updated_at = $created_at;
+            $cost ->save();
+        }
         
         return redirect() -> route('costs.index');
     }

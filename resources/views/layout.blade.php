@@ -28,19 +28,19 @@
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            + qo'shish
+            Qo'shish +
           </a>
           <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-tr">
-            <li><a class="dropdown-item" href="/client-base/create">Mijoz</a></li>
-            <li><a class="dropdown-item" href="/funnel/create">Sotuv voronkasi</a></li>
-            <li><a class="dropdown-item" href="/sales/create">Sotuv</a></li>
-            <li><a class="dropdown-item" href="/products/create">Mahsulot</a></li>
-            <li><a class="dropdown-item" href="/categories/create">Mahsulot kategoryasi</a></li>
-            <li><a class="dropdown-item" href="/brands/create">Brend</a></li>
-            <li><a class="dropdown-item" href="/masters-base/create">Usta</a></li>
-            <li><a class="dropdown-item" href="/companies-base/create">Kompaniya</a></li>
-            <li><a class="dropdown-item" href="/costs/create">Xarajat</a></li>
-            <li><a class="dropdown-item" href="/cost-categories/create">Xarajat kategoryasi</a></li>
+            <li><a class="dropdown-item" href="/client-base/create">+ Mijoz</a></li>
+            <li><a class="dropdown-item" href="/funnel/create">+ Sotuv voronkasi</a></li>
+            <li><a class="dropdown-item" href="/sales/create">+ Sotuv</a></li>
+            <li><a class="dropdown-item" href="/products/create">+ Mahsulot</a></li>
+            <li><a class="dropdown-item" href="/categories/create">+ Mahsulot kategoryasi</a></li>
+            <li><a class="dropdown-item" href="/brands/create">+ Brend</a></li>
+            <li><a class="dropdown-item" href="/masters-base/create">+ Usta</a></li>
+            <li><a class="dropdown-item" href="/companies-base/create">+ Kompaniya</a></li>
+            <li><a class="dropdown-item" href="/costs/create">+ Xarajat</a></li>
+            <li><a class="dropdown-item" href="/cost-categories/create">+ Xarajat kategoryasi</a></li>
           </ul>
         </li>
       </ul>
@@ -86,7 +86,7 @@
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Kurs (<text class="number-seperator">{{ App\Models\currency::latest()->first()->currency ?? '' }}</text>)
+            Kurs (<text class="number-seperator">{{ App\Models\currency::latest()->first()->currency ?? '0' }}</text>)
           </a>
           <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-tr">
             <li><a class="dropdown-item" href="/currency">Kurs</a></li>

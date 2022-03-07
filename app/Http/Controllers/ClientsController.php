@@ -12,6 +12,7 @@ use App\Models\SaleProduct;
 use App\Models\product;
 use App\Models\category;
 use App\Models\brand;
+use App\Models\funnel;
 
 class ClientsController extends Controller
 {
@@ -177,13 +178,10 @@ class ClientsController extends Controller
             $b[]+=$saleProduct->product_id;
         }
         $products = product::whereIn('id', $b)->orderBy('created_at')->get();
-        // dd($b);
-        
         $categories = category::all();
         $brands = brand::all();
-
-        
-        return view('clients.show',compact('client', 'company','master', 'sales','saleProducts','products','categories','brands'));
+        $funnels = funnel::where('client_id', $id)->get();
+        return view('clients.show',compact('client', 'company','master', 'sales','saleProducts','products','categories','brands', 'funnels'));
     }
 
     /**

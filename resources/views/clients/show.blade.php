@@ -18,9 +18,7 @@
         <div class="h-body">
 
             <!-- client box -->
-
             <div class="client-box ">
-
                 <div class="c-name-wrapper">
                     <i class="bi bi-person-fill icons" style="font-size:20px;"> </i>
                     <p class="c-name">{{ $client->name }} {{ $client->surname }}</p>
@@ -201,18 +199,71 @@
                     <i class="bi bi-bookmark icons" style="font-size:20px;"></i>
                     <p class="s-header-text">Status</p>
                 </div>
-                <div class="sale">
-                    <p class="order-number"> Birinchi suhbat </p>
-                    <div class="icons-wrapper">
-                        <i class="bi bi-clock" style="font-size:12px; color:darkgray; margin-right:5px"></i>
-                        <text style="font-size:13px"></text>
-                        {{-- <text style="font-size:13px;color:gray;margin-left:2px">{{ '12.12.2000' }}</text> --}}
-                        <a href="/sales/{{ 'id' }}/edit" style="font-size:13px; margin-left:10px">O'zgartirish</a>
-                    </div>
+                <hr style="color:lightgray">
+              
+
+                <div class="accordion" id="accordionExample">
+                    @if(!$funnels -> isNotEmpty())
+                        <p class="no-sales">Status mavjud emas!</p>
+                    @else
+                        @foreach ($funnels as $funnel)
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $funnel -> id }}" aria-expanded="true" aria-controls="collapse{{ $funnel -> id }}">
+                                    <span class="funnel-circle {{ $funnel -> status }}"></span>
+                                    <div>
+                                        <p class="funnel-stage"> {{ $funnel -> status }} </p>
+                                        <div class="icons-wrapper mt-1">
+                                            <i class="bi bi-clock" style="font-size:12px; margin-right:5px"></i>
+                                            <text style="font-size:12px"></text>
+                                            <text style="font-size:12px;margin-left:2px">{{ $funnel -> updated_at -> format('d-m-Y') }}</text>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapse{{ $funnel -> id }}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="icon-text">
+                                        <i class="bi bi-search icons" style="font-size:12px"> </i>
+                                        <p class="p-number">{{ $funnel -> awareness }}</p>
+                                    </div>
+                                    @if($funnel -> price !== NULL)
+                                    <div class="icon-text">
+                                        <i class="bi bi-wallet2 icons" style="font-size:12px"> </i>
+                                        <p class="p-number">{{ $funnel -> price }}</p>
+                                    </div>
+                                    @endif
+                                    @if($funnel -> product !== NULL)
+                                        <div class="icon-text">
+                                            <i class="bi bi-cart4 icons" style="font-size:12px"> </i>
+                                            <p class="p-number">{{ $funnel -> product }}</p>
+                                        </div>
+                                    @endif
+                                    @if($funnel -> additional !== NULL)
+                                        <div class="icon-text">
+                                            <i class="bi bi-pin-angle-fill icons" style="font-size:12px"> </i>
+                                            <p class="p-number">{{ $funnel -> additional }}</p>
+                                        </div>
+                                    @endif
+                                    <div style="display: flex;flex-direction: column;align-items: flex-end;">
+                                        <div style="float:right;">
+                                            <i class="bi bi-gear" style="font-size:15px; color:darkgray"></i>
+                                            <a href="{{ route('funnel.edit',[$funnel -> id]) }}" style="font-size:13px">O'zgartirish</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    @endif
+
                 </div>
+                {{-- end of accordion --}}
             </div>
         </div>
     </div>
+    
 </div>
 
 @section('script')

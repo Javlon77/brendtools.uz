@@ -47,13 +47,16 @@ class ProductsController extends Controller
             'category_id'=>'required',
             'brand_id'=>'required',
             'product'=>'required|unique:products,product',
+            'link'=>'nullable|url',
         ],
         [
             'category_id.required'=>'Kategorya nomini kiriting!',
             'brand_id.required'=>'Brend nomini kiriting!',
             'product.required'=>'Mahsulot nomini kiriting!',
-            'product.unique'=>"Ushbu mahsulot bazada mavjud!!!"
+            'product.unique'=>"Ushbu mahsulot bazada mavjud!!!",
+            'link.url'=>"Bu link emas!"
         ]);
+        // dd($data);
         product::create($data);
         return redirect()->back()->with('message', '"'.$request->product . '"' .' nomli mahsulot bazaga muvaffaqiyatli kiritildi!');
         
@@ -103,10 +106,12 @@ class ProductsController extends Controller
                 'category_id'=>'required',
                 'brand_id'=>'required',
                 'product'=>'',
+                'link'=>'nullable|url',
             ],
             [
                 'category_id.required'=>'Kategorya nomini kiriting!',
                 'brand_id.required'=>'Brend nomini kiriting!',
+                'link.url'=>"Bu link emas!"
             ]);
             $product->update($data);
             return redirect()->route('products.index');

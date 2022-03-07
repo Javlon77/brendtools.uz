@@ -1,6 +1,7 @@
 @extends('layout')
 @section('title', "Sotuv voronkasini tahrirlash")
 @section('header-text', "Sotuv voronkasini tahrirlash")
+{{ session(['previous' => url() -> previous() ]) }}
 
 @section('content')
 <div class="container container-bg">

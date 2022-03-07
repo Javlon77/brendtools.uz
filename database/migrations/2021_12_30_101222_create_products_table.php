@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id');
             $table->integer('brand_id');
             $table->string('product',200);
+            $table->string('link',500) -> nullable();
             $table->timestamps();
         });
     }

@@ -399,33 +399,13 @@
         min-width: 180px;
         margin-right: 15px;
         margin-bottom: 15px;
-        box-shadow: 5px 5px 3px #00000042;
+        box-shadow: 3px 3px 5px 3px #00000042;
         transition:0.2s all linear;
+        background-color: #00000078;
     }
     .info-tablo:hover{
         box-shadow: 1px 1px 3px #00000042;
         cursor: pointer;
-    }
-    .info-tablo:nth-child(1){
-        background-color: #9a9a3b;
-    }
-    .info-tablo:nth-child(2){
-        background-color: #373a6d;
-    }
-    .info-tablo:nth-child(3){
-        background-color: #5b4387;
-    }
-    .info-tablo:nth-child(4){
-        background-color: #3b6a83;
-    }
-    .info-tablo:nth-child(5){
-        background-color: #6a3737;
-    }
-    .info-tablo:nth-child(6){
-        background-color: #457245;
-    }
-    .info-tablo:nth-child(7){
-        background-color: #1d671d;
     }
     .total-annual .info-tablo p{
         margin: 0;
