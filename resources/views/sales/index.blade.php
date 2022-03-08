@@ -4,6 +4,7 @@
 @section('content')
 
 <div class="container tbl" >
+    <p class="text-end"><a href="{{ route('sales.create') }}" class="add-new-link">Qo'shish +</a></p>
     <!-- open show link -->
     <a href="" id="open-show-link"></a>
 

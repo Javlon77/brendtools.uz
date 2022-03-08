@@ -3,7 +3,7 @@
 @section('header-text', "Ustalar")
 @section('content')
 <div class="container tbl" >
-
+    <p class="text-end"><a href="{{ route('masters-base.create') }}" class="add-new-link">Qo'shish +</a></p>
     <table class="table bg-white" style="width: 100%;" id="c-table" data-page-length="10">
         <thead>
             <tr>

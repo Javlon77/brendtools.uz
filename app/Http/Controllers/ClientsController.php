@@ -103,7 +103,7 @@ class ClientsController extends Controller
 
       
 
-        // send data
+        // save data
         $client = new Client;
         $client->company_code = $data['company_code'];
         $client->master_code = $data['master_code']; 
@@ -119,36 +119,7 @@ class ClientsController extends Controller
         $client->feedback = $data['feedback'];
         $client->save();
 
-
-        //function for success message
-        function hello($a){
-            if($a==NULL){
-                return '-';
-            }
-        else {
-            return $a;
-        }
-        };
-        // data for success message
-        $success=[ 
-
-            'company_code' => hello($data['company_code']),
-            'master_code' => hello($data['master_code']) ,
-            'type' => $data['type'],
-            'name' => $data['name'],
-            'surname' => $data['surname'],
-            'dateOfBirth' => hello($data['dateOfBirth']),
-            'gender' => $data['gender'],
-            'phone1' => $data['phone1'],
-            'phone2' => hello($data['phone2']),
-            'region' => $data['region'],
-            'address' => hello($data['address']),
-            'feedback' => hello($data['feedback'])
-
-        ];
-
-        //return back success message
-        return back()->with($success);
+        return back()->with('message', 'Mijoz muvafaqqiyatli kiritildi!');
         
     
     }

@@ -5,6 +5,7 @@
 <div class="container tbl" >
     <!-- klientlani bazasini ko'rish uchun -->
     <a href="" id="edit-client-link"></a>
+    <p class="text-end"><a href="{{ route('client-base.create') }}" class="add-new-link">Qo'shish +</a></p>
     <p style="color: #29c127">* Mijoz haqida to'liq ma'lumotlarni ko'rish uchun ikki marta bosing!</p>
     <table class="table bg-white" style="width:100%;" id="c-table" data-page-length='10'>
         <thead>

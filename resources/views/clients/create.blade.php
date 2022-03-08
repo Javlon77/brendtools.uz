@@ -4,43 +4,8 @@
 @section('content')
 <div class="container container-bg">
 
-@if(Session::get('type')!==NULL)
-        <table class="table bg-white">
-            <thead>
-                <tr>
-                    <th>Kim</th>
-                    <th>Kompaniya nomi</th>
-                    <th>Usta turi</th>
-                    <th>Ismi</th>
-                    <th>Familiyasi</th>
-                    <th>Jinsi</th>
-                    <th>Tu'gilgan sanasi</th>
-                    <th>Telefon raqami</th>
-                    <th>Qo'shimcha telefon raqami</th>
-                    <th>Viloyati</th>
-                    <th>Manzili</th>
-                    <th>Mijoz haqidagi fikringiz</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{  Session::get('type') }}</td>
-                    <td>{{  Session::get('company_code') }}</td>
-                    <td>{{  Session::get('master_code') }}</td>
-                    <td>{{  Session::get('name') }}</td>
-                    <td>{{  Session::get('surname') }}</td>
-                    <td>{{  Session::get('gender') }}</td>
-                    <td>{{  Session::get('dateOfBirth') }}</td>
-                    <td>{{  Session::get('phone1') }}</td>
-                    <td>{{  Session::get('phone2') }}</td>
-                    <td>{{  Session::get('region') }}</td>
-                    <td>{{  Session::get('address') }}</td>
-                    <td>{{  Session::get('feedback') }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="alert alert-success" role="alert">Ushbu mijoz bazaga muvaffaqiyatli saqlandi!</div>
-      <h3 class=" my-5">Siz yana mijoz qo'shishingiz mumkin:</h3>  
+@if(Session::get('message')!==NULL)      
+        <div class="alert alert-success" role="alert">{{ session()->get('message') }}</div>
     @endif
     <form method="post" action="{{ route('client-base.store') }}">
             @csrf

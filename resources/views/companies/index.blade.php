@@ -3,6 +3,7 @@
 @section('header-text', "Kompaniyalar")
 @section('content')
 <div class="container tbl" >
+    <p class="text-end"><a href="{{ route('companies-base.create') }}" class="add-new-link">Qo'shish +</a></p>
     <!-- klientlani bazasini ko'rish uchun -->
     <a href="" id="edit-client-link"></a>
     <table class="table bg-white" style="width:100%;" id="c-table" data-page-length='10'>

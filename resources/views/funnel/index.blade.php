@@ -5,6 +5,7 @@ Sotuv voronkasi
 @section('content')
 
 <div class="container">
+    <p class="text-end"><a href="{{ route('funnel.create') }}" class="add-new-link">Qo'shish +</a></p>
 <div class="filter-by-date">
         <form action="{{ route('funnel.index') }}" class="filter-select">
         <p style="font-size:17px; margin-bottom:4px">Saralash:</p>

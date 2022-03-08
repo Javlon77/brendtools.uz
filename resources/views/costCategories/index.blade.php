@@ -3,9 +3,10 @@
 @section('header-text', "Xarajat Kategoryalari")
 @section('content')
 <div class="container tbl" >
+    <p class="text-end"><a href="{{ route('cost-categories.create') }}" class="add-new-link">Qo'shish +</a></p>
      <!-- a link o'chirilmasin -->
      <a href="" id="edit-client-link"></a>
-     <!-- end of a link o'chirilmasin -->
+    
     <table class="table bg-white" style="width:100%;" id="c-table" data-page-length='10'>
         <thead> 
             <tr>

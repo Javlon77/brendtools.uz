@@ -1,6 +1,6 @@
 @extends('layout')
-@section('title', 'Kompaniya yaratish')
-@section('header-text', 'Kompaniya yaratish')
+@section('title', "Kompaniya qo'shish")
+@section('header-text', "Kompaniya qo'shish")
 
 @section('content')
 
