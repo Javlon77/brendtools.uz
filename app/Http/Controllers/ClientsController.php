@@ -9,10 +9,10 @@ use App\Models\Company;
 use App\Models\Master;
 use App\Models\Sales;
 use App\Models\SaleProduct;
-use App\Models\product;
-use App\Models\category;
-use App\Models\brand;
-use App\Models\funnel;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Brand;
+use App\Models\Funnel;
 
 class ClientsController extends Controller
 {
