@@ -80,7 +80,7 @@
                 language: {
                     "lengthMenu": " _MENU_ tadan",
                     "zeroRecords": "Hechnarsa topilmadi",
-                    "info": "_PAGES_ - _PAGE_",
+                    "info": "_START_ -  _END_ (Jami: _TOTAL_)",
                     "infoEmpty": "No records available",
                     "infoFiltered": "(Umumiy _MAX_ qayddan filtrlandi)",
                     "search":"Qidirish:",
@@ -93,7 +93,7 @@
                 scrollX: true,
                 paging: true,
                 "lengthMenu": [10,20,40,60,100,200],
-                "order":[],
+                "order": [],
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]

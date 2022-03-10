@@ -81,7 +81,7 @@
                 language: {
                     "lengthMenu": " _MENU_ tadan",
                     "zeroRecords": "Hechnarsa topilmadi",
-                    "info": "_PAGES_ - _PAGE_",
+                    "info": "_START_ -  _END_ (Jami: _TOTAL_)",
                     "infoEmpty": "",
                     "infoFiltered": "(Umumiy _MAX_ qayddan filtrlandi)",
                     "search":"Qidirish:",
