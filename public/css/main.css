@@ -1,3 +1,6 @@
+p{
+    font-size: 2rem;
+}
 body{
     background:#a5a5a5 url(../images/laptop.jpg) fixed 0 0 no-repeat;
     background-size: cover;
