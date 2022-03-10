@@ -3,6 +3,7 @@ body{
     background-size: cover;
     color: white;
     min-height: 100vh;
+    min-width: 1024px;
 }
 .container-bg{
     background-color: #0000004d;

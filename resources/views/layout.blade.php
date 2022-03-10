@@ -14,7 +14,7 @@
 </head>
 <body>
 <!-- navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand navbar-dark">
   <div class="container">
    <div class="page-lists">
    <a class="navbar-brand" href="/">

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Models\funnel;
+use App\Models\Funnel;
 
 
 class AnalyticsController extends Controller
