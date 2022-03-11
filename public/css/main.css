@@ -191,12 +191,13 @@ tr td:last-child{
     color: white;
     justify-content: space-between;
     margin-bottom:5px;
-    margin-top: 4px;
+    margin-top: 4px; 
 }
 .make-excel{
     display:flex;
     justify-content: flex-end;
     margin-bottom: 10px;
+    max-width: 700px;
 }
 .make-excel div button{
     background-color:#5d666b;

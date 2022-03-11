@@ -59,12 +59,12 @@
                 @error('brand_id')
                     <div class="invalid-feedback" style="display:block">{{ $message }}</div>  
                 @enderror         
-            </div>
+            </div> 
             <!-- link -->
-            <div class="mb-3 input-width">
+            <div class="mb-3 input-width link">
                 <label class="form-label j-label">Link</label>
                 <div class="input-group">
-                    <textarea name="link" id="" rows="1" class="form-control @error('link') is-invalid @enderror" id="link">{{ old('link') ?? $product->link ?? ''}}</textarea>
+                    <textarea name="link" id="link" rows="1" class="form-control @error('link') is-invalid @enderror" id="link">{{ old('link') ?? $product->link ?? ''}}</textarea>
                 </div>
                 @error('link')
                     <div class="invalid-feedback" style="display:block">{{ $message }}</div>  

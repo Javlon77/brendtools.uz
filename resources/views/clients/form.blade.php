@@ -2,7 +2,7 @@
 
     <!--kim -->
     <div class="mb-3 input-width">
-        <label for="type" class="form-label j-label">Kim <strong class="text-danger">*</strong></label>
+        <label for="type" class="form-label j-label">Kim </label>
         <select id="type" name="type" class="form-select" aria-label="Default select example">
             <option>Uy egasi</option>
             <option value="Kompaniya xodimi">Kompaniya xodimi</option>
@@ -66,7 +66,7 @@
 
     <!-- jinsi-->
     <div class="mb-3 input-width">
-        <label for="gender" class="form-label j-label">Jinsi <strong class="text-danger">*</strong></label>
+        <label for="gender" class="form-label j-label">Jinsi </label>
         <select id="gender" name="gender" class="form-select" aria-label="Default select example">
             <option value="Erkak">Erkak</option>
             <option value="Ayol">Ayol</option>
@@ -108,7 +108,7 @@
     </div>
     <!-- region -->
     <div class="mb-3 input-width">
-        <label for="region" class="form-label j-label">Viloyati <strong class="text-danger">*</strong></label>
+        <label for="region" class="form-label j-label">Viloyati</label>
         <select id="region" name="region" class="form-select" aria-label="Default select example">
             <option value="Toshkent shahri">Toshkent shahri</option>
             <option value="Toshkent viloyati">Toshkent viloyati</option>

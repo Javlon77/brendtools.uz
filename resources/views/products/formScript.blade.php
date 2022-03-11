@@ -95,5 +95,27 @@ $(document).ready(function() {
         }
     });
     // end of send modal forms with enter button
+
+    //enable disable link form 
+        if( $('#hasInSite').val() == 0 ){
+            $('.link').addClass('disabled-div') 
+            $('#link').prop('required',false)
+        }
+        else{
+            $('.link').removeClass('disabled-div')
+            $('#link').prop('required',true)
+        }
+    $('#hasInSite').on('change', function(){
+        if( $('#hasInSite').val() == 0 ){
+            $('.link').addClass('disabled-div')
+            $('#link').val('');
+            $('#link').prop('required',false)
+        }
+        else{
+            $('.link').removeClass('disabled-div')
+            $('#link').val('');
+            $('#link').prop('required',true)
+        }
+    });
 });
 </script>
