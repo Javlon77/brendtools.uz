@@ -1,15 +1,27 @@
+<div class="j-row mb-3" style="width:70px">
+    
+</div>
 <div class="j-row ">
 
     <!--kim -->
-    <div class="mb-3 input-width">
-        <label for="type" class="form-label j-label">Kim </label>
-        <select id="type" name="type" class="form-select" aria-label="Default select example">
-            <option>Uy egasi</option>
-            <option value="Kompaniya xodimi">Kompaniya xodimi</option>
-            <option value="Usta">Usta</option>
-            @if( old('type') !== NULL ) <option selected value="{{ old('type') ?? $client->type ?? '' }}">{{ old('type') ?? $client->type ?? '' }}</option> @endif
-        </select>
-        <div class="invalid-feedback"></div>
+    <div class="mb-3 input-width d-flex align-items-end">
+        <div style="width:100%; margin-right:5px">
+            <label for="type" class="form-label j-label">Kim </label>
+            <select id="type" name="type" class="form-select">
+                <option value="Uy egasi">Uy egasi</option>
+                <option value="Kompaniya xodimi">Kompaniya xodimi</option>
+                <option value="Usta">Usta</option>
+                @if(old('type') ?? $client->type ?? '' )<option selected value="{{ old('type') ?? $client->type ?? '' }}">{{ old('type') ?? $client->type ?? '' }}</option>@endif
+            </select>
+        </div>
+        <div style="width:90px">
+            <select name="language" class="form-select">
+                <option value="uz">uz</option>
+                <option value="ru">ru</option>
+                @if(old('language') ?? $client->language ?? '' ) <option selected value="{{ old('language') ?? $client->language ?? '' }}">{{ old('language') ?? $client->language ?? '' }}</option> @endif
+            </select>
+            <div class="invalid-feedback"></div>
+        </div>
     </div>
     <!-- kompaniya nomi -->
     <div id="company-wrapper" class="input-width disabled-div">
@@ -70,9 +82,8 @@
         <select id="gender" name="gender" class="form-select" aria-label="Default select example">
             <option value="Erkak">Erkak</option>
             <option value="Ayol">Ayol</option>
-            @if (old('gender')==TRUE)
-            <option selected value="{{ old('gender') ?? $client->gender ?? '' }}">
-                {{ old('gender') ?? $client->gender ?? '' }}</option>
+            @if(old('gender') ?? $client->gender ?? '' )
+            <option selected value="{{ old('gender') ?? $client->gender ?? '' }}">{{ old('gender') ?? $client->gender ?? '' }}</option>
             @endif
 
 
@@ -124,7 +135,9 @@
             <option value="Buxoro">Buxoro</option>
             <option value="Xorazm">Xorazm</option>
             <option value="Qoraqalpog'iston">Qoraqalpog'iston</option>
-            @if( old('region') !== NULL ) <option selected>{{ old('region') ?? $client->region ?? '' }}</option> @endif
+            @if(old('region') ?? $client->region ?? '' ) 
+            <option value="{{ old('region') ?? $client->region ?? '' }}"selected>{{ old('region') ?? $client->region ?? '' }}</option>
+            @endif
         </select>
         <div class="invalid-feedback"></div>
     </div>

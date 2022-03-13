@@ -68,6 +68,7 @@ class ClientsController extends Controller
         //validation
         $data = $request->validate([
             'type'=>'required',
+            'language'=>'',
             'company_code'=>ctype($request->type,'Kompaniya xodimi' ),
             'master_code'=>ctype($request->type,'Usta' ),
             'name'=>"required|regex:/^[a-zA-Z']+$/u|min:2|max:30",
@@ -108,6 +109,7 @@ class ClientsController extends Controller
         $client->company_code = $data['company_code'];
         $client->master_code = $data['master_code']; 
         $client->type = $data['type'];
+        $client->language = $data['language'];
         $client->name = $data['name'];
         $client->surname = $data['surname'];
         $client->dateOfBirth = $data['dateOfBirth'];
@@ -215,6 +217,7 @@ class ClientsController extends Controller
         //validation
         $data = $request->validate([
             'type'=>'required',
+            'language'=>'',
             'company_code'=>ctype($request->type,'Kompaniya xodimi' ),
             'master_code'=>ctype($request->type,'Usta' ),
             'name'=>"required|regex:/^[a-zA-Z']+$/u|min:2|max:30",
@@ -258,6 +261,7 @@ class ClientsController extends Controller
         $client->company_code = $data['company_code'];
         $client->master_code = $data['master_code']; 
         $client->type = $data['type'];
+        $client->language = $data['language'];
         $client->name = $data['name'];
         $client->surname = $data['surname'];
         $client->dateOfBirth = $data['dateOfBirth'];
