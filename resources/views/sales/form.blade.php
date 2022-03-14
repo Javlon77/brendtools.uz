@@ -44,6 +44,7 @@
         <div class="input-group">
             <select id="delivery_method"  name="delivery_method" class="form-select " aria-label="Default select example" aria-describedby="button-addon2">
                 <option value="delivery">Yetkazib berish</option>
+                <option value="parcel">Pochta</option>
                 <option value="pickup">Olib ketish</option>
             </select>
         </div>
@@ -59,7 +60,7 @@
         <div class="invalid-feedback"></div>
     </div> 
      <!-- client_delivery_payment -->
-     <div class="mb-3 input-width delivery-price">
+     <div class="mb-3 input-width client_delivery_payment">
         <label for="client_delivery_payment" class="form-label">Mijoz yetkazib berishga bergan pul</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control seperator" id="client_delivery_payment" name="client_delivery_payment" style="text-align:right" value="" autocomplete="off" >

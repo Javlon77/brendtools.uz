@@ -15,5 +15,5 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('postcss-import'),
     require('tailwindcss'),
     require('autoprefixer'),
-]);
+]).version();
 mix.copy('node_modules/chart.js/dist/chart.min.js', 'public/js/chart.min.js');

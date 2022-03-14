@@ -197,7 +197,9 @@ tr td:last-child{
     display:flex;
     justify-content: flex-end;
     margin-bottom: 10px;
-    max-width: 700px;
+}
+.make-excel div{
+    max-width: 300px;
 }
 .make-excel div button{
     background-color:#5d666b;
@@ -252,7 +254,6 @@ tr td:last-child{
 }
 .add-new-link:hover{
     border: 1px solid;
-    box-shadow: 2px 1px 1px 2px rgb(255 255 255 / 40%);
 }
 
 

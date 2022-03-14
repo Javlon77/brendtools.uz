@@ -96,11 +96,11 @@
 
             <!-- sales box -->
 
-            <div class="sales-box ">
-                <div class="s-header">
-                    <i class="bi bi-list-ol icons" style="font-size:20px;"></i>
-                    <p class="s-header-text">Xaridlar tarixi</p>
-                </div>
+            <div class="sales-box ">        
+                <div class="s-header">  
+                    <i class="bi bi-list-ol icons" style="font-size:20px;"></i> 
+                    <p class="s-header-text">Xaridlar tarixi</p>    
+                </div>  
 
                 <hr style="color:lightgray">
                 {{-- show sales if exist or message - No sales --}}

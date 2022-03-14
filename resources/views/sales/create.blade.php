@@ -197,13 +197,22 @@ jQuery(document).ready(function() {
 
     //enable - disable delivery price
     $('#delivery_method').on('change', function() {
-        if ($('#delivery_method').val() == 'pickup') {
+        if ( $('#delivery_method').val() == 'pickup' ) {
             $('#delivery_price').val('')
             $('#client_delivery_payment').val('')
             $('.delivery-price').addClass('disabled-div')
-            $("#delivery_price").prop('required', false);
-        } else {
+            $('.client_delivery_payment').addClass('disabled-div')
+            $("#delivery_price").prop('required', false)
+        } 
+        else if ( $('#delivery_method').val() == 'parcel' ) {
+            $('#delivery_price').val('')
+            $('.delivery-price').addClass('disabled-div')
+            $('.client_delivery_payment').removeClass('disabled-div')
+            $("#delivery_price").prop('required', false)
+        }
+        else {
             $('.delivery-price').removeClass('disabled-div')
+            $('.client_delivery_payment').removeClass('disabled-div')
             $("#delivery_price").prop('required', true)
         }
     });
