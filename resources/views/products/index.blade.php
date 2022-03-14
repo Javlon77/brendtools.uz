@@ -21,7 +21,7 @@
             <tr idx="{{ $product->id }}">
                 <td>{{ $loop->index+1 }}</td>
                 <td>@if($product -> link !== NULL ) <a class="link" href="{{ $product->link }}">{{ $product->product }}</a> @else {{ $product->product }} @endif </td>
-             
+                <td>{{ $brands->keyBy('id')[$product->brand_id]->brand }}</td>
                 <td>{{ $categories->keyBy('id')[$product->category_id]->category }}</td>
                 <td class="align-middle">
                     <div class="d-flex action-btn">
