@@ -29,7 +29,7 @@
             <tr idx="{{ $client->id }}">
                 <td>{{ $loop->index+1 }}</td> 
                 <td>{{ $client->name }}</td>
-                <td>{{ $client->surname }}</td>
+                <td>{{ $client->surname ?? '-' }}</td>
                 <td>{{ $client->type }}</td>
                 <td>{{ $companies->keyBy('id')[$client->company_code]->company ?? '-' }}</td>
                 <td>{{ $masters->keyBy('id')[$client->master_code]->master ?? '-' }}</td>
