@@ -86,17 +86,11 @@ Route::group(['middleware' => 'auth'], function () {
         return ['token' => $token->plainTextToken];
     });
 
-    // token uchun  ---- O"CHIRMA
-    // Route::get('/top', function(Request $request) {
-    //     $token = $request->user()->api_token;
-    //     return $token;
-    // });
-
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

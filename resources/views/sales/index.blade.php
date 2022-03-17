@@ -11,29 +11,28 @@
     <table class="table bg-white" style="width:100%;" id="c-table" data-page-length="10">
         <thead>
             <tr>
-                <th>№</th>
+                <th style="width:10px">ID</th>
                 <th>Mijoz</th>
                 <th>Tovar soni</th>
                 <th>Umumiy savdo</th>
                 <th>Foyda</th>
                 <th>Sof foyda</th>
                 <th>Sana</th>
-                <th>O'chirish</th>
+                <th style="width: 70px;">O'chirish</th>
             </tr>          
         </thead>
         <tbody>
             
             @foreach($sales as $sale)
             <tr idx="{{ $sale->client_id }}">
-                <td>{{ $loop->index+1 }}</td>
+                <td>#{{ $sale->client_id }}</td>
                 <td>{{ $clients->keyBy('id')[$sale->client_id]->name }}</td>
-                <td>{{ $sale->saleProducts()->sum('quantity') }}</td>
-                <td class="seperator">{{ $sale->total_amount }}</td>
-                <td class="seperator">{{ $sale->profit }}</td>
-                <td class="seperator">{{ $sale->net_profit }}</td>
-                <td>{{ $sale->updated_at->format('d.m.Y'); }}</td>
-                <td >
-                    <!-- <a href="{{ route('client-base.edit',[$sale->id])}}" class="btn btn-light edit-btn"><i class="bi bi-pencil-square"></i></a> -->
+                <td style="width:98px">{{ $sale->saleProducts()->sum('quantity') }}</td>
+                <td class="seperator" data-order="{{ $sale->total_amount }}">{{ $sale->total_amount }}</td>
+                <td class="seperator" data-order="{{ $sale->profit }}">{{ $sale->profit }}</td>
+                <td class="seperator" data-order="{{ $sale->net_profit }}">{{ $sale->net_profit }}</td>
+                <td data-order="{{ $sale->updated_at->format('Y.m.d') }}">{{ $sale->updated_at->format('d.m.Y') }}</td>
+                <td>
                     <form action="{{ route('sales.destroy',[$sale->id]) }}" method="post" sale="{{ $sale->id }}">
                         @csrf
                         @method('DELETE')
@@ -116,6 +115,7 @@
                     "lengthMenu": " _MENU_ tadan",
                     "zeroRecords": "Hechnarsa topilmadi",
                     "info": "_START_ -  _END_ (Jami: _TOTAL_)",
+                    "ordering" : true,
                     "infoEmpty": "No records available",
                     "infoFiltered": "(Umumiy _MAX_ qayddan filtrlandi)",
                     "search":"Qidirish:",

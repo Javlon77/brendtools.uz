@@ -77,7 +77,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-tr">
             <li><a class="dropdown-item" href="/tasks">Asosiy sahifa</a></li>
-            <li><a class="dropdown-item" href="/tasks/profile">Mening profilim</a></li>
+            <li><a class="dropdown-item" href="/tasks/{{ Auth::user() -> id }}">Mening profilim</a></li>
           </ul>
         </li>
       </ul>

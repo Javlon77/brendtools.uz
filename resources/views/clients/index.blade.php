@@ -2,25 +2,26 @@
 @section('title', 'Mijozlar')
 @section('header-text', "Mijozlar")
 @section('content')
-<div class="container tbl" >
+<div class="container tbl mb-5" >
     <!-- klientlani bazasini ko'rish uchun -->
     <a href="" id="edit-client-link"></a>
     <p class="text-end"><a href="{{ route('client-base.create') }}" class="add-new-link">Qo'shish +</a></p>
     <p style="color: #29c127">* Mijoz haqida to'liq ma'lumotlarni ko'rish uchun ikki marta bosing!</p>
-    <table class="table bg-white" style="width:100%;" id="c-table" data-page-length='10'>
+    <table class="table bg-white" style="width:100%;" id="c-table" data-page-length='20'>
         <thead>
             <tr>
                 <th>№</th>
+                <th>ID</th>
                 <th>Ism</th>
                 <th>Familiya</th>
                 <th>Kim</th>
-                <th>Kompaniya</th>
-                <th>Usta</th>
+                {{-- <th>Kompaniya</th> --}}
+                {{-- <th>Usta</th> --}}
                 <th>Telefon</th>
                 <th>Telefon 2</th>
                 <th>Viloyat</th>
                 <th>Manzil</th>
-                <th>fikr</th>
+                {{-- <th>fikr</th> --}}
                 <th>Harakat</th>
             </tr>          
         </thead>
@@ -28,16 +29,17 @@
         @foreach($clients as $client)
             <tr idx="{{ $client->id }}">
                 <td>{{ $loop->index+1 }}</td> 
+                <td>#{{ $client->id }}</td> 
                 <td>{{ $client->name }}</td>
                 <td>{{ $client->surname ?? '-' }}</td>
                 <td>{{ $client->type }}</td>
-                <td>{{ $companies->keyBy('id')[$client->company_code]->company ?? '-' }}</td>
-                <td>{{ $masters->keyBy('id')[$client->master_code]->master ?? '-' }}</td>
-                <td>{{ $client->phone1 }}</td>
-                <td>{{ $client->phone2 ?? '-' }}</td>
+                {{-- <td>{{ $companies->keyBy('id')[$client->company_code]->company ?? '-' }}</td> --}}
+                {{-- <td>{{ $masters->keyBy('id')[$client->master_code]->master ?? '-' }}</td> --}}
+                <td class="tel">{{ $client->phone1 }}</td>
+                <td class="tel">{{ $client->phone2 ?? '-' }}</td>
                 <td>{{ $client->region }}</td>
                 <td>{{ $client->address ?? '-' }}</td>
-                <td>{{ $client->feedback ?? '-' }}</td>
+                {{-- <td>{{ $client->feedback ?? '-' }}</td> --}}
                 <td class="align-middle">
                     <div class="d-flex ">
                         <a href="{{ route('client-base.edit',[$client->id])}}" class="btn btn-light edit-btn"><i class="bi bi-pencil-square"></i></a>
@@ -138,18 +140,7 @@
 @section('css')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.1.1/b-html5-2.1.1/b-print-2.1.1/fh-3.2.1/r-2.2.9/datatables.min.css"/>
 <style>
-    tr{
-        cursor: pointer;
-        -webkit-touch-callout: none; 
-        -webkit-user-select: none; 
-        -khtml-user-select: none; 
-        -moz-user-select: none; 
-        -ms-user-select: none; 
-        user-select: none; 
-    }
-    tr:hover{
-        background-color: #dae5f7!important;
-    }
+
     
 </style>
 @endsection 

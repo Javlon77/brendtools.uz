@@ -3,13 +3,16 @@ body{
     background-size: cover;
     color: white;
     min-height: 100vh;
-    min-width: 1024px;
+    min-width: 1200px;
 }
 .container-bg{
     background-color: #0000004d;
     padding: 30px 40px;
     border-radius: 4px;
     margin-top: 1rem;
+}
+.container{
+    min-width: 1200px;
 }
 .form-label{
     font-weight: 600;
@@ -170,6 +173,18 @@ th{
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: #606F89;
+}
+tr{
+    cursor: pointer;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+}
+tbody tr:hover{
+    background-color: #dae5f7!important;
 }
 tr th:first-child{
     padding-left: 1.5rem!important;

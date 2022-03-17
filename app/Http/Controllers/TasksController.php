@@ -17,7 +17,6 @@ class TasksController extends Controller
     {
         $myprofile = auth()->user();
         $users = User::all();
-        // dd($users);
         return view('tasks.index',compact('myprofile', 'users'));
     }
 
