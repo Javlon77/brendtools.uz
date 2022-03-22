@@ -110,7 +110,6 @@ class SalesController extends Controller
         $data['net_profit'] = $profit-$data['delivery_price'] - $data['additional_cost'] + $data['client_delivery_payment'];
         $data['net_profit_usd'] = $data['net_profit'] / $currency;
         
-        // dd($request -> created_at);
         // create sale in DB
         $sale = sales::create($data);    
         $sale_id = $sale['id'];
@@ -137,7 +136,7 @@ class SalesController extends Controller
         }
 
         
-        // return redirect() -> back() -> with('message', 'Sotuv muvafaqqiyatli kiritildi!');
+        return redirect() -> back() -> with('message', 'Sotuv muvafaqqiyatli kiritildi!');
 
     }
 
