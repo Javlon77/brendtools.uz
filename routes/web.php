@@ -74,6 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/finance/plan',  [FinanceController::class, 'storePlan' ]);
         Route::delete('/finance/plan/{id}',  [FinanceController::class, 'destroyPlan' ]);
         Route::get('/finance/annual',  [FinanceController::class, 'annual' ]);
+        Route::get('/finance/brand',  [FinanceController::class, 'brand' ]);
     });
     // not admin page
     route::get('/notAdmin', function(){

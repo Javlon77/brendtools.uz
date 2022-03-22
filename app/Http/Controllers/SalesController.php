@@ -110,14 +110,14 @@ class SalesController extends Controller
         $data['net_profit'] = $profit-$data['delivery_price'] - $data['additional_cost'] + $data['client_delivery_payment'];
         $data['net_profit_usd'] = $data['net_profit'] / $currency;
         
-        
+        // dd($request -> created_at);
         // create sale in DB
         $sale = sales::create($data);    
         $sale_id = $sale['id'];
 
         // change created_at if the sale is ago some days
         if($request -> created_at){
-            $created_at = $request -> created_at;
+            $created_at = $request -> created_at. ' 12:00:00';
             $sale -> created_at = $created_at;
             $sale -> updated_at = $created_at;
             $sale ->save();
@@ -129,7 +129,7 @@ class SalesController extends Controller
             $saleProduct = SaleProduct::create($p);
             // change created_at if the sale is ago some days
             if($request -> created_at){
-                $created_at = $request -> created_at;
+                $created_at = $request -> created_at. ' 12:00:00';
                 $saleProduct -> created_at = $created_at;
                 $saleProduct -> updated_at = $created_at;
                 $saleProduct ->save();
@@ -137,7 +137,7 @@ class SalesController extends Controller
         }
 
         
-        return redirect() -> back() -> with('message', 'Sotuv muvafaqqiyatli kiritildi!');
+        // return redirect() -> back() -> with('message', 'Sotuv muvafaqqiyatli kiritildi!');
 
     }
 
