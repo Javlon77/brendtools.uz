@@ -139,7 +139,7 @@ class ClientsController extends Controller
         $company? $company=$company->company  : '';
         $master = master::find($client->master_code);
         $master? $master=$master->master  : '';
-        $sales = sales::where('client_id' ,$client->id )->orderBy('created_at')->get();
+        $sales = sales::where('client_id' ,$client->id )->orderByDesc('created_at')->get();
         $a=[];
         foreach($sales as $sale){ 
             $a[]+=$sale->id;

@@ -11,7 +11,8 @@
     <table class="table bg-white" style="width:100%;" id="c-table" data-page-length="10">
         <thead>
             <tr>
-                <th style="width:10px">ID</th>
+                <th style="width:10px">Savdo ID</th>
+                <th style="width:10px">Mijoz ID</th>
                 <th>Mijoz</th>
                 <th>Tovar soni</th>
                 <th>Umumiy savdo</th>
@@ -25,7 +26,8 @@
             
             @foreach($sales as $sale)
             <tr idx="{{ $sale->client_id }}">
-                <td>#{{ $sale->client_id }}</td>
+                <td>{{ $sale->id }}</td>
+                <td>{{$sale->client_id}}</td>
                 <td>{{ $clients->keyBy('id')[$sale->client_id]->name }}</td>
                 <td style="width:98px">{{ $sale->saleProducts()->sum('quantity') }}</td>
                 <td class="seperator" data-order="{{ $sale->total_amount }}">{{ $sale->total_amount }}</td>

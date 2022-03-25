@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container mb-5">
 
     <div class="row h-wrapper">
 
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="info-wrapper">
-                    <i class="bi bi-person icons" style="font-size:13px"> </i>
+                    <i class="bi bi-person-fill icons" style="font-size:13px"> </i>
                     <div class="info-wrapper-inside">
                         <p class="c-type">{{ $client->type }}</p>
                         <div class="wall"></div>
@@ -77,7 +77,7 @@
 
 
                 <div style="display: flex;flex-direction: column;align-items: flex-end;">
-                    #{{ $client->id }}
+                    <small class="text-secondary">ID: {{ $client->id }}</small>
                     <div style="float:right;">
                         <i class="bi bi-gear" style="font-size:15px; color:darkgray"></i>
                         <a href="{{ $client->id }}/edit" style="font-size:13px">O'zgartirish</a>
@@ -159,11 +159,12 @@
 
                 @foreach($sales as $sale)
                 <div class="sale">
-                    <p class="order-number">№ {{ $loop->index+1 }} | #{{ $sale -> id }} | <span class="seperator-usd">{{ $sale -> total_amount_usd }}</span></p>
+                    <p class="order-number">№ {{ $loop->remaining +1 }} | ID: {{ $sale -> id }} </span></p>
                     <div class="icons-wrapper">
                         <i class="bi bi-clock" style="font-size:12px; color:darkgray; margin-right:5px"></i>
                         <span style="font-size:13px">{{ Carbon\Carbon::parse($sale->created_at)->format('d-m-Y') }}</span>
                         <span style="font-size:13px;color:gray;margin-left:2px">{{ Carbon\Carbon::parse($sale->created_at)->format('H:i') }}</span>
+                        <a href="{{ route('sales.edit',[$sale->id]) }}" style="font-size:13px;margin-left:15px">O'zgartirish</a>
                         <form onsubmit="return confirm('Rostdan ham ochirishni hohlaysizmi?')" action="{{ route('sales.destroy',[$sale->id]) }}" method="post">
                             @csrf
                             @method('DELETE')
@@ -258,6 +259,12 @@
                                     <p class="category-name mx-1"> {{ $sale->additional }}</p>
                                 </div>
                             @endif
+                            @if( $sale->awareness !== NULL )
+                                <div class="d-flex">
+                                    <i class="bi bi-search icons" style="font-size:15px"> </i>
+                                    <p class="category-name mx-1"> {{ $sale->awareness }}</p>
+                                </div>
+                            @endif
                         </div>
                         <div class="product-quantity" style="justify-content: end;">
                             <p class="product-quantity-total">jami: </p>
@@ -270,7 +277,6 @@
                             <p class="product-total-price seperator-uzs">{{ $sale -> profit }}</p>
                             <p style="font-size:11px;margin:5px 0 0 0; line-height: 1; color:#808080;">Sof foyda:</p>
                             <p class="product-total-price seperator-uzs">{{ $sale -> net_profit }}</p>
-                            {{-- <p class="product-total-price seperator-usd">{{ $sale->total_amount_usd }}</p> --}}
                         </div>
                     </div>
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\Master;
 use App\Models\Client;
+use App\Models\Sales;
 
 class ClientController extends Controller
 {

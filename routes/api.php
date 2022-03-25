@@ -7,6 +7,7 @@ use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Api\FunnelController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\CheckSaleController;
 use App\Models\User;
 
 
@@ -31,5 +32,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::apiResource('funnel', FunnelController::class);
     Route::post('client', [ClientController::class, 'search']);
     Route::post('product', [ProductController::class, 'search']);
+    Route::get('check-sale', [CheckSaleController::class, 'check']);
     
 });
