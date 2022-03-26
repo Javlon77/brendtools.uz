@@ -4,7 +4,6 @@
 @section('content')
 
 <div class="container mb-5" >
-    
     <form action="/finance/annual" method="GET" >
         <p>Yilni tanlang:</p>
         @csrf
@@ -142,8 +141,20 @@
             
             </tbody>
         </table>
+        <h5 class="text-center">Tahlillar</h5>
+        {{-- diagram for awareness --}}
+       <div class="diagram-wrapper">
+            <div class="diagram">
+                <canvas id="awareness_annual"></canvas>
+            </div>
+            <div class="diagram">
+                <canvas id="by_language"></canvas>
+            </div>
+            <div class="diagram">
+                <canvas id="by_client_type"></canvas>
+            </div>
+       </div>
     </div>
-
 
     <!-------------------------------          first plan         ------------------------>
 
@@ -399,9 +410,9 @@
         min-width: 180px;
         margin-right: 15px;
         margin-bottom: 15px;
-        box-shadow: 3px 3px 5px 3px #00000042;
-        transition:0.2s all linear;
-        background-color: #00000078;
+        box-shadow: 3px 3px 3px 0px #00000042;
+        transition: 0.2s all linear;
+        background-color: #3e566c96;
     }
     .info-tablo:hover{
         box-shadow: 1px 1px 3px #00000042;
@@ -428,10 +439,23 @@
     .dataTables_wrapper{
         margin-bottom:100px
     }
+    .diagram{
+        background-color: #fff;
+        border-radius: 5px;
+        width: 49%;
+        margin-top: 20px;
+    }
+    .diagram-wrapper{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
    
 </style>
 @endsection 
 @section('script') 
+<script src="{{ asset('js/chart.min.js') }}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.1.1/b-html5-2.1.1/b-print-2.1.1/fh-3.2.1/r-2.2.9/datatables.min.js"></script>
@@ -503,6 +527,129 @@
                 $( '.' + $(this).attr('wrapper') ).show();
                 $( '.' + $(this).attr('wrapper') ).css('height','auto');
                 
+            });
+
+            // pieChart yillik mijoz oqimi bo'yicha 
+            const ctx = document.getElementById('awareness_annual').getContext('2d');
+            const awareness_annual = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        @foreach($by_awareness as $key => $value)
+                            '{{ $key }} - {{ number_format($value / array_sum($by_awareness) * 100, 1) }}%',
+                        @endforeach
+                    ],
+                    datasets: [{
+                        label: 'Sotuv voronkasi',
+                        data: [
+                            @foreach($by_awareness as $key => $value)
+                                {{ $value }},
+                            @endforeach
+                        ],
+                        backgroundColor: [
+                            '#7FB3D5',
+                            '#EC7063',
+                            '#2874A6',
+                            '#DC7633',
+                            '#2874A6',
+                            '#2ECC71',
+                            '#196F3D',
+                            '#16A085',
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: "Oqim bo'yicha xarid",
+                        }
+                    }
+                },
+            });
+
+            // pieChart mijoz tili bo'yicha bo'yicha 
+            const language = document.getElementById('by_language').getContext('2d');
+            const by_language = new Chart(language, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        @foreach($by_language as $key => $value)
+                            '{{ $key }} - {{ number_format($value / array_sum($by_language) * 100, 1) }}%',
+                        @endforeach
+                    ],
+                    datasets: [{
+                        label: 'Sotuv voronkasi',
+                        data: [
+                            @foreach($by_language as $key => $value)
+                                {{ $value }},
+                            @endforeach
+                        ],
+                        backgroundColor: [
+                            '#16A085',
+                            '#196F3D',
+                            '#2874A6',
+                            '#DC7633',
+                            '#2874A6',
+                            '#2ECC71',
+                            '#196F3D',
+                            '#16A085',
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: "Mijoz muloqot tili bo'yicha xarid",
+                        }
+                    }
+                },
+            });
+            // pieChart mijoz turi ' usta, uy egasi, korxona xodimi ' bo'yicha bo'yicha 
+            const client_type = document.getElementById('by_client_type').getContext('2d');
+            const by_client_type = new Chart(client_type, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        @foreach($by_client_type as $key => $value)
+                            '{{ $key }} - {{ number_format($value / array_sum($by_client_type) * 100, 1) }}%',
+                        @endforeach
+                    ],
+                    datasets: [{
+                        label: 'Sotuv voronkasi',
+                        data: [
+                            @foreach($by_client_type as $key => $value)
+                                {{ $value }},
+                            @endforeach
+                        ],
+                        backgroundColor: [
+                            '#58508d',
+                            '#a05195',
+                            '#ffa600',
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: "Mijoz turi bo'yicha xarid",
+                        }
+                    }
+                },
             });
 
         });

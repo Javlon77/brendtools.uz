@@ -15,10 +15,10 @@ use App\Models\Plan;
 class FinanceController extends Controller
 {
     public function index(){
-        $sales = sales::all();
-        $costs = Cost::all();
-        return view('finance.index', compact('sales','costs'));
-    }
+        // $sales = sales::all();
+        // $costs = Cost::all();
+        return view('finance.index');
+    } 
 
     //plan index
     public function plan(){
@@ -75,14 +75,40 @@ class FinanceController extends Controller
         $costs = $annual_cost ->groupBy('month');
         $sales = sales::whereYear('created_at', $year) -> get();
         $months = $sales -> groupBy('month');
-          
         foreach (now()->subMonths(12)->monthsUntil(now()) as $date) {
             $months[$date->format('m')] = $months[$date->format('m')] ?? collect([]);
         }
         foreach (now()->subMonths(12)->monthsUntil(now()) as $date) {
             $costs[$date->format('m')] = $costs[$date->format('m')] ?? collect([]);
         }
-        
+        // sale by awareness
+        $by_awareness=[
+            'Google' =>0,
+            'Yandex' =>0,
+            'Telegram' =>0,
+            'Instagram' =>0,
+            'Facebook' =>0,
+            'Reklama' =>0,
+            'Tanish-blish' =>0,
+            'Qayta-xarid' =>0,
+        ];
+        foreach( $sales->groupBy('awareness') as $key => $value){
+            $by_awareness[$key]=$value->sum('total_amount');
+        }
+        // sale by language
+        $by_language=[];
+        foreach($sales->groupBy('client.language') as $key => $value){
+            $by_language[$key] = $value->sum('total_amount');
+        }
+        // sale by client_type - usta, uy egasi, korxona xodimi
+        $by_client_type=[
+            'Uy egasi' => 0,
+            'Kompaniya xodimi' => 0,
+            'Usta' => 0
+        ];
+        foreach($sales->groupBy('client.type') as $key => $value){
+            $by_client_type[$key] = $value->sum('total_amount');
+        }
         // first_plan data collect
         $first_plan_array =array_filter($months -> toarray(), fn($key) => $key < 7,ARRAY_FILTER_USE_KEY);
         $first_plan_array = collect($first_plan_array) -> map(function ($name) { return collect($name); });
@@ -132,8 +158,8 @@ class FinanceController extends Controller
         }
         $second_plan['cost'] = $costs['07']->sum('cost') + $costs['08']->sum('cost') + $costs['09']->sum('cost') + $costs['10']->sum('cost') + $costs['11']->sum('cost') + $costs['12']->sum('cost') + ( $second_plan['profit'] -  $second_plan['net_profit'] );
         $second_plan['cost_usd'] = $costs['07']->sum('cost_usd') + $costs['08']->sum('cost_usd') + $costs['09']->sum('cost_usd') + $costs['10']->sum('cost_usd') + $costs['11']->sum('cost_usd') + $costs['12']->sum('cost_usd') + ( $second_plan['profit_usd'] -  $second_plan['net_profit_usd'] );
-        
-        return view('finance.annual', compact('month_name', 'sales','months','first_plan', 'second_plan', 'costs','annual_cost', 'year', 'plan'));
+
+        return view('finance.annual', compact('month_name', 'sales','months','first_plan', 'second_plan', 'costs','annual_cost', 'year', 'plan', 'by_awareness', 'by_language', 'by_client_type') );
     }
 
 

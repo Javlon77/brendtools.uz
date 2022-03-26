@@ -29,7 +29,7 @@
         @foreach($clients as $client)
             <tr idx="{{ $client->id }}">
                 <td>{{ $loop->index+1 }}</td> 
-                <td>#{{ $client->id }}</td> 
+                <td>{{ $client->id }}</td> 
                 <td>{{ $client->name }}</td>
                 <td>{{ $client->surname ?? '-' }}</td>
                 <td>{{ $client->type }}</td>

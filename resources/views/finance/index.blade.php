@@ -19,6 +19,13 @@
                 Yillik savdo
             </p>
         </a>
+        <a href="/finance/brand" class="box">
+            <p>
+                <i class="bi bi-clipboard-data"></i>
+                <br> 
+                Brendlar bo'yicha savdo
+            </p>
+        </a>
     </div>
 </div>
 
@@ -34,7 +41,7 @@
             font-weight: 400;
             border-radius: 4px;
             padding: 15px 25px;
-            width: 140px;
+            width: 180px;
             min-width: 140px;
             margin-right: 15px;
             margin-bottom: 15px;

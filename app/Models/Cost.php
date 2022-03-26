@@ -9,7 +9,7 @@ class Cost extends Model
 {
     use HasFactory;
     protected $table = 'costs';
-    protected $fillable = ['reason', 'category_id', 'additional', 'cost', 'cost_usd', 'currency'];
+    protected $fillable = ['reason', 'category_id', 'additional', 'cost', 'cost_usd', 'currency', 'created_at', 'updated_at'];
 
     public function getMonthAttribute()
     {

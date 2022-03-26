@@ -13,6 +13,7 @@
                 <th class="text-end">UZS</th>
                 <th class="text-end">USD</th>
                 <th>Qo'shimcha</th>
+                <th>Sana</th>
                 <th>Harakat</th>
             </tr>          
         </thead>
@@ -25,6 +26,7 @@
                 <td class= "seperator text-end">{{ $cost -> cost }}</td>
                 <td class= "seperator-usd text-end" >{{ $cost -> cost_usd }}</td>
                 <td>{{ $cost -> additional ?? '-' }}</td>
+                <td>{{ $cost -> created_at -> format('d.m.Y') }}</td>
                 <td>
                     <div class="d-flex action-btn">
                         <a href="{{ route('costs.edit',[$cost -> id])}}" class="btn btn-light edit-btn"><i class="bi bi-pencil-square"></i></a>

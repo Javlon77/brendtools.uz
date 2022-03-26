@@ -13,6 +13,9 @@ class Sales extends Model
     public function saleProducts() {
         return $this->hasMany(SaleProduct::class, 'sale_id');
     }
+    public function client(){
+        return $this->hasOne(Client::class, 'id', 'client_id');
+    }
     public function getMonthAttribute()
     {
         return date('m', strtotime($this->created_at));

@@ -14,8 +14,8 @@
         <div class="j-row">
             {{-- created_at --}}
             <div class="input-width mb-3">
-                <label for="" class="form-label j-label" title="Ushu vaqt xarajat qilingan vaqtni ko'rsatish uchun, lekin agar xarajat bugun bo'lgan bo'lsa siz vaqtni kiritishingiz kerak emas">Vaqt  <i class="bi bi-patch-question"></i></label>
-                <input type="date" class="form-control" name="created_at">
+                <label class="form-label j-label">Vaqt</label>
+                <input type="date" class="form-control" name="created_at" value="{{ now()->format('Y-m-d') }}" required min="2022-01-01" max="2035-01-01">
             </div>
             <!-- bo'lim -->         
             <div class="input-width mb-3">
