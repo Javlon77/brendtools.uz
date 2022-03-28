@@ -15,8 +15,6 @@ use App\Models\Plan;
 class FinanceController extends Controller
 {
     public function index(){
-        // $sales = sales::all();
-        // $costs = Cost::all();
         return view('finance.index');
     } 
 
@@ -109,6 +107,21 @@ class FinanceController extends Controller
         foreach($sales->groupBy('client.type') as $key => $value){
             $by_client_type[$key] = $value->sum('total_amount');
         }
+         // sale by gender
+         $by_client_gender=[
+             'Erkak' => 0,
+            'Ayol' => 0,
+        ];
+        foreach($sales->groupBy('client.gender') as $key => $value){
+            $by_client_gender[$key] = $value->sum('total_amount');
+        }
+         // sale by region
+         $by_client_region=[];
+        foreach($sales->groupBy('client.region') as $key => $value){
+            $by_client_region[$key] = $value->sum('total_amount');
+        }
+        $by_client_region = collect($by_client_region) ->sortDesc()->toarray();
+        
         // first_plan data collect
         $first_plan_array =array_filter($months -> toarray(), fn($key) => $key < 7,ARRAY_FILTER_USE_KEY);
         $first_plan_array = collect($first_plan_array) -> map(function ($name) { return collect($name); });
@@ -159,7 +172,22 @@ class FinanceController extends Controller
         $second_plan['cost'] = $costs['07']->sum('cost') + $costs['08']->sum('cost') + $costs['09']->sum('cost') + $costs['10']->sum('cost') + $costs['11']->sum('cost') + $costs['12']->sum('cost') + ( $second_plan['profit'] -  $second_plan['net_profit'] );
         $second_plan['cost_usd'] = $costs['07']->sum('cost_usd') + $costs['08']->sum('cost_usd') + $costs['09']->sum('cost_usd') + $costs['10']->sum('cost_usd') + $costs['11']->sum('cost_usd') + $costs['12']->sum('cost_usd') + ( $second_plan['profit_usd'] -  $second_plan['net_profit_usd'] );
 
-        return view('finance.annual', compact('month_name', 'sales','months','first_plan', 'second_plan', 'costs','annual_cost', 'year', 'plan', 'by_awareness', 'by_language', 'by_client_type') );
+        return view('finance.annual', compact(
+                        'month_name', 
+                        'sales',
+                        'months',
+                        'first_plan',
+                        'second_plan', 
+                        'costs',
+                        'annual_cost',
+                        'year', 
+                        'plan', 
+                        'by_awareness',
+                        'by_language',
+                        'by_client_type',
+                        'by_client_gender',
+                        'by_client_region',
+                    ));
     }
 
 

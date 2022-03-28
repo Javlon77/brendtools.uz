@@ -153,6 +153,12 @@
             <div class="diagram">
                 <canvas id="by_client_type"></canvas>
             </div>
+            <div class="diagram">
+                <canvas id="by_client_gender"></canvas>
+            </div>
+            <div class="diagram">
+                <canvas id="by_client_region"></canvas>
+            </div>
        </div>
     </div>
 
@@ -369,6 +375,7 @@
 </div>
 
 
+
 @endsection
 @section('css')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.1.1/b-html5-2.1.1/b-print-2.1.1/fh-3.2.1/r-2.2.9/datatables.min.css"/>
@@ -459,9 +466,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.1.1/b-html5-2.1.1/b-print-2.1.1/fh-3.2.1/r-2.2.9/datatables.min.js"></script>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function(){
-
             // annual table
             $('#annual-plan').DataTable({
                 dom: '<"make-excel" B> <"show-filter-wrapper" lf> r <"table-wrapper"t> ip',
@@ -590,14 +596,8 @@
                             @endforeach
                         ],
                         backgroundColor: [
-                            '#16A085',
-                            '#196F3D',
-                            '#2874A6',
-                            '#DC7633',
-                            '#2874A6',
-                            '#2ECC71',
-                            '#196F3D',
-                            '#16A085',
+                            '#009B77',
+                            '#45B8AC',
                         ],
                     }]
                 },
@@ -632,9 +632,9 @@
                             @endforeach
                         ],
                         backgroundColor: [
-                            '#58508d',
-                            '#a05195',
-                            '#ffa600',
+                            '#A0DAA9',
+                            '#00A170',
+                            '#E9897E',
                         ],
                     }]
                 },
@@ -647,6 +647,89 @@
                         title: {
                             display: true,
                             text: "Mijoz turi bo'yicha xarid",
+                        }
+                    }
+                },
+            });
+            // pieChart jins bo'yicha savdo
+            const by_gender = document.getElementById('by_client_gender').getContext('2d');
+            const by_client_gender = new Chart(by_gender, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        @foreach($by_client_gender as $key => $value)
+                            '{{ $key }} - {{ number_format($value / array_sum($by_client_gender) * 100, 1) }}%',
+                        @endforeach
+                    ],
+                    datasets: [{
+                        label: 'Sotuv voronkasi',
+                        data: [
+                            @foreach($by_client_gender as $key => $value)
+                                {{ $value }},
+                            @endforeach
+                        ],
+                        backgroundColor: [
+                            '#92A8D1',
+                            '#F7CAC9',
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: "Mijoz jinsi bo'yicha xarid",
+                        }
+                    }
+                },
+            });
+            // pieChart region bo'yicha savdo
+            const by_region = document.getElementById('by_client_region').getContext('2d');
+            const by_client_region = new Chart(by_region, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        @foreach($by_client_region as $key => $value)
+                            "{!! $key !!} - {{ number_format($value / array_sum($by_client_region) * 100, 1) }}%",
+                        @endforeach
+                    ],
+                    datasets: [{
+                        label: 'Sotuv voronkasi',
+                        data: [
+                            @foreach($by_client_region as $key => $value)
+                                {{ $value }},
+                            @endforeach
+                        ],
+                        backgroundColor: [
+                            '#56C6A9',
+                            '#4B5335',
+                            '#798EA4',
+                            '#FA7A35',
+                            '#00758F',
+                            '#EDD59E',
+                            '#E8A798',
+                            '#9C4722',
+                            '#6B5876',
+                            '#B89B72',
+                            '#282D3C',
+                            '#A09998',
+                            '#D9CE52',
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: "Viloyatlar bo'yicha xarid",
                         }
                     }
                 },
