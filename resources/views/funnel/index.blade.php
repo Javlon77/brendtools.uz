@@ -314,7 +314,7 @@ Sotuv voronkasi
                     });
                 }
             }
-            window.setTimeout(function(){location.reload()},100)
+            // window.setTimeout(function(){location.reload()},100)
         })
 
         // end sort funnel stages
