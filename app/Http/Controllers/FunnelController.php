@@ -199,11 +199,11 @@ class FunnelController extends Controller
         
         if($data['price']!==NULL){
             $data['price']=str_replace(' ', '', $data['price']);
-        }
+        } 
         
         Funnel::create($data);
-
-        return redirect()->back()->with('success', 'Muvafaqqiyatli saqlandi');
+ 
+        return redirect()->back()->with('success', 'Mufaqqaiyatli saqlandi!');
         
     }
 

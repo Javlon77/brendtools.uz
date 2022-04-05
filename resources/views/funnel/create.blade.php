@@ -2,6 +2,11 @@
 @section('content')
 @section('header-text', "Sotuv voronkasini yaratish")
     <div class="container container-bg">
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
         <form method="post" action="{{ route('funnel.store') }}">
             @csrf 
             @include('funnel.form')
