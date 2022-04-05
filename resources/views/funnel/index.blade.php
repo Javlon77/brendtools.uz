@@ -309,7 +309,7 @@ Sotuv voronkasi
                         },
                         error: function (res) {
                             alert('Serverda hatolik yuz berdi: \n'+ res.responseJSON.message)
-                            location.reload();
+                            // location.reload();
                         }
                     });
                 }
