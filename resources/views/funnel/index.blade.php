@@ -214,7 +214,7 @@ Sotuv voronkasi
 
 @endsection
 @section('script')
-    <script src="/js/drag.min.js"></script>
+    <script src="/js/drag.min.js"></script> 
     <script >
     $(document).ready(function() {
         // saralash
@@ -256,6 +256,11 @@ Sotuv voronkasi
         //end of scroll
 
         // sort funnel stages
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         let beforeChange = '';
         let beforeChangeCount = 0;
         $('.sort-funnel').sortable({
