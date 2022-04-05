@@ -47,7 +47,7 @@ Sotuv voronkasi
                 <!-- Birinchi suhbat -->
                 <div class="col-2 f-box f-sep-left sort-funnel droppable "  id="list">
                     <h6 class="f-header s-1"><p class="m-0">Birinchi suhbat</p> (<strong>{{ count($status1)? count($status1) : '0'  }}</strong>) </h6>
-                    <p class="all-price"> {{ $status1->sum('price') }} UZS</p>
+                    <p class="all-price"> {{ $status1->sum('price') }}</p>
                     @foreach($status1 as $s)
                         <div class="f-row" idx="{{$s->id}}">
                             <p class="f-texts"><i class="bi bi bi-hash" style="font-size:16px;color: #25ba64"> </i>{{$s->id}}</p>
@@ -58,7 +58,7 @@ Sotuv voronkasi
                             <p class="f-texts"><i class="bi bi-search" style="font-size:16px;color: #25ba64"> </i> {{$s->awareness}}</p>
                             <p class="f-texts">{!! $s->product? '<i class="bi bi-cart4" style="font-size:16px;color: #25ba64"> </i> '.$s->product:'' !!}</p>
                             <p class="f-texts">{!! $s->additional? '<i class="bi bi-pin-angle-fill" style="font-size:16px;color: #25ba64"> </i> '.$s->additional:'' !!}</p>
-                            <p class="f-texts f-price"> <i class="bi bi-wallet2" style="font-size:16px;color: #25ba64"> </i> {{$s->price? $s->price  : '0'}} UZS</p>
+                            <p class="f-texts f-price"> <i class="bi bi-wallet2" style="font-size:16px;color: #25ba64"> </i> {{$s->price? $s->price  : '0'}}</p>
                             <p class="f-texts f-button-group">
                                 {!! isset($clients->keyBy('id')[$s->client_id])? '<a href="'.route('client-base.show',[$s->client_id]).'" class="f-button f-edit px-2"><button class="border-0 m-0 p-0"><i class="bi bi-eye-fill"></button></i></a>' : '' !!}
                                 <a href="{{ route('funnel.edit',[$s->id]) }}" class="f-button f-edit px-2"><button class="border-0 m-0 p-0"><i class="bi bi-pencil-square"></button></i></a>
@@ -70,7 +70,7 @@ Sotuv voronkasi
                 <!-- Ko'ndirish jarayoni-->
                 <div class="col-2 f-box f-sep-left sort-funnel droppable"  id="list">
                     <h6 class="f-header s-2"><p class="m-0">Ko'ndirish jarayoni</p> (<strong>{{ count($status2)? count($status2) : '0'  }}</strong>) </h6>
-                    <p class="all-price"> {{ $status2->sum('price') }} UZS</p>
+                    <p class="all-price"> {{ $status2->sum('price') }}</p>
                     @foreach($status2 as $s)
                         <div class="f-row" idx="{{$s->id}}">
                             <p class="f-texts"><i class="bi bi bi-hash" style="font-size:16px;color: #25ba64"> </i>{{$s->id}}</p>
@@ -81,7 +81,7 @@ Sotuv voronkasi
                             <p class="f-texts"><i class="bi bi-search" style="font-size:16px;color: #25ba64"> </i> {{$s->awareness}}</p>
                             <p class="f-texts">{!! $s->product? '<i class="bi bi-cart4" style="font-size:16px;color: #25ba64"> </i> '.$s->product:'' !!}</p>
                             <p class="f-texts">{!! $s->additional? '<i class="bi bi-pin-angle-fill" style="font-size:16px;color: #25ba64"> </i> '.$s->additional:'' !!}</p>
-                            <p class="f-texts f-price"> <i class="bi bi-wallet2" style="font-size:16px;color: #25ba64"> </i> {{$s->price? $s->price  : '0'}} UZS</p>
+                            <p class="f-texts f-price"> <i class="bi bi-wallet2" style="font-size:16px;color: #25ba64"> </i> {{$s->price? $s->price  : '0'}}</p>
                             <p class="f-texts f-button-group">
                                 {!! isset($clients->keyBy('id')[$s->client_id])? '<a href="'.route('client-base.show',[$s->client_id]).'" class="f-button f-edit px-2"><button class="border-0 m-0 p-0"><i class="bi bi-eye-fill"></button></i></a>' : '' !!}
                                 <a href="{{ route('funnel.edit',[$s->id]) }}" class="f-button f-edit px-2"><button class="border-0 m-0 p-0"><i class="bi bi-pencil-square"></button></i></a>
@@ -93,7 +93,7 @@ Sotuv voronkasi
                 <!-- Bitm tuzildi -->
                 <div class="col-2 f-box f-sep-left sort-funnel droppable "  id="list">
                     <h6 class="f-header s-3"><p class="m-0">Bitm tuzildi</p> (<strong>{{ count($status3)? count($status3) : '0'  }}</strong>) </h6>
-                    <p class="all-price"> {{ $status3->sum('price') }} UZS</p>
+                    <p class="all-price"> {{ $status3->sum('price') }}</p>
                     @foreach($status3 as $s)
                         <div class="f-row" idx="{{$s->id}}">
                             <p class="f-texts"><i class="bi bi bi-hash" style="font-size:16px;color: #25ba64"> </i>{{$s->id}}</p>
@@ -104,7 +104,7 @@ Sotuv voronkasi
                             <p class="f-texts"><i class="bi bi-search" style="font-size:16px;color: #25ba64"> </i> {{$s->awareness}}</p>
                             <p class="f-texts">{!! $s->product? '<i class="bi bi-cart4" style="font-size:16px;color: #25ba64"> </i> '.$s->product:'' !!}</p>
                             <p class="f-texts">{!! $s->additional? '<i class="bi bi-pin-angle-fill" style="font-size:16px;color: #25ba64"> </i> '.$s->additional:'' !!}</p>
-                            <p class="f-texts f-price"> <i class="bi bi-wallet2" style="font-size:16px;color: #25ba64"> </i> {{$s->price? $s->price  : '0'}} UZS</p>
+                            <p class="f-texts f-price"> <i class="bi bi-wallet2" style="font-size:16px;color: #25ba64"> </i> {{$s->price? $s->price  : '0'}}</p>
                             <p class="f-texts f-button-group">
                                 {!! isset($clients->keyBy('id')[$s->client_id])? '<a href="'.route('client-base.show',[$s->client_id]).'" class="f-button f-edit px-2"><button class="border-0 m-0 p-0"><i class="bi bi-eye-fill"></button></i></a>' : '' !!}
                                 <a href="{{ route('funnel.edit',[$s->id]) }}" class="f-button f-edit px-2"><button class="border-0 m-0 p-0"><i class="bi bi-pencil-square"></button></i></a>
@@ -116,7 +116,7 @@ Sotuv voronkasi
                 <!-- To'lov qilindi -->
                 <div class="col-2 f-box f-sep-left sort-funnel droppable "  id="list">
                     <h6 class="f-header s-4"><p class="m-0">To'lov qilindi</p> (<strong>{{ count($status4)? count($status4) : '0'  }}</strong>) </h6>
-                    <p class="all-price"> {{ $status4->sum('price') }} UZS</p>
+                    <p class="all-price"> {{ $status4->sum('price') }}</p>
                     @foreach($status4 as $s)
                         <div class="f-row" idx="{{$s->id}}">
                             <p class="f-texts"><i class="bi bi bi-hash" style="font-size:16px;color: #25ba64"> </i>{{$s->id}}</p>
@@ -127,7 +127,7 @@ Sotuv voronkasi
                             <p class="f-texts"><i class="bi bi-search" style="font-size:16px;color: #25ba64"> </i> {{$s->awareness}}</p>
                             <p class="f-texts">{!! $s->product? '<i class="bi bi-cart4" style="font-size:16px;color: #25ba64"> </i> '.$s->product:'' !!}</p>
                             <p class="f-texts">{!! $s->additional? '<i class="bi bi-pin-angle-fill" style="font-size:16px;color: #25ba64"> </i> '.$s->additional:'' !!}</p>
-                            <p class="f-texts f-price"> <i class="bi bi-wallet2" style="font-size:16px;color: #25ba64"> </i> {{$s->price? $s->price  : '0'}} UZS</p>
+                            <p class="f-texts f-price"> <i class="bi bi-wallet2" style="font-size:16px;color: #25ba64"> </i> {{$s->price? $s->price  : '0'}}</p>
                             <p class="f-texts f-button-group">
                                 {!! isset($clients->keyBy('id')[$s->client_id])? '<a href="'.route('client-base.show',[$s->client_id]).'" class="f-button f-edit px-2"><button class="border-0 m-0 p-0"><i class="bi bi-eye-fill"></button></i></a>' : '' !!}
                                 <a href="{{ route('funnel.edit',[$s->id]) }}" class="f-button f-edit px-2"><button class="border-0 m-0 p-0"><i class="bi bi-pencil-square"></button></i></a>
@@ -139,7 +139,7 @@ Sotuv voronkasi
                 <!-- Yakunlandi -->
                 <div class="col-2 f-box f-sep-left sort-funnel droppable "  id="list">
                     <h6 class="f-header s-5"><p class="m-0">Yakunlandi</p> (<strong>{{ count($status5)? count($status5) : '0'  }}</strong>) </h6>
-                    <p class="all-price"> {{ $status5->sum('price') }} UZS</p>
+                    <p class="all-price"> {{ $status5->sum('price') }}</p>
                     @foreach($status5 as $s)
                         <div class="f-row" idx="{{$s->id}}">
                             <p class="f-texts"><i class="bi bi bi-hash" style="font-size:16px;color: #25ba64"> </i>{{$s->id}}</p>
@@ -150,7 +150,7 @@ Sotuv voronkasi
                             <p class="f-texts"><i class="bi bi-search" style="font-size:16px;color: #25ba64"> </i> {{$s->awareness}}</p>
                             <p class="f-texts">{!! $s->product? '<i class="bi bi-cart4" style="font-size:16px;color: #25ba64"> </i> '.$s->product:'' !!}</p>
                             <p class="f-texts">{!! $s->additional? '<i class="bi bi-pin-angle-fill" style="font-size:16px;color: #25ba64"> </i> '.$s->additional:'' !!}</p>
-                            <p class="f-texts f-price"> <i class="bi bi-wallet2" style="font-size:16px;color: #25ba64"> </i> {{$s->price? $s->price  : '0'}} UZS</p>
+                            <p class="f-texts f-price"> <i class="bi bi-wallet2" style="font-size:16px;color: #25ba64"> </i> {{$s->price? $s->price  : '0'}}</p>
                             <p class="f-texts f-button-group">
                                 {!! isset($clients->keyBy('id')[$s->client_id])? '<a href="'.route('client-base.show',[$s->client_id]).'" class="f-button f-edit px-2"><button class="border-0 m-0 p-0"><i class="bi bi-eye-fill"></button></i></a>' : '' !!}
                                 <a href="{{ route('funnel.edit',[$s->id]) }}" class="f-button f-edit px-2"><button class="border-0 m-0 p-0"><i class="bi bi-pencil-square"></button></i></a>
@@ -162,7 +162,7 @@ Sotuv voronkasi
                 <!-- Qaytarib berildi -->
                 <div class="col-2 f-box f-sep-left sort-funnel droppable "  id="list">
                     <h6 class="f-header s-6"><p class="m-0">Qaytarib berildi</p> (<strong>{{ count($status6)? count($status6) : '0'  }}</strong>) </h6>
-                    <p class="all-price"> {{ $status6->sum('price') }} UZS</p>
+                    <p class="all-price"> {{ $status6->sum('price') }}</p>
                     @foreach($status6 as $s)
                         <div class="f-row" idx="{{$s->id}}">
                             <p class="f-texts"><i class="bi bi bi-hash" style="font-size:16px;color: #25ba64"> </i>{{$s->id}}</p>
@@ -173,7 +173,7 @@ Sotuv voronkasi
                             <p class="f-texts"><i class="bi bi-search" style="font-size:16px;color: #25ba64"> </i> {{$s->awareness}}</p>
                             <p class="f-texts">{!! $s->product? '<i class="bi bi-cart4" style="font-size:16px;color: #25ba64"> </i> '.$s->product:'' !!}</p>
                             <p class="f-texts">{!! $s->additional? '<i class="bi bi-pin-angle-fill" style="font-size:16px;color: #25ba64"> </i> '.$s->additional:'' !!}</p>
-                            <p class="f-texts f-price"> <i class="bi bi-wallet2" style="font-size:16px;color: #25ba64"> </i> {{$s->price? $s->price  : '0'}} UZS</p>
+                            <p class="f-texts f-price"> <i class="bi bi-wallet2" style="font-size:16px;color: #25ba64"> </i> {{$s->price? $s->price  : '0'}}</p>
                             <p class="f-texts f-button-group">
                                 {!! isset($clients->keyBy('id')[$s->client_id])? '<a href="'.route('client-base.show',[$s->client_id]).'" class="f-button f-edit px-2"><button class="border-0 m-0 p-0"><i class="bi bi-eye-fill"></button></i></a>' : '' !!}
                                 <a href="{{ route('funnel.edit',[$s->id]) }}" class="f-button f-edit px-2"><button class="border-0 m-0 p-0"><i class="bi bi-pencil-square"></button></i></a>
@@ -214,169 +214,151 @@ Sotuv voronkasi
 
 @endsection
 @section('script')
-<script src="https://www.jqueryscript.net/demo/Draggable-Sortable-Plugin-jQuery-Touch-DnD/touch-dnd.js"></script>
-<script >
-// saralash
-    @isset($date)
-                $('#order option[value="{{ $date }}"]').attr("selected","selected")
-    @endisset
-//scroll
-jQuery.fn.hasScrollBar = function(direction)
-  {
-    if (direction == 'vertical')
-    {
-      return this.get(0).scrollHeight > this.innerHeight();
-    }
-    else if (direction == 'horizontal')
-    {
-      return this.get(0).scrollWidth > this.innerWidth();
-    }
-    return false;
+    <script src="/js/drag.min.js"></script>
+    <script >
+    $(document).ready(function() {
+        // saralash
+        @isset($date)
+            $('#order option[value="{{ $date }}"]').attr("selected","selected")
+        @endisset
+        //scroll
+        jQuery.fn.hasScrollBar = function(direction) {
+            if (direction == 'vertical')
+            {
+            return this.get(0).scrollHeight > this.innerHeight();
+            }
+            else if (direction == 'horizontal')
+            {
+            return this.get(0).scrollWidth > this.innerWidth();
+            }
+            return false;
+        }
 
-  }
-  if($('.f-container').hasScrollBar('horizontal')==true){
-    $('.f-container-shadow').addClass('f-container-shadow-right')
-  };
+        if($('.f-container').hasScrollBar('horizontal')==true){
+            $('.f-container-shadow').addClass('f-container-shadow-right')
+        };
 
-    $('.f-container').scroll(function(){
-        var maxScrollLeft = $('.f-container')[0].scrollWidth - $('.f-container')[0].clientWidth;
-        
-        if($('.f-container').scrollLeft()>1){
-            // if($('.f-container-shadow').hasClass('f-container-shadow-left')==false){
+        $('.f-container').scroll(function(){
+            var maxScrollLeft = $('.f-container')[0].scrollWidth - $('.f-container')[0].clientWidth;
+            if($('.f-container').scrollLeft()>1){
                 $('.f-container-shadow').addClass('f-container-shadow-left')
-            // }
-        }else  $('.f-container-shadow').removeClass('f-container-shadow-left')
-      
-
-        if($('.f-container').scrollLeft()<maxScrollLeft){
-            // if($('.f-container-shadow').hasClass('f-container-shadow-left')==false){
+            }
+            else  {
+                $('.f-container-shadow').removeClass('f-container-shadow-left')
+            }
+            if($('.f-container').scrollLeft()<maxScrollLeft){
                 $('.f-container-shadow').addClass('f-container-shadow-right')
-            // }
-        }else  $('.f-container-shadow').removeClass('f-container-shadow-right')
+            }
+            else  {
+                $('.f-container-shadow').removeClass('f-container-shadow-right')
+            } 
+        });
+        //end of scroll
 
-        
-        
-    })
-//end of scroll
+        // sort funnel stages
+        let beforeChange = '';
+        let beforeChangeCount = 0;
+        $('.sort-funnel').sortable({
+            accept:'*',
+            activeClass:'',
+            cancel:'input, textarea, button, select, option',
+            connectWith: '.droppable',
+            disabled:false,
+            forcePlaceholderSize:true,
+            handle:false,
+            initialized:false,
+            items:'li, div',
+            placeholder:'placeholder',
+            placeholderTag:null,
+            receiveHandler:null 
+        })
+        .on('sortable:start',function(e, ui){
+            if (this === ui.item.parent()[0]) {
+                beforeChange=ui['item'].parent()[0].childNodes[1].childNodes[0].innerText;
+                beforeChangeCount =ui['item'].parent()[0].childNodes[1].childNodes[2].innerText
+                countbefore = ui['item'].parent()[0].childNodes[1].childNodes[2].innerText;
+                countafter = ui['item'].parent()[0].childNodes[1].childNodes[2].innerText = countbefore-1;
+            }
+        })
+        .on('sortable:update',function(e, ui){
+            let a =ui['item'].parent()[0].childNodes[1];
+            if (this === ui.item.parent()[0]  ) {
+                let changeCount = ui['item'].parent()[0].childNodes[1].childNodes[2];
+                let parse = parseInt(changeCount.innerText);
+                let result = parse+1;
+                changeCount.innerText= result;
+                if(beforeChange!==a.childNodes[0].innerText){
+                    let status = a.childNodes[0].innerText;
+                    let token = $('meta[name=token]').attr('content');
+                    let id = ui['item'].attr('idx');
+                    $.ajax({
+                        method:'PUT',
+                        url:"http://bt-crm.loc/api/funnel/update",
+                        headers:{ "Authorization" : token},
+                        dataType:'json',
+                        data:{
+                            'id': id,
+                            'status': status
+                        },
+                        success: function(res){
+                        },
+                        error: function (res) {
+                            alert('Serverda hatolik yuz berdi: \n'+ res.responseJSON.message)
+                            location.reload();
+                        }
+                    });
+                }
+            }
+            window.setTimeout(function(){location.reload()},100)
+        })
 
-// sort funnel stages
-let beforeChange = '';
-let beforeChangeCount = 0;
-$('.sort-funnel').sortable({
-   accept:'*',
-   activeClass:'',
-   cancel:'input, textarea, button, select, option',
-   connectWith: '.droppable',
-   disabled:false,
-   forcePlaceholderSize:true,
-   handle:false,
-   initialized:false,
-   items:'li, div',
-   placeholder:'placeholder',
-   placeholderTag:null,
-   receiveHandler:null
-    
- })
- .on('sortable:start',function(e, ui){
-    if (this === ui.item.parent()[0]) {
-        beforeChange=ui['item'].parent()[0].childNodes[1].childNodes[0].innerText;
-        beforeChangeCount =ui['item'].parent()[0].childNodes[1].childNodes[2].innerText
-        countbefore = ui['item'].parent()[0].childNodes[1].childNodes[2].innerText;
-        countafter = ui['item'].parent()[0].childNodes[1].childNodes[2].innerText = countbefore-1;
-       
-    }
-    
-})
-.on('sortable:stop',function(e, ui){
-    let a =ui['item'].parent()[0].childNodes[1];
-    if (this === ui.item.parent()[0]  ) {
-        let changeCount = ui['item'].parent()[0].childNodes[1].childNodes[2];
-        let parse = parseInt(changeCount.innerText);
-        let result = parse+1;
-        changeCount.innerText= result;
-        if(beforeChange!==a.childNodes[0].innerText){
-            let status = a.childNodes[0].innerText;
+        // end sort funnel stages
+
+        //delete client sales funnel
+        let delteFunnel = '';
+        $('.f-delete').click(function(){
+            delteFunnel= $(this).attr('idx');
+        });
+        $('.f-felete-accepted').click(function(){
             let token = $('meta[name=token]').attr('content');
-            let id = ui['item'].attr('idx');
+            let id = delteFunnel;
             $.ajax({
-                method:'PUT',
-                url:"http://bt-crm.loc/api/funnel/update",
+                method:'DELETE',
+                url:"http://bt-crm.loc/api/funnel/"+id,
                 headers:{ "Authorization" : token},
-                dataType:'json',
-                data:{
-                    'id': id,
-                    'status': status
-                },
                 success: function(res){
-                    // console.log(res)
+                    $('#delete-funnel').modal('hide');
+                    $('.f-row[idx*="'+id+'"]').remove()
                 },
                 error: function (res) {
                     alert('Serverda hatolik yuz berdi: \n'+ res.responseJSON.message)
                     location.reload();
                 }
-
             });
-           
+        });
+        //end of delete funnel
+
+        //number seperator to money format
+        function numberWithSpaces(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         }
-        
-    }
-    
-});
-// end sort funnel stages
-
-//delete client sales funnel
-let delteFunnel = '';
-$('.f-delete').click(function(){
-    delteFunnel= $(this).attr('idx');
-});
-$('.f-felete-accepted').click(function(){
-    let token = $('meta[name=token]').attr('content');
-    let id = delteFunnel;
-    $.ajax({
-        method:'DELETE',
-        url:"http://bt-crm.loc/api/funnel/"+id,
-        headers:{ "Authorization" : token},
-        success: function(res){
-            $('#delete-funnel').modal('hide');
-            $('.f-row[idx*="'+id+'"]').remove()
-        },
-        error: function (res) {
-            alert('Serverda hatolik yuz berdi: \n'+ res.responseJSON.message)
-            location.reload();
-        }
-    });
-
-    // end of delete client sales funnel
-
-//number seperator to money format
-function numberWithSpaces(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
-// end of number seperator to money format
-
-        for (let i=0; i < $('.f-price').length; i++ ) {
-            let a= parseInt($(".f-price")[i].childNodes[2].textContent);
-            $(".f-price")[i].childNodes[2].textContent = numberWithSpaces(a)+ ' UZS';
+        for (let i=0; i < $('.f-price').length; i++ ) {     
+            $(".f-price")[i].childNodes[2].textContent = numberWithSpaces($(".f-price")[i].childNodes[2].textContent) + ' UZS'
         }
 
         for (let i=0; i < $('.all-price').length; i++ ) {
             let a= parseInt($(".all-price")[i].textContent);
             $(".all-price")[i].textContent = numberWithSpaces(a)+ ' UZS';
         }
-
         for (let i=0; i < $('.p-number').length; i++ ) {
             if( $('.p-number')[i].childNodes[1] !== undefined){
                 let a = $('.p-number')[i].childNodes[1].textContent.replace(/\s+/g, "");
-                let phoneSeperator= a.slice(0, 2) + ' '+ a.slice(2, 5) + ' ' + a.slice(5, 7) + ' ' + a.slice(7, 9)
+                let phoneSeperator= a.slice(0, 2) + ' '+ a.slice(2, 5) + '-' + a.slice(5, 7) + '-' + a.slice(7, 9)
                 $('.p-number')[i].childNodes[1].textContent=phoneSeperator
             }
         }
-});
-
-            
-      
-
-</script>
+    });
+    </script>
 @endsection
 @section('css')
 <style>

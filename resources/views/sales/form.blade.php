@@ -61,7 +61,7 @@
             </select>
         </div>
     </div>
-    
+    {{-- date --}}
     <div class="mx-2" style="width:170px">
         <label for="" class="form-label j-label" data-toggle="tooltip" title="Ushu vaqt savdo qilingan vaqtni ko'rsatish uchun, lekin agar savdo bugun bo'lgan bo'lsa siz vaqtni kiritishingiz kerak emas">Vaqt  <i class="bi bi-patch-question"></i></label>
         <input type="date" class="form-control" name="created_at" value="@if(isset($sale)){{ $sale->created_at ->format('Y-m-d') }}@else{{ now() -> format('Y-m-d') }}@endif" min="2022-01-01" max="2035-01-01"required>

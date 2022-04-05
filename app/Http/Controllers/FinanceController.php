@@ -73,10 +73,10 @@ class FinanceController extends Controller
         $costs = $annual_cost ->groupBy('month');
         $sales = sales::whereYear('created_at', $year) -> get();
         $months = $sales -> groupBy('month');
-        foreach (now()->subMonths(12)->monthsUntil(now()) as $date) {
+        foreach (now()->subMonths(13)->monthsUntil(now()) as $date) {
             $months[$date->format('m')] = $months[$date->format('m')] ?? collect([]);
         }
-        foreach (now()->subMonths(12)->monthsUntil(now()) as $date) {
+        foreach (now()->subMonths(13)->monthsUntil(now()) as $date) {
             $costs[$date->format('m')] = $costs[$date->format('m')] ?? collect([]);
         }
         // sale by awareness

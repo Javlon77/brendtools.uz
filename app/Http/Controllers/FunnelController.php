@@ -189,16 +189,21 @@ class FunnelController extends Controller
             'awareness'=>'',
             'price'=>'',
             'product'=>'',
-            'additional'=>''
+            'additional'=>'',
         ],
         [
             'client_id.required'=>'Iltimos mijozni tanlang!'
         ]);
+        $data['created_at'] = $request->created_at;
+        $data['updated_at'] = $request->created_at;
+        
         if($data['price']!==NULL){
             $data['price']=str_replace(' ', '', $data['price']);
         }
         
         Funnel::create($data);
+
+        return redirect()->back()->with('success', 'Muvafaqqiyatli saqlandi');
         
     }
 
@@ -221,7 +226,6 @@ class FunnelController extends Controller
      */
     public function edit(Funnel $funnel)
     {
-        // dd( url() -> previous() );
         $clients = Client::orderBy('id')->get();
         return view('funnel.edit',compact('funnel','clients'));
     }
@@ -247,6 +251,9 @@ class FunnelController extends Controller
         [
             'client_id.required'=>'Iltimos mijozni tanlang!'
         ]);
+        $data['created_at'] = $request->created_at;
+        $data['updated_at'] = $request->created_at;
+
         if($data['price']!==NULL){
             $data['price']=str_replace(' ', '', $data['price']);
         }

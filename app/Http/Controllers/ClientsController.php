@@ -272,7 +272,7 @@ class ClientsController extends Controller
         $client->address = $data['address'];
         $client->feedback = $data['feedback'];
         $client->update();
-        return redirect()->route('client-base.index');
+        return redirect($request->session() -> get('previous')) ;
     }
 
     /**

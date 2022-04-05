@@ -9,5 +9,5 @@ class Funnel extends Model
 {
     use HasFactory;
     protected $table='funnel';
-    protected $fillable =['client_id','status','awareness','product','price','additional'];
+    protected $fillable =['client_id','status','awareness','product','price','additional', 'created_at', 'updated_at'];
 }

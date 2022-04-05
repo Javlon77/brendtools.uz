@@ -1,9 +1,8 @@
 @extends('layout')
 @section('title', "Mijoz tahrirlash")
 @section('header-text', "Mijoz tahrirlash")
-
 @section('content')
-
+{{ session(['previous' => url() -> previous() ]) }}
 <div class="container container-bg">
 
 <form method="post" action="{{ route('client-base.update', $client) }}">
