@@ -333,9 +333,11 @@ Sotuv voronkasi
             let token = $('meta[name=token]').attr('content');
             let id = delteFunnel;
             $.ajax({
-                method:'PUT',
+                type:'DELETE',
                 url:"http://bt-crm.loc/api/funnel/"+id,
-                headers:{ "Authorization" : token},
+                headers:{ 
+                    "Authorization" : token
+                },
                 success: function(res){
                     $('#delete-funnel').modal('hide');
                     $('.f-row[idx="'+id+'"]').hide()
