@@ -329,9 +329,15 @@ Sotuv voronkasi
         $('.f-delete').click(function(){
             delteFunnel= $(this).attr('idx');
         });
-        $('.f-felete-accepted').click(function(){
+        $('.f-felete-accepted').click(function(e){
             let token = $('meta[name=token]').attr('content');
             let id = delteFunnel;
+            e.preventDefault()
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            }); 
             $.ajax({
                 type:'DELETE',
                 url:"http://bt-crm.loc/api/funnel/"+id,
