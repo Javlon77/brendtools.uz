@@ -340,9 +340,9 @@ Sotuv voronkasi
             }); 
             $.ajax({
                 type:'DELETE',
-                url:"http://bt-crm.loc/api/funnel/"+id,
+                url:"/api/funnel/"+id,
                 headers:{ 
-                    "Authorization" : token
+                    "Authorization" : token,
                 },
                 success: function(res){
                     $('#delete-funnel').modal('hide');
