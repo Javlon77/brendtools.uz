@@ -217,7 +217,11 @@ Sotuv voronkasi
     <script src="/js/drag.min.js"></script> 
     <script >
     $(document).ready(function() {
-
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }); 
         // saralash
         @isset($date)
             $('#order option[value="{{ $date }}"]').attr("selected","selected")
@@ -293,13 +297,7 @@ Sotuv voronkasi
                     let status = a.childNodes[0].innerText;
                     let token = $('meta[name=token]').attr('content');
                     let id = ui['item'].attr('idx');
-                    // header setup
-                    e.preventDefault();
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });                   
+                    // header setup                  
                     $.ajax({
                         method:'PUT',
                         url:'/api/funnel/update',
@@ -340,7 +338,7 @@ Sotuv voronkasi
                 headers:{ "Authorization" : token},
                 success: function(res){
                     $('#delete-funnel').modal('hide');
-                    $('.f-row[idx*="'+id+'"]').remove()
+                    $('.f-row[idx="'+id+'"]').hide()
                 },
                 error: function (res) {
                     alert('Serverda hatolik yuz berdi: \n'+ res.responseJSON.message)

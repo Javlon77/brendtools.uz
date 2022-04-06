@@ -49,11 +49,9 @@ class FunnelController extends Controller
      */
     public function update(Request $request)
     {
-      
         if($request->ajax()){
             $funnel = funnel::find($request->id);
             $update = $funnel->update(array('status' => $request->status));
-
             if($update==TRUE){
                 return  'true';
             }else return response()->json( 'assadsd', 500 );
