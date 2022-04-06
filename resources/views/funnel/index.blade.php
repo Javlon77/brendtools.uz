@@ -217,6 +217,7 @@ Sotuv voronkasi
     <script src="/js/drag.min.js"></script> 
     <script >
     $(document).ready(function() {
+
         // saralash
         @isset($date)
             $('#order option[value="{{ $date }}"]').attr("selected","selected")
@@ -256,11 +257,7 @@ Sotuv voronkasi
         //end of scroll
 
         // sort funnel stages
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+      
         let beforeChange = '';
         let beforeChangeCount = 0;
         $('.sort-funnel').sortable({
@@ -296,9 +293,16 @@ Sotuv voronkasi
                     let status = a.childNodes[0].innerText;
                     let token = $('meta[name=token]').attr('content');
                     let id = ui['item'].attr('idx');
+                    // header setup
+                    e.preventDefault();
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });                   
                     $.ajax({
                         method:'PUT',
-                        url:"http://bt-crm.loc/api/funnel/update",
+                        url:'/api/funnel/update',
                         headers:{ "Authorization" : token},
                         dataType:'json',
                         data:{
