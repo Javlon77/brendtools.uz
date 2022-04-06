@@ -310,10 +310,13 @@ Sotuv voronkasi
                             'status': status
                         },
                         success: function(res){
+                            setTimeout(function () {
+                                location.reload(true);
+                            }, 100);
                         },
                         error: function (res) {
                             alert('Serverda hatolik yuz berdi: \n'+ res.responseJSON.message)
-                            // location.reload();
+                            location.reload();
                         }
                     });
                 }
