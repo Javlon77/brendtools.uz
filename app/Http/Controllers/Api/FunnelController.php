@@ -66,10 +66,12 @@ class FunnelController extends Controller
      */
     public function destroy($id)
     {
-        $funnel = Funnel::find($id);
-        $check = $funnel->delete();
-        if($check==TRUE){
-            return "Muvaffaqiyatli o'chirildi!";
-        }else return "Bazada hatolik yuz berdi!";
+        if($request->ajax()){
+            $funnel = Funnel::find($id);
+            $check = $funnel->delete();
+            if($check==TRUE){
+                return "Muvaffaqiyatli o'chirildi!";
+            }else return "Bazada hatolik yuz berdi!";
+        };
     }
 }
