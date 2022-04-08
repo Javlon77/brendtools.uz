@@ -35,8 +35,8 @@
                 <td>{{ $client->type }}</td>
                 {{-- <td>{{ $companies->keyBy('id')[$client->company_code]->company ?? '-' }}</td> --}}
                 {{-- <td>{{ $masters->keyBy('id')[$client->master_code]->master ?? '-' }}</td> --}}
-                <td class="tel">{{ $client->phone1 }}</td>
-                <td class="tel">{{ $client->phone2 ?? '-' }}</td>
+                <td class="">{{ $client->phone1 }}</td>
+                <td class="">{{ $client->phone2 ?? '-' }}</td>
                 <td>{{ $client->region }}</td>
                 <td>{{ $client->address ?? '-' }}</td>
                 {{-- <td>{{ $client->feedback ?? '-' }}</td> --}}
