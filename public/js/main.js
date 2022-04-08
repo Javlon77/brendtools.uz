@@ -34,7 +34,7 @@ for (let i=0; i < $('.number-seperator').length; i++ ) {
 
 // phone number format
 $(".tel").text(function(i, text) {
-    text = text.replace(/(\d{2})(\d{3})(\d{2})(\d{2})/, "$1 $2-$3-$4");
+    text = text.replace(/(\d{2})(\d{3})(\d{2})(\d{2})/, "$1 $2 $3$4");
     return text;
 });
 // disable all inputs autocomplete
