@@ -14,14 +14,14 @@
         <div class="j-row">
             {{-- created_at --}}
             <div class="input-width mb-3">
-                <label for="" class="form-label j-label" title="Ushu vaqt xarajat qilingan vaqtni ko'rsatish uchun, lekin agar xarajat bugun bo'lgan bo'lsa siz vaqtni kiritishingiz kerak emas">Vaqt  <i class="bi bi-patch-question"></i></label>
+                <label for="" class="form-label j-label">Vaqt </label>
                 <input type="date" class="form-control" name="created_at" value="{{ $cost -> created_at -> format('Y-m-d') }}">
             </div>
             <!-- bo'lim -->         
             <div class="input-width">
                 <label class="form-label">Maqsad</label>
                 <div class="input-group">
-                    <select name="reason" class="form-select @error('category_id') is-invalid @enderror" aria-label="Default select example" aria-describedby="button-addon2">
+                    <select name="reason" class="form-select" aria-label="Default select example" aria-describedby="button-addon2">
                         <option value="Reklama">Reklama</option>
                         <option value="Aktiv">Aktiv</option>
                         <option value="Boshqalar">Boshqalar</option>
@@ -32,13 +32,12 @@
 
             <!-- category-->         
             <div class="input-width">
-                <label for="category_id" class="form-label">Kategorya</label>
+                <label class="form-label">Kategorya</label>
                 <div class="input-group">
-                    <select id="category_id"  name="category_id" class="form-select @error('category_id') is-invalid @enderror" aria-label="Default select example" aria-describedby="button-addon2">
+                    <select name="category_id" class="form-select" aria-label="Default select example" aria-describedby="button-addon2">
                         @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->category }}</option>
                         @endforeach
-                        <option value="{{ $cost -> category_id }}" selected>{{ $categories ->find($cost -> category_id) -> category }}</option>
                     </select>
                 </div>  
             </div>
@@ -102,7 +101,10 @@ $(document).ready(function(){
         }
     });
     // end of number seperator to money format
-
+    // select options 
+    $('select[name=reason] option[value={{ $cost->reason ?? '' }}]').prop('selected', true)
+    $('select[name=category_id] option[value={{ $cost->category_id ?? '' }}]').prop('selected', true)
+    
   
 });
 </script>
