@@ -2,6 +2,7 @@
 @section('title', "Mijoz tahrirlash")
 @section('header-text', "Mijoz tahrirlash")
 @section('content')
+{{-- to return previuos page after update --}}
 {{ session(['previous' => url() -> previous() ]) }}
 <div class="container container-bg">
 

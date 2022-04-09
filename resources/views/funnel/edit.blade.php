@@ -2,6 +2,7 @@
 @section('title', "Sotuv voronkasini tahrirlash")
 @section('header-text', "Sotuv voronkasini tahrirlash")
 @section('content')
+{{-- to return previuos page after update --}}
     {{ session(['previous' => url() -> previous() ]) }}
     <div class="container container-bg">
         <form method="post" action="{{ route('funnel.update', $funnel) }}">

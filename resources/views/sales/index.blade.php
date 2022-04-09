@@ -35,11 +35,14 @@
                 <td class="seperator" data-order="{{ $sale->net_profit }}">{{ $sale->net_profit }}</td>
                 <td data-order="{{ $sale->updated_at->format('Y.m.d') }}">{{ $sale->updated_at->format('d.m.Y') }}</td>
                 <td>
-                    <form action="{{ route('sales.destroy',[$sale->id]) }}" method="post" sale="{{ $sale->id }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" class="btn btn-light ms-2 delete-btn" data-bs-toggle="modal" data-bs-target="#delete-sale-modal" sale="{{ $sale->id }}"><i class="bi bi-trash"></i></button>
-                    </form>
+                    <div class="d-flex action-btn">
+                        <a href="{{ route('sales.edit',[$sale->id])}}" class="btn btn-light edit-btn"><i class="bi bi-pencil-square"></i></a>
+                        <form action="{{ route('sales.destroy',[$sale->id]) }}" method="post" sale="{{ $sale->id }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-light ms-2 delete-btn" data-bs-toggle="modal" data-bs-target="#delete-sale-modal" sale="{{ $sale->id }}"><i class="bi bi-trash"></i></button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             @endforeach

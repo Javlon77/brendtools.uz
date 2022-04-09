@@ -2,6 +2,8 @@
 @section('title', "Sotuv tahrirlash")
 @section('header-text', "Sotuv tahrirlash")
 @section('content')
+{{-- to return previuos page after update --}}
+{{ session(['previous' => url() -> previous() ]) }}
     <div class="container container-bg">
         @if(session()->has('message'))
             <div class="alert alert-success">

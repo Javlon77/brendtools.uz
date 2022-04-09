@@ -12,6 +12,7 @@ use App\Models\Master;
 use App\Models\Currency;
 use App\Models\SaleProduct;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
  
 class SalesController extends Controller
 {
@@ -55,6 +56,7 @@ class SalesController extends Controller
         $total_quantity=0;
         $profit=0;
         $products=[];
+        $date=Carbon::createFromFormat('Y-m-d', $request->created_at)->format('Y-m-d h:i:s');
         // loop to create products array
         for ( $i=0; $i < count($request->product_id); $i++ ){
             $product=[
@@ -66,8 +68,8 @@ class SalesController extends Controller
                 'selling_price' => str_replace(' ', '', $request->selling_price[$i]), 
                 'selling_price_usd' => str_replace(' ', '', $request->selling_price[$i]) / $currency, 
                 'currency' => $currency, 
-                'created_at' => $request->created_at, 
-                'updated_at' => $request->created_at, 
+                'created_at' => $date, 
+                'updated_at' => $date, 
             ];
             $total_amount+= $product['selling_price'] * $product['quantity'];
             $total_quantity+= $product['quantity'];
@@ -109,8 +111,8 @@ class SalesController extends Controller
         $data['profit_usd'] = $data['profit'] / $currency;
         $data['net_profit'] = $profit-$data['delivery_price'] - $data['additional_cost'] + $data['client_delivery_payment'];
         $data['net_profit_usd'] = $data['net_profit'] / $currency;
-        $data['created_at'] = $request -> created_at;
-        $data['updated_at'] = $request -> created_at;
+        $data['created_at'] = $datet;
+        $data['updated_at'] = $datet;
         // create sale in DB
         $sale = sales::create($data);    
         // save products to sales_product database  
@@ -165,6 +167,7 @@ class SalesController extends Controller
         $total_quantity=0;
         $profit=0;
         $products=[];
+        $date=Carbon::createFromFormat('Y-m-d', $request->created_at)->format('Y-m-d h:i:s');
         // loop to create products array
         for ( $i=0; $i < count($request->product_id); $i++ ){
             $product=[
@@ -176,8 +179,8 @@ class SalesController extends Controller
                 'selling_price' => str_replace(' ', '', $request->selling_price[$i]), 
                 'selling_price_usd' => str_replace(' ', '', $request->selling_price[$i]) / $currency, 
                 'currency' => $currency, 
-                'created_at' => $request->created_at, 
-                'updated_at' => $request->created_at, 
+                'created_at' => $date, 
+                'updated_at' => $date, 
             ];
             $total_amount+= $product['selling_price'] * $product['quantity'];
             $total_quantity+= $product['quantity'];
@@ -221,8 +224,6 @@ class SalesController extends Controller
         $data['profit_usd'] = $data['profit'] / $currency;
         $data['net_profit'] = $profit-$data['delivery_price'] - $data['additional_cost'] + $data['client_delivery_payment'];
         $data['net_profit_usd'] = $data['net_profit'] / $currency;
-        $data['created_at'] = $request -> created_at;
-        $data['updated_at'] = $request -> created_at;
         // update sale in DB
         $sale->client_id =$data['client_id'];
         $sale->payment_method =$data['payment_method'];
@@ -244,8 +245,8 @@ class SalesController extends Controller
         $sale->currency =$data['currency'];
         $sale->additional =$data['additional'];
         $sale->awareness =$data['awareness'];
-        $sale->created_at = $data['created_at'];
-        $sale->updated_at = $data['created_at'];
+        $sale->created_at = $date;
+        $sale->updated_at = $date;
         $sale->save();
         // delete old products and save new products to sales_product database  
         SaleProduct::where('sale_id', $sale->id)->delete();
@@ -254,7 +255,7 @@ class SalesController extends Controller
             SaleProduct::create($product);
         }
         
-        return redirect() -> back() -> with('message', 'Sotuv muvafaqqiyatli tahrirlandi!');
+        return redirect($request->session() -> get('previous'));
     }
 
     /**
