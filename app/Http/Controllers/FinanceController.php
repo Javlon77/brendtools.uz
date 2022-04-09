@@ -264,23 +264,24 @@ class FinanceController extends Controller
         // umumiy savdo
         $total_sale = 0;
         foreach($products as $product) {
-                $total_sale+= $product -> sum(function($item){
-                            return $item->selling_price * $item->quantity;
-                        });
+            $total_sale +=  $product -> sum(function($item){
+                                return $item->selling_price * $item->quantity;
+                            });
         };
         // umumiy foyda
         $total_profit = 0;
         foreach($products as $product) {
-                $total_profit+= $product -> sum(function($item){
-                            return ($item->selling_price - $item->cost_price) * $item->quantity;
-                        });
+            $total_profit+= $product -> sum(function($item){
+                                return ($item->selling_price - $item->cost_price) * $item->quantity;
+                            });
         };
         // jami mahsulot
-        $total_product = $products -> sum(function($item){ return $item -> sum('quantity');});
-
+        $total_product = $products -> sum(function($item){ 
+                            return $item -> sum('quantity');
+                        });
         $brands = Brand::all();
         $from = date( 'Y-m-d', strtotime($from) );
-        $to = date( 'Y-m-d', strtotime($to) );
+        $to = date( 'Y-m-d', strtotime($to) ); 
         return view( 'finance.brand', compact('products','brands','total_sale', 'total_profit', 'total_product', 'check', 'from', 'to') );
     }
 }

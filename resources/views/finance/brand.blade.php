@@ -48,39 +48,39 @@
                 </tr>
             </thead>
             <tbody>
-            
-            @foreach($products as $brand_id => $product)
-                <tr>
-                    <td> {{ $brands -> find($brand_id) -> brand }} </td>
-                    <td> {{ $product -> sum('quantity') }} </td>
-                    <td class="seperator-uzs">
-                        {{   $product -> sum(function($item){ return $item->selling_price * $item->quantity;  })  }}
-                    </td>
-                    <td class="seperator-uzs">
-                        {{ $product -> sum(function($item){ return ($item->selling_price - $item->cost_price) * $item->quantity; }) }}
-                    </td>
-                    <td class="seperator-uzs">{{ $product -> sum(function($item){ return $item->selling_price * $item->quantity;  }) / $product -> sum('quantity') }}</td>
-                    <td class="percentage">
-                        {{ 
-                            $product -> sum(function($item){ return ($item->selling_price - $item->cost_price) * $item->quantity; }) 
-                            / 
-                            $product -> sum(function($item){ return $item->selling_price * $item->quantity; }) * 100 
-                        }}
-                    </td>
-                    <td class="percentage">{{ $product -> sum(function($item){ return $item->selling_price * $item->quantity; }) / $total_sale * 100 }}</td>
-                </tr>   
-            @endforeach
-
-            <tr class="fw-bold">
-                <td>Jami: {{ $products -> count() }}</td>
-                <td>{{ $total_product  }} </td>
-                <td class="seperator-uzs"> {{ $total_sale }} </td>
-                <td class="seperator-uzs">{{ $total_profit }}</td>
-                <td class="seperator-uzs">{{ $total_sale /  $total_product  }}</td>
-                <td class="percentage">{{ $total_profit / $total_sale * 100 }}</td>
-                <td>100%</td>
-            </tr>
+                @foreach($products as $brand_id => $product)
+                    <tr>
+                        <td> {{ $brands -> find($brand_id) -> brand }} </td>
+                        <td class="seperator"> {{ $product -> sum('quantity') }} </td>
+                        <td class="seperator-uzs">
+                            {{   $product -> sum(function($item){ return $item->selling_price * $item->quantity;  })  }}
+                        </td>
+                        <td class="seperator-uzs">
+                            {{ $product -> sum(function($item){ return ($item->selling_price - $item->cost_price) * $item->quantity; }) }}
+                        </td>
+                        <td class="seperator-uzs">{{ $product -> sum(function($item){ return $item->selling_price * $item->quantity;  }) / $product -> sum('quantity') }}</td>
+                        <td class="percentage">
+                            {{ 
+                                $product -> sum(function($item){ return ($item->selling_price - $item->cost_price) * $item->quantity; }) 
+                                / 
+                                $product -> sum(function($item){ return $item->selling_price * $item->quantity; }) * 100 
+                            }}
+                        </td>
+                        <td class="percentage">{{ $product -> sum(function($item){ return $item->selling_price * $item->quantity; }) / $total_sale * 100 }}</td>
+                    </tr>   
+                @endforeach
             </tbody>
+            <div>
+                <tr class="fw-bold">
+                    <td>Jami: {{ $products -> count() }} x</td>
+                    <td class="seperator">{{ $total_product  }} </td>
+                    <td class="seperator-uzs">{{ $total_sale }} </td>
+                    <td class="seperator-uzs">{{ $total_profit }}</td>
+                    <td class="seperator-uzs">{{ $total_sale /  $total_product  }}</td>
+                    <td class="percentage">{{ $total_profit / $total_sale * 100 }}</td>
+                    <td>100 %</td>
+                </tr>
+            </div>
         </table>
     @endif
     {{-- end of show table if not empty --}}
@@ -132,7 +132,6 @@
                 scrollX: true,
                 paging: false,
                 searching:false,
-                sorting:false,
                 info:false,
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
