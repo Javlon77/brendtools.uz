@@ -111,8 +111,8 @@ class SalesController extends Controller
         $data['profit_usd'] = $data['profit'] / $currency;
         $data['net_profit'] = $profit-$data['delivery_price'] - $data['additional_cost'] + $data['client_delivery_payment'];
         $data['net_profit_usd'] = $data['net_profit'] / $currency;
-        $data['created_at'] = $datet;
-        $data['updated_at'] = $datet;
+        $data['created_at'] = $date;
+        $data['updated_at'] = $date;
         // create sale in DB
         $sale = sales::create($data);    
         // save products to sales_product database  
