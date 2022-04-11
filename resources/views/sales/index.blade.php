@@ -33,7 +33,7 @@
                 <td class="seperator" data-order="{{ $sale->total_amount }}">{{ $sale->total_amount }}</td>
                 <td class="seperator" data-order="{{ $sale->profit }}">{{ $sale->profit }}</td>
                 <td class="seperator" data-order="{{ $sale->net_profit }}">{{ $sale->net_profit }}</td>
-                <td data-order="{{ $sale->updated_at->format('Y.m.d') }}">{{ $sale->updated_at->format('d.m.Y') }}</td>
+                <td data-order="{{ $sale->created_at->format('Y.m.d') }}">{{ $sale->created_at->format('d.m.Y') }}</td>
                 <td>
                     <div class="d-flex action-btn">
                         <a href="{{ route('sales.edit',[$sale->id])}}" class="btn btn-light edit-btn"><i class="bi bi-pencil-square"></i></a>

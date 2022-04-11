@@ -164,7 +164,8 @@
                         <i class="bi bi-clock" style="font-size:12px; color:darkgray; margin-right:5px"></i>
                         <span style="font-size:13px">{{ Carbon\Carbon::parse($sale->created_at)->format('d-m-Y') }}</span>
                         <span style="font-size:13px;color:gray;margin-left:2px">{{ Carbon\Carbon::parse($sale->created_at)->format('H:i') }}</span>
-                        <a href="{{ route('sales.edit',[$sale->id]) }}" style="font-size:13px;margin-left:15px">O'zgartirish</a>
+                        <i class="bi bi-gear" style="font-size:15px; color:darkgray; margin-left:15px"></i>
+                        <a href="{{ route('sales.edit',[$sale->id]) }}" style="font-size:13px;margin-left:5px">O'zgartirish</a>
                         <form onsubmit="return confirm('Rostdan ham ochirishni hohlaysizmi?')" action="{{ route('sales.destroy',[$sale->id]) }}" method="post">
                             @csrf
                             @method('DELETE')
