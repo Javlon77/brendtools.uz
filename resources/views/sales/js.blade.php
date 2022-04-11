@@ -23,11 +23,11 @@
                 },
                 success: function(response) {
                     if(response>0){
-                        $('select[name=awareness] option[value="Qayta-xarid"]').prop('selected','true')
-                        $('select[name=awareness]').prop("disabled", true)
+                        $('select[name=awareness] option[value="Qayta-xarid"]').prop('selected', true)
+                        $('select[name=awareness]').addClass('disabled-input')
                     }else{
                         $('select[name=awareness] option[value="Qayta-xarid"]').prop("selected", false)
-                        $('select[name=awareness]').prop("disabled", false)
+                        $('select[name=awareness]').removeClass("disabled-input")
                     }
                 },
             });

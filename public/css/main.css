@@ -85,6 +85,10 @@ body{
     filter: grayscale(0.5) blur(1px);
     pointer-events: none;
 }
+.disabled-input{
+    filter: brightness(0.6);
+    pointer-events: none;
+}
 .alert-success {
     color: #29e259;
     background-color: #17d93d1f;
