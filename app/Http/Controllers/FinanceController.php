@@ -115,16 +115,6 @@ class FinanceController extends Controller
         foreach($sales->groupBy('client.gender') as $key => $value){
             $by_client_gender[$key] = $value->sum('total_amount');
         }
-         //temprorarily code 
-         $duplicate = $sales->unique('client_id');
-         $duplicated = $sales->diff($duplicate)->groupBy('client_id');
-         foreach($duplicated as $value){
-             foreach($value as $i){
-                 $edit = Sales::findOrFail($i->id);
-                 $edit->awareness = 'Qayta-xarid';
-                 $edit->save();
-             }
-         }
         // sale by region      
         $by_client_region=[];
         foreach($sales->groupBy('client.region') as $key => $value){
