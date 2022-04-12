@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/finance/plan/{id}',  [FinanceController::class, 'destroyPlan' ]);
         Route::get('/finance/annual',  [FinanceController::class, 'annual' ]);
         Route::get('/finance/brand',  [FinanceController::class, 'brand' ]);
+        Route::get('/finance/products{filter?}', [FinanceController::class, 'product'])->name('products-filter');
     });
     // not admin page
     route::get('/notAdmin', function(){

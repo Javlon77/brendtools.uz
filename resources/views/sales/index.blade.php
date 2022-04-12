@@ -84,7 +84,6 @@
             let sale_id = 0;
             $('.delete-btn').click(function(){
                 sale_id = $(this).attr('sale')
-             
             });
 
             $('.confirm-delete').click(function(){

@@ -30,37 +30,37 @@
         <div class="total-annual">
             <div class="info-tablo">
                 <p>Plan:</p>
-                <p class="seperator-uzs">{{ $plan -> annual_plan }}</p>
-                <p class="percentage" style="display: contents;">{{ ( $sales -> sum('total_amount') / $plan -> annual_plan ) * 100  }}</p>
+                <p class="seperator-uzs">{{ $plan ->annual_plan }}</p>
+                <p class="percentage" style="display: contents;">{{ ( $annual_plan['total_amount'] / $plan->annual_plan ) * 100  }}</p>
             </div>
             <div class="info-tablo">
                 <p>Savdo:</p>
-                <p class="seperator-uzs">{{ $sales -> sum('total_amount') }}</p>
-                <p class="seperator-usd">{{ $sales -> sum('total_amount_usd') }}</p>
+                <p class="seperator-uzs">{{ $annual_plan['total_amount'] }}</p>
+                <p class="seperator-usd">{{ $annual_plan['total_amount_usd'] }}</p>
             </div>
             <div class="info-tablo">
                 <p>Xaridlar soni: </p>
-                <p class="seperator">{{ $sales -> count() }}</p>
+                <p class="seperator">{{ $annual_plan['sale_count'] }}</p>
             </div>
             <div class="info-tablo">
                 <p>Mahsulotlar soni: </p>
-                <p class="seperator">{{ $sales -> sum('total_quantity') }}</p>
+                <p class="seperator">{{ $annual_plan['product_count'] }}</p>
             </div>
             <div class="info-tablo">
                 <p>Xarajat:</p>
-                <p class="seperator-uzs">{{ $sales -> sum('profit') - $sales -> sum('net_profit') + $annual_cost -> sum('cost') }}</p>
-                <p class="seperator-usd">{{ $sales -> sum('profit_usd') - $sales -> sum('net_profit_usd') + $annual_cost -> sum('cost_usd') }}</p>
+                <p class="seperator-uzs">{{ $annual_plan['cost'] }}</p>
+                <p class="seperator-usd">{{ $annual_plan['cost_usd'] }}</p>
         
             </div>
             <div class="info-tablo">
                 <p>Foyda:</p>
-                <p class="seperator-uzs">{{ $sales -> sum('profit') }}</p>
-                <p class="seperator-usd">{{ $sales -> sum('profit_usd') }}</p>
+                <p class="seperator-uzs">{{ $annual_plan['profit'] }}</p>
+                <p class="seperator-usd">{{ $annual_plan['profit_usd'] }}</p>
             </div>
             <div class="info-tablo">
                 <p>Sof foyda:</p>
-                <p class="seperator-uzs">{{ $sales -> sum('net_profit') - $annual_cost -> sum('cost') }}</p>
-                <p class="seperator-usd">{{ $sales -> sum('net_profit_usd') - $annual_cost -> sum('cost_usd') }}</p>
+                <p class="seperator-uzs">{{ $annual_plan['net_profit'] }}</p>
+                <p class="seperator-usd">{{ $annual_plan['net_profit_usd'] }}</p>
             </div>
         </div>
         <!-- annual table -->
@@ -79,71 +79,41 @@
                 </tr>
             </thead>
             <tbody>
-                @for($i = 1; $i <= 12; $i++)
-                    @if($i > 9)
-                        <tr>
-                            <td>{{ $month_name[$i] }}</td>
-                            <td class="seperator">{{ $months[$i] -> count() }}</td>
-                            <td class="seperator">{{ $months[$i] -> sum('total_quantity')}}</td>
-                            <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months[$i] -> sum('total_amount')}}</p>
-                                <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months[$i] -> sum('total_amount_usd')}}</p>
-                            </td>
-                            <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months[$i] -> sum('profit') - $months[$i] -> sum('net_profit') + $costs[$i] -> sum('cost') }}</p>
-                                <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months[$i] -> sum('profit_usd') - $months[$i] -> sum('net_profit_usd') + $costs[$i] -> sum('cost_usd') }}</p>
-                            </td>
-                            <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months[$i] -> sum('profit') }}</p>
-                                <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months[$i] -> sum('profit_usd') }}</p>
-                            </td>
-                            <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months[$i] -> sum('net_profit') - $costs[$i] -> sum('cost') }}</p>
-                                <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months[$i] -> sum('net_profit_usd') - $costs[$i] -> sum('cost_usd') }}</p>
-                            </td>
-                            <td class="percentage">{{ ( $months[$i] -> sum('total_amount') / ($plan -> annual_plan /12) ) * 100  }}</td>
-                            <td class="percentage">{{ ( $months[$i] -> sum('total_amount') / $plan -> annual_plan ) * 100  }}</td>
-                        </tr>
-                    @else
-                        <tr>
-                            <td>{{ $month_name[$i] }}</td>
-                            <td class="seperator">{{ $months['0'.$i] -> count() }}</td>
-                            <td class="seperator">{{ $months['0'.$i] -> sum('total_quantity')}}</td>
-                            <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months['0'.$i] -> sum('total_amount')}}</p>
-                                <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months['0'.$i] -> sum('total_amount_usd')}}</p>
-                            </td>
-                            <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months['0'.$i] -> sum('profit') - $months['0'.$i] -> sum('net_profit') + $costs['0'.$i] -> sum('cost') }}</p>
-                                <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months['0'.$i] -> sum('profit_usd') - $months['0'.$i] -> sum('net_profit_usd') + $costs['0'.$i] -> sum('cost_usd') }}</p>
-                            </td>
-                            <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months['0'.$i] -> sum('profit') }}</p>
-                                <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months['0'.$i] -> sum('profit_usd') }}</p>
-                            </td>
-                            <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months['0'.$i] -> sum('net_profit') - $costs['0'.$i] -> sum('cost') }}</p>
-                                <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months['0'.$i] -> sum('net_profit_usd') - $costs['0'.$i] -> sum('cost_usd') }}</p>
-                            </td>
-                            <td class="percentage">{{ ( $months['0'.$i] -> sum('total_amount') / ($plan -> annual_plan /12) ) * 100  }}</td>
-                            <td class="percentage">{{ ( $months['0'.$i] -> sum('total_amount') / $plan -> annual_plan ) * 100  }}</td>
-                        </tr>
-                    @endif
-                @endfor
-            
+                @foreach( $sales as $month => $sale )
+                    <tr href="{{ route('products-filter').'?filter_month='. $month . '&filter_year=' . $year }}" class="open-page">
+                        <td>{{ Carbon\Carbon::createFromFormat('m', $month)->monthName }}</td>
+                        <td class="seperator">{{ $sale -> count() }}</td>
+                        <td class="seperator">{{ $sale -> sum('total_quantity')}}</td>
+                        <td class="uzs-usd">
+                            <p class="seperator-uzs">{{ $sale -> sum('total_amount')}}</p>
+                            <hr style="margin:2px; color:#979797">
+                            <p class="seperator-usd">{{ $sale -> sum('total_amount_usd')}}</p>
+                        </td>
+                        <td class="uzs-usd">
+                            <p class="seperator-uzs">{{ $sale -> sum('profit') - $sale -> sum('net_profit') + $costs[$month] -> sum('cost') }}</p>
+                            <hr style="margin:2px; color:#979797">
+                            <p class="seperator-usd">{{ $sale -> sum('profit_usd') - $sale -> sum('net_profit_usd') + $costs[$month] -> sum('cost_usd') }}</p>
+                        </td>
+                        <td class="uzs-usd">
+                            <p class="seperator-uzs">{{ $sale -> sum('profit') }}</p>
+                            <hr style="margin:2px; color:#979797">
+                            <p class="seperator-usd">{{ $sale -> sum('profit_usd') }}</p>
+                        </td>
+                        <td class="uzs-usd">
+                            <p class="seperator-uzs">{{ $sale -> sum('net_profit') - $costs[$month] -> sum('cost') }}</p>
+                            <hr style="margin:2px; color:#979797">
+                            <p class="seperator-usd">{{ $sale -> sum('net_profit_usd') - $costs[$month] -> sum('cost_usd') }}</p>
+                        </td>
+                        <td class="percentage">{{ ( $sale -> sum('total_amount') / ($plan -> annual_plan /12) ) * 100  }}</td>
+                        <td class="percentage">{{ ( $sale -> sum('total_amount') / $plan -> annual_plan ) * 100  }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
+
+        {{-- tahlillar - diagrammalar --}}
         <h5 class="text-center">Tahlillar</h5>
-        {{-- diagram for awareness --}}
-       <div class="diagram-wrapper">
+        <div class="diagram-wrapper">
             <div class="diagram">
                 <canvas id="awareness_annual"></canvas>
             </div>
@@ -159,18 +129,23 @@
             <div class="diagram">
                 <canvas id="by_client_region"></canvas>
             </div>
-       </div>
+            <div class="diagram">
+                <canvas id="by_category"></canvas>
+            </div>
+            <div class="diagram">
+                <canvas id="by_brands"></canvas>
+            </div>
+        </div>
     </div>
 
     <!-------------------------------          first plan         ------------------------>
 
     <div class="plan-wrapper first-plan-wrapper hide-wrapper">
-        <!-- tablo -->
         <div class="total-annual">
             <div class="info-tablo">
                 <p>Plan:</p>
-                <p class="seperator-uzs">{{ $plan -> first_plan }}</p>
-                <p class="percentage" style="display: contents;">{{ ( $first_plan['total_amount'] / $plan -> first_plan ) * 100  }}</p>
+                <p class="seperator-uzs">{{ $plan ->first_plan }}</p>
+                <p class="percentage" style="display: contents;">{{ ( $first_plan['total_amount'] / $plan->first_plan ) * 100  }}</p>
             </div>
             <div class="info-tablo">
                 <p>Savdo:</p>
@@ -179,11 +154,11 @@
             </div>
             <div class="info-tablo">
                 <p>Xaridlar soni: </p>
-                <p class="seperator">{{ $first_plan['sale'] }}</p>
+                <p class="seperator">{{ $first_plan['sale_count'] }}</p>
             </div>
             <div class="info-tablo">
                 <p>Mahsulotlar soni: </p>
-                <p class="seperator">{{ $first_plan['product'] }}</p>
+                <p class="seperator">{{ $first_plan['product_count'] }}</p>
             </div>
             <div class="info-tablo">
                 <p>Xarajat:</p>
@@ -198,11 +173,11 @@
             </div>
             <div class="info-tablo">
                 <p>Sof foyda:</p>
-                <p class="seperator-uzs">{{ $first_plan['profit'] - $first_plan['cost'] }}</p>
-                <p class="seperator-usd">{{ $first_plan['profit_usd'] - $first_plan['cost_usd'] }}</p>
+                <p class="seperator-uzs">{{ $first_plan['net_profit'] }}</p>
+                <p class="seperator-usd">{{ $first_plan['net_profit_usd'] }}</p>
             </div>
         </div>
-        <!-- firs_plan table -->
+        <!-- first_plan table -->
         <table class="table bg-white annual-table" style="width:100%;" id="first-plan">
             <thead>
                 <tr>
@@ -214,52 +189,52 @@
                     <th>Foyda</th>
                     <th>Sof-foyda</th>
                     <th>Oylik</th>
-                    <th>6 oylik</th>
+                    <th>Yillik</th>
                 </tr>
             </thead>
             <tbody>
-                @for($i = 1; $i <= 6; $i++)
-                    <tr>
-                        <td>{{ $month_name[$i] }}</td>
-                        <td class="seperator">{{ $months['0'.$i] -> count() }}</td>
-                        <td class="seperator">{{ $months['0'.$i] -> sum('total_quantity')}}</td>
-                        <td class="uzs-usd">
-                            <p class="seperator-uzs">{{ $months['0'.$i] -> sum('total_amount')}}</p>
-                            <hr style="margin:2px; color:#979797">
-                            <p class="seperator-usd">{{ $months['0'.$i] -> sum('total_amount_usd')}}</p>
-                        </td>
-                        <td class="uzs-usd">
-                            <p class="seperator-uzs">{{ $months['0'.$i] -> sum('profit') - $months['0'.$i] -> sum('net_profit') + $costs['0'.$i] -> sum('cost') }}</p>
-                            <hr style="margin:2px; color:#979797">
-                            <p class="seperator-usd">{{ $months['0'.$i] -> sum('profit_usd') - $months['0'.$i] -> sum('net_profit_usd') + $costs['0'.$i] -> sum('cost_usd') }}</p>
-                        </td>
-                        <td class="uzs-usd">
-                            <p class="seperator-uzs">{{ $months['0'.$i] -> sum('profit') }}</p>
-                            <hr style="margin:2px; color:#979797">
-                            <p class="seperator-usd">{{ $months['0'.$i] -> sum('profit_usd') }}</p>
-                        </td>
-                        <td class="uzs-usd">
-                            <p class="seperator-uzs">{{ $months['0'.$i] -> sum('net_profit') - $costs['0'.$i] -> sum('cost') }}</p>
-                            <hr style="margin:2px; color:#979797">
-                            <p class="seperator-usd">{{ $months['0'.$i] -> sum('net_profit_usd') - $costs['0'.$i] -> sum('cost_usd') }}</p>
-                        </td>
-                        <td class="percentage">{{ ( $months['0'.$i] -> sum('total_amount') / ($plan -> first_plan /6) ) * 100  }}</td>
-                        <td class="percentage">{{ ( $months['0'.$i] -> sum('total_amount') / $plan -> first_plan ) * 100  }}</td>
-                    </tr>
-                @endfor
-            
+                @foreach( $sales as $month => $sale )
+                    @if($month<7)
+                        <tr href="{{ route('products-filter').'?filter_month='. $month . '&filter_year=' . $year }}" class="open-page">
+                            <td>{{ Carbon\Carbon::createFromFormat('m', $month)->monthName }}</td>
+                            <td class="seperator">{{ $sale -> count() }}</td>
+                            <td class="seperator">{{ $sale -> sum('total_quantity')}}</td>
+                            <td class="uzs-usd">
+                                <p class="seperator-uzs">{{ $sale -> sum('total_amount')}}</p>
+                                <hr style="margin:2px; color:#979797">
+                                <p class="seperator-usd">{{ $sale -> sum('total_amount_usd')}}</p>
+                            </td>
+                            <td class="uzs-usd">
+                                <p class="seperator-uzs">{{ $sale -> sum('profit') - $sale -> sum('net_profit') + $costs[$month] -> sum('cost') }}</p>
+                                <hr style="margin:2px; color:#979797">
+                                <p class="seperator-usd">{{ $sale -> sum('profit_usd') - $sale -> sum('net_profit_usd') + $costs[$month] -> sum('cost_usd') }}</p>
+                            </td>
+                            <td class="uzs-usd">
+                                <p class="seperator-uzs">{{ $sale -> sum('profit') }}</p>
+                                <hr style="margin:2px; color:#979797">
+                                <p class="seperator-usd">{{ $sale -> sum('profit_usd') }}</p>
+                            </td>
+                            <td class="uzs-usd">
+                                <p class="seperator-uzs">{{ $sale -> sum('net_profit') - $costs[$month] -> sum('cost') }}</p>
+                                <hr style="margin:2px; color:#979797">
+                                <p class="seperator-usd">{{ $sale -> sum('net_profit_usd') - $costs[$month] -> sum('cost_usd') }}</p>
+                            </td>
+                            <td class="percentage">{{ ( $sale -> sum('total_amount') / ($plan -> annual_plan /12) ) * 100  }}</td>
+                            <td class="percentage">{{ ( $sale -> sum('total_amount') / $plan -> annual_plan ) * 100  }}</td>
+                        </tr>
+                    @endif
+                @endforeach
             </tbody>
         </table>
     </div>
     <!-------------------------------          second plan         ------------------------>
 
     <div class="plan-wrapper second-plan-wrapper hide-wrapper">
-        <!-- tablo -->
         <div class="total-annual">
             <div class="info-tablo">
                 <p>Plan:</p>
-                <p class="seperator-uzs">{{ $plan -> second_plan }}</p>
-                <p class="percentage" style="display: contents;">{{ ( $second_plan['total_amount'] / $plan -> second_plan ) * 100  }}</p>
+                <p class="seperator-uzs">{{ $plan ->second_plan }}</p>
+                <p class="percentage" style="display: contents;">{{ ( $second_plan['total_amount'] / $plan->second_plan ) * 100  }}</p>
             </div>
             <div class="info-tablo">
                 <p>Savdo:</p>
@@ -268,11 +243,11 @@
             </div>
             <div class="info-tablo">
                 <p>Xaridlar soni: </p>
-                <p class="seperator">{{ $second_plan['sale'] }}</p>
+                <p class="seperator">{{ $second_plan['sale_count'] }}</p>
             </div>
             <div class="info-tablo">
                 <p>Mahsulotlar soni: </p>
-                <p class="seperator">{{ $second_plan['product'] }}</p>
+                <p class="seperator">{{ $second_plan['product_count'] }}</p>
             </div>
             <div class="info-tablo">
                 <p>Xarajat:</p>
@@ -287,11 +262,10 @@
             </div>
             <div class="info-tablo">
                 <p>Sof foyda:</p>
-                <p class="seperator-uzs">{{ $second_plan['profit'] - $second_plan['cost'] }}</p>
-                <p class="seperator-usd">{{ $second_plan['profit_usd'] - $second_plan['cost_usd'] }}</p>
+                <p class="seperator-uzs">{{ $second_plan['net_profit'] }}</p>
+                <p class="seperator-usd">{{ $second_plan['net_profit_usd'] }}</p>
             </div>
         </div>
-
         <!-- second_plan table -->
         <table class="table bg-white annual-table" style="width:100%;" id="second-plan">
             <thead>
@@ -304,70 +278,41 @@
                     <th>Foyda</th>
                     <th>Sof-foyda</th>
                     <th>Oylik</th>
-                    <th>6 oylik</th>
+                    <th>Yillik</th>
                 </tr>
             </thead>
             <tbody>
-                @for($i = 7; $i <= 12; $i++)
-                    @if($i > 9)
-                        <tr>
-                            <td>{{ $month_name[$i] }}</td>
-                            <td class="seperator">{{ $months[$i] -> count() }}</td>
-                            <td class="seperator">{{ $months[$i] -> sum('total_quantity')}}</td>
+                @foreach( $sales as $month => $sale )
+                    @if($month>6)
+                        <tr href="{{ route('products-filter').'?filter_month='. $month . '&filter_year=' . $year }}" class="open-page">
+                            <td>{{ Carbon\Carbon::createFromFormat('m', $month)->monthName }}</td>
+                            <td class="seperator">{{ $sale -> count() }}</td>
+                            <td class="seperator">{{ $sale -> sum('total_quantity')}}</td>
                             <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months[$i] -> sum('total_amount')}}</p>
+                                <p class="seperator-uzs">{{ $sale -> sum('total_amount')}}</p>
                                 <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months[$i] -> sum('total_amount_usd')}}</p>
+                                <p class="seperator-usd">{{ $sale -> sum('total_amount_usd')}}</p>
                             </td>
                             <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months[$i] -> sum('profit') - $months[$i] -> sum('net_profit') + $costs[$i] -> sum('cost') }}</p>
+                                <p class="seperator-uzs">{{ $sale -> sum('profit') - $sale -> sum('net_profit') + $costs[$month] -> sum('cost') }}</p>
                                 <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months[$i] -> sum('profit_usd') - $months[$i] -> sum('net_profit_usd') + $costs[$i] -> sum('cost_usd') }}</p>
+                                <p class="seperator-usd">{{ $sale -> sum('profit_usd') - $sale -> sum('net_profit_usd') + $costs[$month] -> sum('cost_usd') }}</p>
                             </td>
                             <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months[$i] -> sum('profit') }}</p>
+                                <p class="seperator-uzs">{{ $sale -> sum('profit') }}</p>
                                 <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months[$i] -> sum('profit_usd') }}</p>
+                                <p class="seperator-usd">{{ $sale -> sum('profit_usd') }}</p>
                             </td>
                             <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months[$i] -> sum('net_profit') - $costs[$i] -> sum('cost') }}</p>
+                                <p class="seperator-uzs">{{ $sale -> sum('net_profit') - $costs[$month] -> sum('cost') }}</p>
                                 <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months[$i] -> sum('net_profit_usd') - $costs[$i] -> sum('cost_usd') }}</p>
+                                <p class="seperator-usd">{{ $sale -> sum('net_profit_usd') - $costs[$month] -> sum('cost_usd') }}</p>
                             </td>
-                            <td class="percentage">{{ ( $months[$i] -> sum('total_amount') / ($plan -> second_plan / 6) ) * 100  }}</td>
-                            <td class="percentage">{{ ( $months[$i] -> sum('total_amount') / $plan -> second_plan ) * 100  }}</td>
-                        </tr>
-                    @else
-                        <tr>
-                            <td>{{ $month_name[$i] }}</td>
-                            <td class="seperator">{{ $months['0'.$i] -> count() }}</td>
-                            <td class="seperator">{{ $months['0'.$i] -> sum('total_quantity')}}</td>
-                            <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months['0'.$i] -> sum('total_amount')}}</p>
-                                <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months['0'.$i] -> sum('total_amount_usd')}}</p>
-                            </td>
-                            <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months['0'.$i] -> sum('profit') - $months['0'.$i] -> sum('net_profit') + $costs['0'.$i] -> sum('cost') }}</p>
-                                <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months['0'.$i] -> sum('profit_usd') - $months['0'.$i] -> sum('net_profit_usd') + $costs['0'.$i] -> sum('cost_usd') }}</p>
-                            </td>
-                            <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months['0'.$i] -> sum('profit') }}</p>
-                                <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months['0'.$i] -> sum('profit_usd') }}</p>
-                            </td>
-                            <td class="uzs-usd">
-                                <p class="seperator-uzs">{{ $months['0'.$i] -> sum('net_profit') - $costs['0'.$i] -> sum('cost') }}</p>
-                                <hr style="margin:2px; color:#979797">
-                                <p class="seperator-usd">{{ $months['0'.$i] -> sum('net_profit_usd') - $costs['0'.$i] -> sum('cost_usd') }}</p>
-                            </td>
-                            <td class="percentage">{{ ( $months['0'.$i] -> sum('total_amount') / ($plan -> second_plan /6) ) * 100  }}</td>
-                            <td class="percentage">{{ ( $months['0'.$i] -> sum('total_amount') / $plan -> second_plan ) * 100  }}</td>
+                            <td class="percentage">{{ ( $sale -> sum('total_amount') / ($plan -> annual_plan /12) ) * 100  }}</td>
+                            <td class="percentage">{{ ( $sale -> sum('total_amount') / $plan -> annual_plan ) * 100  }}</td>
                         </tr>
                     @endif
-                @endfor
-            
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -533,6 +478,10 @@
                 $( '.' + $(this).attr('wrapper') ).show();
                 $( '.' + $(this).attr('wrapper') ).css('height','auto');
                 
+            });
+            // open products page according to month
+            $('.open-page').on('dblclick', function() {
+                window.location.href = $(this).attr('href');
             });
 
             // pieChart yillik mijoz oqimi bo'yicha 
@@ -733,6 +682,102 @@
                         }
                     }
                 },
+            });
+            // pieChart kategorya bo'yicha
+            const by_categories = document.getElementById('by_category').getContext('2d');
+            const by_category = new Chart(by_categories, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        @foreach($by_category as $key => $value)
+                            "{!! $key !!} - {{ number_format($value / array_sum($by_category) * 100, 1) }}%",
+                        @endforeach
+                    ],
+                    datasets: [{
+                        label: 'Sotuv voronkasi',
+                        data: [
+                            @foreach($by_category as $key => $value)
+                                {{ $value }},
+                            @endforeach
+                        ],
+                        backgroundColor: [
+                            '#56C6A9',
+                            '#4B5335',
+                            '#798EA4',
+                            '#FA7A35',
+                            '#00758F',
+                            '#EDD59E',
+                            '#E8A798',
+                            '#9C4722',
+                            '#6B5876',
+                            '#B89B72',
+                            '#282D3C',
+                            '#A09998',
+                            '#D9CE52',
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: "Kategorya bo'yicha xarid",
+                        },
+                    }
+                },
+                
+            });
+            // pieChart brend bo'yicha
+            const by_brands = document.getElementById('by_brands').getContext('2d');
+            const by_brand = new Chart(by_brands, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        @foreach($by_brand as $key => $value)
+                            "{!! $key !!} - {{ number_format($value / array_sum($by_brand) * 100, 1) }}%",
+                        @endforeach
+                    ],
+                    datasets: [{
+                        label: 'Sotuv voronkasi',
+                        data: [
+                            @foreach($by_brand as $key => $value)
+                                {{ $value }},
+                            @endforeach
+                        ],
+                        backgroundColor: [
+                            '#56C6A9',
+                            '#4B5335',
+                            '#798EA4',
+                            '#FA7A35',
+                            '#00758F',
+                            '#EDD59E',
+                            '#E8A798',
+                            '#9C4722',
+                            '#6B5876',
+                            '#B89B72',
+                            '#282D3C',
+                            '#A09998',
+                            '#D9CE52',
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: "Brendlar bo'yicha xarid",
+                        },
+                    }
+                },
+                
             });
 
         });

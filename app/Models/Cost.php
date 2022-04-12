@@ -13,6 +13,6 @@ class Cost extends Model
 
     public function getMonthAttribute()
     {
-        return date('m', strtotime($this->created_at));
+        return date('n', strtotime($this->created_at));
     }
 }
