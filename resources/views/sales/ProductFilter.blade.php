@@ -11,10 +11,10 @@
                 <th>№</th>
                 <th>Mahsulot</th>
                 <th>Soni</th>
-                <th>Tushgan narx</th>
-                <th>Sotilgan narx</th>
                 <th>Jami</th>
                 <th>Foyda</th>
+                <th>Tushgan narx</th>
+                <th>Sotilgan narx</th>
                 <th>Sana</th>
             </tr>          
         </thead>
@@ -24,10 +24,10 @@
                     <td>{{$loop->index+1}}</td>
                     <td>{{$product->product->product}}</td>
                     <td class="qty" data-order="{{ $product->quantity}}">{{$product->quantity}}</td>
-                    <td class="uzs" data-order="{{ $product->cost_price}}">{{$product->cost_price}}</td>
-                    <td class="uzs" data-order="{{ $product->selling_price}}">{{$product->selling_price}}</td>
                     <td class="uzs" data-order="{{ $product->quantity * $product ->selling_price }}">{{ $product->quantity * $product ->selling_price }}</td>
                     <td class="uzs" data-order="{{ $product->quantity*($product->selling_price-$product->cost_price)}}">{{$product->quantity*($product->selling_price-$product->cost_price)}}</td>
+                    <td class="uzs" data-order="{{ $product->cost_price}}">{{$product->cost_price}}</td>
+                    <td class="uzs" data-order="{{ $product->selling_price}}">{{$product->selling_price}}</td>
                     <td style="width:10px" data-order="{{ $product->created_at->format('Y.m.d') }}">{{$product->created_at->format('d.m.Y')}}</td>
                 </tr>
             @endforeach
