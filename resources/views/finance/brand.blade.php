@@ -41,7 +41,7 @@
                     <th>Brend</th>
                     <th style="max-width: 50px">Soni</th>
                     <th>Savdo</th>
-                    <th>Foyda</th>
+                    <th>Foyda</th> 
                     <th>O'rtacha chek</th>
                     <th>Rentabellik</th>
                     <th style="max-width: 160px">Foiz</th>
@@ -49,7 +49,7 @@
             </thead>
             <tbody>
                 @foreach($products as $brand_id => $product)
-                    <tr>
+                    <tr href="{{ route('products-filter').'?filter_from='. $from . '&filter_to=' . $to. '&filter_brand='. $brand_id }}" class="open-page">
                         <td> {{ $brands -> find($brand_id) -> brand }} </td>
                         <td class="seperator"> {{ $product -> sum('quantity') }} </td>
                         <td class="seperator-uzs">
@@ -157,6 +157,10 @@
             for (let i=0; i < $('.percentage').length; i++ ) {     
                 $(".percentage")[i].innerText = parseFloat($(".percentage")[i].textContent).toFixed(2) + ' %';
             }
+            // open products page according to month
+            $('.open-page').on('dblclick', function() {
+                window.location.href = $(this).attr('href');
+            });
 
         });
 
