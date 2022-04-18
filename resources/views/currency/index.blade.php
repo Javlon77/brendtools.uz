@@ -4,8 +4,20 @@
 @section('content')
 
 <div class="container tbl" >
+    <p style="color: #29c127">
+        * Ushbu valyuta kursi brandtools.uz savdo sahifasi uchun ham amal qiladi!
+    </p>
+    {{-- messages from controller--}}
+    @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @elseif(session()->has('error'))
+        <div class="alert alert-danger">
+            {{ session()->get('error') }}
+        </div>
+    @endif
    <div class="currency-tablo-wrapper">
-       
        <!-- currency-tablo -->
        <div class="currency-tablo-wrapper d-block">
             <p>Kurs: </p>    

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Currency;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class CurrencyController extends Controller
 {
@@ -15,9 +16,7 @@ class CurrencyController extends Controller
     public function index()
     {  
         $last_currency= currency::latest()->first();
-        // dd($last_currency);
         $currencies = currency::all();
-
         return view('currency.index', compact('last_currency','currencies'));
     }
 
@@ -42,15 +41,23 @@ class CurrencyController extends Controller
         $currency = $request -> validate([
             'currency' => 'required'
         ]);
-
         $currency = str_replace(' ', '', $currency);
-
-        if(!empty($last_currency = currency::latest()->first())){
-            $last_currency = currency::latest()->first()->touch();
+        //  update last currency updated_at
+        if(!empty(currency::latest()->first())){
+            currency::latest()->first()->touch();
         }
+
+        // save currency also for brandtools.uz ecommerce website
+        $value = $currency['currency'];
+        $response = Http::get('https://brandtools.uz/wp-json/currency-change/currency?value='. $value .'&password=l8MJKTOm^(D123.1*!$%@$@d3^PHb)(6L');
+        if( $response->body() == 1){
+            currency::create($currency);
+            return redirect()->back()->with('success', 'Muvaffaqqiyatli saqlandi!');
+        }
+        else{
+            return redirect()->back()->with('error', 'Tizimda hatolik!');
+        };
         
-        currency::create($currency);
-        return redirect()->back();
     }
 
     /**

@@ -369,8 +369,8 @@ class FinanceController extends Controller
         }
         if($request->filter_from && $request->filter_to && $request->filter_brand){
 
-            $from = Carbon::create($request->filter_from)->startOfDay();
-            $to = Carbon::create($request->filter_to)->endOfDay();
+            $from = Carbon::create($request->filter_from)->startOfDay()->toDateTimeString();
+            $to = Carbon::create($request->filter_to)->endOfDay()->toDateTimeString();
             
             $products = SaleProduct::wherebetween('created_at', [$from, $to])
                                         ->with('product','sale')
