@@ -16,6 +16,7 @@ use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\CostCategoriesController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\FinanceController;
+use App\Http\Controllers\WoocommerceController;
 use Illuminate\Http\Request;
 
 /*
@@ -66,6 +67,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/analytics',  [AnalyticsController::class, 'index' ]);
     Route::get('/analytics/funnel',  [AnalyticsController::class, 'funnel' ]);
+
+    Route::resource('/woocommerce', WoocommerceController::class);
+
 
     // finance page
     Route::group(['middleware' => 'admin'], function () {

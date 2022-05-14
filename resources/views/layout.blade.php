@@ -64,6 +64,7 @@
             <li><a class="dropdown-item" href="/companies-base">Kompaniya</a></li>
             <li><a class="dropdown-item" href="/costs">Xarajat</a></li>
             <li><a class="dropdown-item" href="/cost-categories">Xarajat kategoryasi</a></li>
+            <li><a class="dropdown-item" href="/woocommerce">Woo price manager</a></li>
           </ul>
         </li>
       </ul>
