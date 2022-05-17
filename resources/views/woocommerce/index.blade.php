@@ -189,7 +189,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Это значение доступно для всех продуктов!</p>
                     <input type="date" class="form-control" id="sale-date">
                 </div>
                 <div class="modal-footer">
@@ -209,20 +208,23 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Это значение доступно для всех продуктов!</p>
                     <div class="row">
                         <div class="col-9">
                             <label for="">Метод:</label>
                             <select name="" id="percentage_method" class="form-select w-100">
-                                <option value="+">Увеличение в процентах +%</option>
-                                <option value="-">Уменьшение в процентах -%</option>
+                                <option value="+percentage">Увеличение в процентах +%</option>
+                                <option value="-percentage">Уменьшение в процентах -%</option>
+                                <option value="+amount">Увеличение на определенную сумму ($)</option>
+                                <option value="-amount">Уменьшение на определенную сумму ($)</option>
                             </select>
                         </div>
                         <div class="col-3">
-                            <label for="">Процент %:</label>
+                            <label for="">Значение:</label>
                             <input type="text" class="form-control money percent" id="percentage">
                         </div>
                     </div>
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрывать</button>
@@ -354,7 +356,7 @@
                     }
                 }
             });
-            $('.percent').on('input', function () {
+            $('body').on('input', '.percent', function () {
                 let value = parseFloat(this.value).toFixed(2)
                 if(value > 100){
                     this.value = 100;
@@ -528,16 +530,29 @@
                 // enable or disable discount + and - option and choose texts
                 if(price == 'regular_price'){
                     text_price_modal = 'Цена ($)';
-                    $('#percentage_method').prop('disabled', false)
-                    $('#percentage_method').val("+").change();
+                    $('#percentage_method option[value="+percentage"]').prop('disabled', false)
+                    $('#percentage_method option[value="+amount"]').prop('disabled', false)
+                    $('#percentage_method').val("+percentage").change();
                 }else if(price == 'sale_price'){
                     text_price_modal = 'Цена в скидке ($)';
-                    $('#percentage_method').prop('disabled', true)
-                    $('#percentage_method').val("-").change();
+                    $('#percentage_method option[value="+percentage"]').prop('disabled', true)
+                    $('#percentage_method option[value="+amount"]').prop('disabled', true)
+                    $('#percentage_method').val("-percentage").change();
                 }
                 $('#priceModalLabel').text(text_price_modal)
                 $('#priceModal').modal('show')
             });
+                // on change select method the price value type input should be changed
+            $('#percentage_method').on('change', function(){
+                if( this.value == '+percentage' || this.value == '-percentage' ){
+                    $('#percentage').addClass('percent')
+                    $('#percentage').val('')
+                }else{
+                    $('#percentage').removeClass('percent')
+                    $('#percentage').val('')
+                }
+            });
+                // confirmation 
             $('#price-confirm').click(function(){ 
                 if($('#percentage').val() == ''){
                     alert('Пожалуйста, заполните процент!!!')
@@ -553,11 +568,11 @@
                         if( isNaN(value) ){
                             result = 0;
                         }else{
-                            if(percentage_method == '+'){
+                            if(percentage_method == '+percentage'){
                                 result = value + (value/100*percentage) 
                                 result = result.toFixed(3)
                                 result = parseFloat(result)
-                            }else if(percentage_method == '-'){
+                            }else if(percentage_method == '-percentage'){
                                 division = (value/100*percentage).toFixed(5)
                                 result = value - division;
                                 result = result.toFixed(3)
@@ -565,7 +580,20 @@
                                 if(result < 0.01){
                                     result = 0;
                                 }
-
+                            }else if(percentage_method == '+amount'){
+                                result = value + percentage;
+                                result = result.toFixed(3)
+                                result = parseFloat(result)
+                                if(result < 0.01){
+                                    result = 0;
+                                }
+                            }else if(percentage_method == '-amount'){
+                                result = value - percentage;
+                                result = result.toFixed(3)
+                                result = parseFloat(result)
+                                if(result < 0.01){
+                                    result = 0;
+                                }
                             }
                         }
                         $(this).val(result)
@@ -576,9 +604,7 @@
                             $( this ).removeClass('changed-input') 
                         }
                     });
-                }
-                // if this is sale price
-                else if( price == 'sale_price' ){
+                }else if( price == 'sale_price' ){
                     // change all discount values by percentage
                     $('input[price="sale_price"]').each(function(){
                         value = $(this).closest( "tr" ).find('input[price="regular_price"]').val() 
@@ -586,19 +612,21 @@
                         if( isNaN(value) ){
                             result = ''
                         }else{
-                            if(percentage_method == '+'){
-                                result = value + (value/100*percentage) 
-                                result = result.toFixed(3)
-                                result = parseFloat(result)
-                            }else if(percentage_method == '-'){
-                                division = (value/100*percentage).toFixed(5)
+                            if(percentage_method == '-percentage'){
+                                division = (value/100*percentage).toFixed(5) 
                                 result = value - division;
                                 result = result.toFixed(3)
                                 result = parseFloat(result)
                                 if(result < 0.01){
-                                    result = ''
+                                    result = 0;
                                 }
-
+                            }else if(percentage_method == '-amount'){
+                                result = (value - percentage)
+                                result = parseFloat(result).toFixed(3)
+                                result = parseFloat(result)
+                                if(result < 0){
+                                    result = 0;
+                                }
                             }
                         }
                         $(this).val(result)
