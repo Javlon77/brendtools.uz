@@ -214,8 +214,8 @@
                             <select name="" id="percentage_method" class="form-select w-100">
                                 <option value="+percentage">Увеличение в процентах +%</option>
                                 <option value="-percentage">Уменьшение в процентах -%</option>
-                                <option value="+amount">Увеличение на определенную сумму ($)</option>
-                                <option value="-amount">Уменьшение на определенную сумму ($)</option>
+                                <option value="+amount">Увеличение на определенную сумму +($)</option>
+                                <option value="-amount">Уменьшение на определенную сумму -($)</option>
                             </select>
                         </div>
                         <div class="col-3">
