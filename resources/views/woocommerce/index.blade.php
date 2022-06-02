@@ -159,7 +159,7 @@
                         <td>{{ (($page_number-1)*100) + ($loop->index+1) }}.</td>
                         <td>
                             <a href="{{ $product->permalink }}">
-                                <img src="{{ $product->images[0]->src }}" alt="#" class="img-fluid rounded">
+                                <img src="{{ $product->images[0]->src ?? '' }}" alt="" class="img-fluid rounded">
                             </a>
                         </td>
                         <td><input task="change" fix-value="{{ $product->name }}" class="form-control" type="text" name="name_{{ $product->id }}" value="{{ $product->name }}"></td>
