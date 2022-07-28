@@ -131,10 +131,10 @@
     </div>
 
     {{-- update --}}
-    <form action="{{ route('woocommerce.store') }}" method="post" class="mb-5">
+    <form action="{{ route('woocommerce.store') }}" method="post">
         @csrf
         <div class="w-100 d-flex justify-content-end">
-            <button type="submit" class="btn btn-success my-2 w-auto disabled-div" id="save-btn">Сохранить выделенные строки</button>
+            <button type="submit" class="btn btn-success my-2 w-auto disabled-div save-btn" id="save-btn">Сохранить выделенные строки</button>
         </div>
         <table class="table table-white bg-white" style="width:100%;" id="table" data-page-length="100">
             <thead>
@@ -176,7 +176,21 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="w-100 d-flex justify-content-end">
+            <button type="submit" class="btn btn-success my-2 w-auto disabled-div save-btn" id="save-btn">Сохранить выделенные строки</button>
+        </div>
     </form>
+    {{-- pagination  --}}
+    <div class="pager-wrapper">
+        <p style="margin-bottom: 5px;">Страница {{ $page_number }} из {{ $page_count }} </p>
+        <div class="input-group w-auto">
+                <a href="{{ $prev }}" class="btn btn-secondary prev-btn paginate-btn @if($page_number < 2) disabled-div @endif"><</a>
+                <input type="text" name="page" min="1" max="{{ $page_count }}" value="{{ $page_number }}" class="page-input">
+                <a href="{{ $next }}" class="btn btn-secondary next-btn paginate-btn @if($page_number >= $page_count) disabled-div @endif">></a>
+            </div>
+    </div>
+    <h5>Результаты:</h5>
+    <p style="margin-bottom: 3rem;">Всего товаров: {{ $product_count }}</p>
 </div>
 
 
@@ -233,6 +247,8 @@
             </div>
         </div>
     </div>
+
+    
 
 
 @endsection
@@ -412,9 +428,9 @@
                 setTimeout(function() { 
                     let total_checkbox_checked = $('input[name="update[]"]:checked').length
                     if(total_checkbox_checked < 1){
-                        $('#save-btn').addClass('disabled-div')
+                        $('.save-btn').addClass('disabled-div')
                     }else{
-                        $('#save-btn').removeClass('disabled-div')
+                        $('.save-btn').removeClass('disabled-div')
                     }     
                 }, 3);
             });

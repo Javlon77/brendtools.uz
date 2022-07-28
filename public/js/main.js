@@ -39,3 +39,26 @@ $(".tel").text(function(i, text) {
 });
 // disable all inputs autocomplete
 $('input').attr('autocomplete','off');
+
+// SCROLL
+var scrollToTop = $("#scrollToTop");
+// When the user scrolls down 30px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    scrollToTop.css({
+        'right':'30px',
+        'opacity' : 1
+    });
+  } else {
+    scrollToTop.css({
+        'right':'-50px',
+        'opacity' : 0
+    });
+  }
+}
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}

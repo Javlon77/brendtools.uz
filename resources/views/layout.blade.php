@@ -159,9 +159,11 @@
 
 <!-- header -->
   <div class="container">
-  <h2 class="custom-header">@yield('header-text')</h2>
+    <h2 class="custom-header">@yield('header-text')</h2>
   </div>
 <!-- end of header -->
+{{-- croll to top --}}
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">&#129105;</button>
 @yield('content')
     <script src="/js/jQuery.min.js" type="text/javascript"></script>
     <script src="/js/bootstrap.min.js" type="text/javascript"></script>
