@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     @yield('css')
-    <link href="/css/main.css?{{ date ("Y-m-d", filemtime('css/main.css')) }}" rel="stylesheet">
+    <link href="/css/main.css?ver={{ date ("Y-m-d", filemtime('css/main.css')) }}" rel="stylesheet">
     <title>@yield('title')</title>
 </head>
 <body>
@@ -167,7 +167,7 @@
 @yield('content')
     <script src="/js/jQuery.min.js" type="text/javascript"></script>
     <script src="/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="/js/main.js" type="text/javascript"></script>
+    <script src="/js/main.js?ver={{ date ("Y-m-d", filemtime('css/main.css')) }}" type="text/javascript"></script>
     @yield('script')
 </body>
 </html>
