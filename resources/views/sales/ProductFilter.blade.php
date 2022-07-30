@@ -5,7 +5,7 @@
 
 <div class="container tbl">
 
-    <table class="table bg-white" style="width:100%;" id="product-table" data-page-length="10">
+    <table class="table bg-white" style="width:100%;" id="product-table">
         <thead>
             <tr>
                 <th>№</th>
@@ -63,7 +63,7 @@
                     "infoEmpty": "No records available",
                     "infoFiltered": "(Umumiy _MAX_ qayddan filtrlandi)",
                     "search":"Qidirish:",
-                    "Next":"dsa",
+                    "Next":"keyingisi",
                     "paginate": {
                         "previous": "<",
                         "next":">"
@@ -78,7 +78,7 @@
                 ]
             });
             // open client.show page by id on dblclick
-            $('.open-link').on('dblclick', function(){
+            $('table').on('dblclick', '.open-link', function(){
                 window.location.href = $(this).attr('href')
             })
         });

@@ -21,9 +21,16 @@
         </a>
         <a href="/finance/brand" class="box">
             <p>
-                <i class="bi bi-clipboard-data"></i>
+                <i class="bi bi-award"></i>
                 <br> 
                 Brendlar bo'yicha savdo
+            </p>
+        </a>
+        <a href="/finance/category" class="box">
+            <p>
+                <i class="bi bi-box"></i>
+                <br> 
+                Kategoryalar bo'yicha savdo
             </p>
         </a>
     </div>

@@ -122,6 +122,7 @@
             <li><a class="dropdown-item" href="/finance/plan">Plan</a></li>
             <li><a class="dropdown-item" href="/finance/annual">Yillik</a></li>
             <li><a class="dropdown-item" href="/finance/brand">Brendlar bo'yicha</a></li>
+            <li><a class="dropdown-item" href="/finance/category">Kategoryalar bo'yicha</a></li>
           </ul>
         </li>
       </ul>

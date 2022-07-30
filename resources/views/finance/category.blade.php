@@ -1,12 +1,12 @@
 @extends('layout')
-@section('title', "Brendlar bo'yicha savdo")
-@section('header-text', "Brendlar bo'yicha savdo")
+@section('title', "Kategoryalar bo'yicha savdo")
+@section('header-text', "Kategoryalar bo'yicha savdo")
 @section('content')
 
 <div class="container pb-1 mb-5" >
     {{-- filter by date --}} 
     <div class="filter-by-date">
-        <form action="/finance/brand" class="filter-select">
+        <form action="/finance/category" class="filter-select">
         <p style="font-size:17px; margin-bottom:4px">Saralash:</p>
             <select name="order" class="form-select" id="order" onchange="this.form.submit()">
                 <option value="today">Bugun</option>
@@ -38,20 +38,20 @@
         <table class="table bg-white" style="width: 100%;" id="table" data-page-length="20">
             <thead>
                 <tr>
-                    <th>Brend</th>
-                    <th>Soni</th>
-                    <th>Savdo soni</th>
-                    <th style="min-width: 150px">Savdo</th>
+                    <th>Kategorya</th>
+                    <th style="max-width: 50px">Soni</th>
+                    <th style="max-width: 80px">Savdo soni</th>
+                    <th style="min-width: 100px">Savdo</th>
                     <th style="min-width: 100px">Foyda</th> 
                     <th>O'rtacha chek</th>
-                    <th>Rentabellik</th>
-                    <th>Foiz</th>
+                    <th style="max-width: 50px">Rentabellik</th>
+                    <th style="max-width: 55px">Foiz</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($products as $brand_id => $product)
-                    <tr href="{{ route('products-filter').'?filter_from='. $from . '&filter_to=' . $to. '&filter=brand_id&id='. $brand_id }}" class="open-page">
-                        <td> {{ $brands -> find($brand_id) ->brand }} </td>
+                @foreach($products as $category_id => $product)
+                    <tr href="{{ route('products-filter').'?filter_from='. $from . '&filter_to=' . $to. '&filter=category_id&id='. $category_id }}" class="open-page">
+                        <td> {{ $categories -> find($category_id) ->category }} </td>
                         <td class="seperator"> {{ $product ->sum('quantity') }} </td>
                         <td class="seperator"> {{ $product ->groupBy('sale_id') ->count() }} </td>
                         <td class="seperator-uzs">
@@ -74,16 +74,14 @@
             </tbody>
             <div>
                 <tr class="fw-bold">
-                    <tr class="fw-bold">
-                        <td>Jami: {{ $products -> count() }} x</td>
-                        <td class="seperator">{{ $total_product  }} </td>
-                        <td class="seperator">{{ $products-> sum(function($item){ return $item ->groupBy('sale_id')->count(); }) }} x</td>
-                        <td class="seperator-uzs">{{ $total_sale }} </td>
-                        <td class="seperator-uzs">{{ $total_profit }}</td>
-                        <td class="seperator-uzs">{{ $total_sale /  $total_product  }}</td>
-                        <td class="percentage">{{ $total_profit / $total_sale * 100 }}</td>
-                        <td>100 %</td>
-                    </tr>
+                    <td>Jami: {{ $products -> count() }} x</td>
+                    <td class="seperator">{{ $total_product  }} </td>
+                    <td class="seperator">{{ $products-> sum(function($item){ return $item ->groupBy('sale_id')->count(); }) }} x</td>
+                    <td class="seperator-uzs">{{ $total_sale }} </td>
+                    <td class="seperator-uzs">{{ $total_profit }}</td>
+                    <td class="seperator-uzs">{{ $total_sale /  $total_product  }}</td>
+                    <td class="percentage">{{ $total_profit / $total_sale * 100 }}</td>
+                    <td>100 %</td>
                 </tr>
             </div>
         </table>

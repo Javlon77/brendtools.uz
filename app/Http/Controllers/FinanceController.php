@@ -358,23 +358,119 @@ class FinanceController extends Controller
         return view( 'finance.brand', compact('products','brands','total_sale', 'total_profit', 'total_product', 'check', 'from', 'to') );
     }
 
+    public function category(Request $request){
+     
+        $from; // filter from date variable
+        $to;  // filter to date variable
+        $check; // to idientify and return to blade the datarange
+        // filter by option date
+        if ( $request->has('order') ) {
+            $check = $request-> order;
+            switch ($request -> order) {
+                case 'today':
+                    $from = Carbon::today();
+                    $to = Carbon::today() -> endOfDay();
+                    break;
+                case 'this_week':
+                    $from = Carbon::today() -> startOfWeek();
+                    $to = Carbon::today() -> endOfweek();
+                    break;
+                case 'last_week':
+                    $from = Carbon::now() -> subWeek() -> startOfWeek();
+                    $to =  Carbon::now() -> subWeek() -> endOfWeek();
+                    break;
+                case 'this_month':
+                    $from = Carbon::now() -> startOfMonth();
+                    $to =  Carbon::now() -> endOfMonth();
+                    break;
+                case 'last_month':
+                    $from = Carbon::now() -> startOfMonth() -> subMonth();
+                    $to =  Carbon::now() -> subMonth() -> endOfMonth();
+                    break;
+                case 'this_year':
+                    $from = Carbon::now() -> startOfYear();
+                    $to =  Carbon::now() -> endOfYear();
+                    break;
+                case 'last_year':
+                    $from = Carbon::now() -> startOfYear() -> subYear();
+                    $to =  Carbon::now() -> endOfYear() -> subYear();
+                    break;
+                case 'all':
+                    $from = Sales:: oldest() -> first() -> created_at;
+                    $to = Sales:: latest() -> first() -> created_at;
+                    break;
+            }
+        } 
+        // filter by custom date
+        elseif ( $request->has('from') | $request->has('to') ) {
+            $request->validate([
+                'to' => 'required|date_format:Y-m-d',
+                'from' => 'required|date_format:Y-m-d'
+            ],
+            [
+                'from.required'=>"Boshlang'ich sanani kiriting!",
+                'to.required'=>"Tugash sanasini kiriting!",
+            ]);
+            $from   = $request -> from .' 00:00:00';
+            $to     =  $request -> to .' 23:59:59';
+            $check  = NULL;
+        }
+        // filter by this week as default
+        else {
+            $from = Carbon::now() -> startOfMonth();
+            $to =  Carbon::now() -> endOfMonth();
+            $check = 'this_month';
+        }
+        
+        // All Products
+        $products = SaleProduct::whereBetween( 'created_at', [$from, $to] ) 
+                                -> with( 'product') 
+                                -> get() 
+                                -> groupBy('product.category_id'); 
+        
+        // umumiy savdo
+        $total_sale = 0;
+        foreach($products as $product) {
+            $total_sale +=  $product -> sum(function($item){
+                                return $item->selling_price * $item->quantity;
+                            });
+        };
+        // umumiy foyda
+        $total_profit = 0;
+        foreach($products as $product) {
+            $total_profit+= $product -> sum(function($item){
+                                return ($item->selling_price - $item->cost_price) * $item->quantity;
+                            });
+        };
+        // jami mahsulot
+        $total_product = $products -> sum(function($item){ 
+                            return $item -> sum('quantity');
+                        });
+        $categories = Category::all();
+        $from = date( 'Y-m-d', strtotime($from) );
+        $to = date( 'Y-m-d', strtotime($to) );
+        // dd($products[6]->groupBy('sale_id'));
+        return view( 'finance.category', compact('products','categories','total_sale', 'total_profit', 'total_product', 'check', 'from', 'to') );
+    }
+
     public function product(Request $request){
         // for annual page
-        if($request->filter_month && $request->filter_year){
+        if( $request->filter_month && $request->filter_year ){
             $products = SaleProduct::whereYear('created_at', $request->filter_year)
                                     ->whereMonth('created_at', $request->filter_month)
                                     ->with('product','sale')
                                     ->get();                                    
             return view('sales.ProductFilter', compact('products'));
         }
-        if($request->filter_from && $request->filter_to && $request->filter_brand){
+        // for products filter
+        if($request ->filter_from && $request ->filter_to && $request ->filter && $request ->id){
 
-            $from = Carbon::create($request->filter_from)->startOfDay()->toDateTimeString();
-            $to = Carbon::create($request->filter_to)->endOfDay()->toDateTimeString();
+            $from   = Carbon::create($request->filter_from) ->startOfDay() ->toDateTimeString();
+            $to     = Carbon::create($request->filter_to) ->endOfDay() ->toDateTimeString();
             
             $products = SaleProduct::wherebetween('created_at', [$from, $to])
                                         ->with('product','sale')
-                                        ->whereRelation('product', 'brand_id', $request->filter_brand)
+                                        ->whereRelation('product', $request ->filter , $request ->id)
                                         ->get(); 
             return view('sales.ProductFilter', compact('products'));
         }
