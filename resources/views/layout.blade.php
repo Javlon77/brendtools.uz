@@ -83,6 +83,61 @@
         </li>
       </ul>
     </div>
+
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      @php
+          $pending          = App\Models\Feedback::whereDate('sale_date', '>', now()->subDay(7)->format('Y-m-d') ) ->with(['client', 'sale']) ->count();
+          $ask              = App\Models\Feedback::whereDate('sale_date', '<=', now()->subDay(7)->format('Y-m-d') ) ->where('asked', '=', 0) ->with(['client', 'sale']) ->count();
+          $asked            = App\Models\Feedback::where('reviewed', '=', 0) ->where('will_review', '=', 1) ->where('asked', '=', 1) ->with(['client', 'sale']) ->count();
+          $reviewed         = App\Models\Feedback::where('reviewed', '=', 1)->with(['client', 'sale']) ->count();
+          $will_not_review  = App\Models\Feedback::where('will_review', '=', 0)->with(['client', 'sale']) ->count()
+      @endphp
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Qayta-aloqa 
+            ({{ $ask .',' .$asked }})
+
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-tr">
+            <li>
+              <a class="dropdown-item" href="/feedbacks/pending">
+                Kutilayotgan
+                ({{ $pending  }})
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/feedbacks/ask">
+                So'ralishi kerak 
+                <span style="color:#df6464">
+                  ({{ $ask }})
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/feedbacks/asked">
+                Baholangan 
+                <span style="color:#dfd664">
+                  ({{ $asked }})
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/feedbacks/reviewed">
+                Sharh qoldirilgan 
+                ({{ $reviewed }})
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/feedbacks/will-not-review">
+                Sharh qoldirmaydigan 
+                ({{ $will_not_review }})
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
     
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">

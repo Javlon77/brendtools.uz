@@ -11,6 +11,7 @@ use App\Models\Company;
 use App\Models\Master;
 use App\Models\Currency;
 use App\Models\SaleProduct;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
  
@@ -114,7 +115,14 @@ class SalesController extends Controller
         $data['created_at'] = $date;
         $data['updated_at'] = $date;
         // create sale in DB
-        $sale = sales::create($data);    
+        $sale = sales::create($data);
+        // create feedback form for sale in db feedbacks
+        $feedback = new Feedback;
+        $feedback -> client_id  = $sale['client_id'];
+        $feedback -> sale_id    = $sale['id'];
+        $feedback -> sale_date  = $sale['created_at'];
+        $feedback -> save();
+            
         // save products to sales_product database  
         foreach ($products as $product) {
             $product['sale_id'] = $sale->id;
@@ -248,6 +256,13 @@ class SalesController extends Controller
         $sale->created_at = $date;
         $sale->updated_at = $date;
         $sale->save();
+        // create feedback form for sale in db feedbacks
+        $feedback = Feedback::where('sale_id', $sale->id)->first();
+        $feedback -> update([
+            'client_id' => $sale ->client_id,
+            'sale_id'   => $sale ->id,
+            'sale_date' => $sale ->created_at
+        ]);
         // delete old products and save new products to sales_product database  
         SaleProduct::where('sale_id', $sale->id)->delete();
         foreach ($products as $product) {

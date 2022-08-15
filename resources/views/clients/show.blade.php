@@ -159,7 +159,7 @@
 
                 @foreach($sales as $sale)
                 <div class="sale">
-                    <p class="order-number">№ {{ $loop->remaining +1 }} | ID: {{ $sale -> id }} </span></p>
+                    <p class="order-number" order-number="{{ $sale -> id }}">№ {{ $loop->remaining +1 }} | ID: {{ $sale -> id }} </span></p>
                     <div class="icons-wrapper">
                         <i class="bi bi-clock" style="font-size:12px; color:darkgray; margin-right:5px"></i>
                         <span style="font-size:13px">{{ Carbon\Carbon::parse($sale->created_at)->format('d-m-Y') }}</span>
@@ -201,8 +201,6 @@
                             </div>
                         </div>
                     </div>
-
-
 
                     @endif
                     @endforeach
@@ -379,6 +377,19 @@ $(document).ready(function() {
             }
     for (let i = 0; i < $('.seperator-quantity').length; i++) {
         $(".seperator-quantity")[i].innerText = numberWithSpaces($(".seperator-quantity")[i].innerText) + " ta";
+    }
+    // match the sale id
+    let hash = location.hash.substring(1);
+    if( hash !== '' ){
+        let element = $('p[order-number='+hash+']');
+        if( element.length > 0 ){
+            element.parent().css('background-color', 'rgb(89 179 86 / 33%)');
+            element.parent().next('.s-body').css('border-color', 'rgb(89 179 86 / 33%)');
+            $('body, html').animate({
+            scrollTop: element.offset().top-50
+        });
+        }
+       
     }
 
 });

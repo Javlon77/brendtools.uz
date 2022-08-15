@@ -17,6 +17,7 @@ use App\Http\Controllers\CostCategoriesController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\WoocommerceController;
+use App\Http\Controllers\FeedbacksController;
 use Illuminate\Http\Request;
 
 /*
@@ -29,8 +30,6 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 
 Route::group(['middleware' => 'auth'], function () {
     
@@ -53,25 +52,31 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('categories', CategoriesController::class);
 
-    Route::resource('sales', SalesController::class);
-
     Route::resource('products', ProductsController::class);
 
-    Route::resource('costs', CostController::class);
-
     Route::resource('tasks', TasksController::class);
-    
-    Route::resource('currency', CurrencyController::class);
-    
-    Route::resource('cost-categories', CostCategoriesController::class);
 
     Route::get('/analytics',  [AnalyticsController::class, 'index' ]);
     Route::get('/analytics/funnel',  [AnalyticsController::class, 'funnel' ]);
 
     Route::resource('/woocommerce', WoocommerceController::class);
+    // feedbacks
+    route::group(['prefix'=>'feedbacks'],function(){
+        Route::get('/pending',          [FeedbacksController::class,    'pending']);
+        Route::get('/ask',              [FeedbacksController::class,    'ask']);
+        Route::get('/asked',            [FeedbacksController::class,    'asked']);
+        Route::get('/reviewed',         [FeedbacksController::class,    'reviewed']);
+        Route::get('/will-not-review',  [FeedbacksController::class,    'willNotReview']);
+        Route::get('/{id}/edit',        [FeedbacksController::class,    'edit'])    ->name('feedbacks.edit');
+        Route::put('/{id}/update/',     [FeedbacksController::class,    'update'])  ->name('feedbacks.update');
+        Route::put('/{id}/set-as-will-not-review',     [FeedbacksController::class,    'SetAsWillNotReview'])  ->name('feedbacks.set');
+        Route::put('/{id}/back',     [FeedbacksController::class,    'back'])  ->name('feedbacks.back');
+    });
+    
+    
 
 
-    // finance page
+    // only for admins
     Route::group(['middleware' => 'admin'], function () {
         Route::get('/finance',  [FinanceController::class, 'index' ]);
         Route::get('/finance/plan',  [FinanceController::class, 'plan' ]);
@@ -81,6 +86,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/finance/brand',  [FinanceController::class, 'brand' ]);
         Route::get('/finance/category',  [FinanceController::class, 'category' ]);
         Route::get('/finance/products{filter?}', [FinanceController::class, 'product'])->name('products-filter');
+        
+        Route::resource('sales', SalesController::class);
+
+        Route::resource('costs', CostController::class);
+
+        Route::resource('currency', CurrencyController::class);
+
+        Route::resource('cost-categories', CostCategoriesController::class);
     });
     // not admin page
     route::get('/notAdmin', function(){
