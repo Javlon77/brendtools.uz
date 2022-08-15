@@ -16,7 +16,7 @@ class CostController extends Controller
      */
     public function index()
     {
-        $costs = cost::all();
+        $costs = cost::orderBy('created_at', 'desc')->get();
         $categories = costCategory::all();
         return view('costs.index', compact('costs', 'categories'));
     }
