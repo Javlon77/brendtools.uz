@@ -41,7 +41,6 @@
     <!-- end of form to create cuurency -->
 
    </div>
-
     <!-- tablitsa istorya kursa -->
     <h5 class="my-0 mt-5">Valyutalar tarixi</h5>
     <table class="table bg-white" style="width: 100%;" id="c-table" data-page-length="20">
@@ -59,7 +58,11 @@
                 <td>{{ $loop->index+1 }}</td>
                 <td class="seperator">{{ $currency->currency }}</td>
                 <td>{{ \Carbon\carbon::parse($currency->created_at)->format('d.m.Y - H:i:s') }}</td>
-                <td>{{ \Carbon\carbon::parse($currency->updated_at)->format('d.m.Y - H:i:s') }}</td>
+                @if( $last_currency ->id == $currency ->id )
+                    <td>-</td>
+                @else
+                    <td>{{ \Carbon\carbon::parse($currency->updated_at)->format('d.m.Y - H:i:s') }}</td>
+                @endif
             </tr>   
         @endforeach
         </tbody>

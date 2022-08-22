@@ -16,10 +16,9 @@ class CurrencyController extends Controller
     public function index()
     {  
         $last_currency= currency::latest()->first();
-        $currencies = currency::all();
+        $currencies = currency::latest()->get();
         return view('currency.index', compact('last_currency','currencies'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
